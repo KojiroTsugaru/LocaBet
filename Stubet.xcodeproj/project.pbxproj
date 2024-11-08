@@ -42,7 +42,7 @@
 		317581122C89589D00DD5B13 /* BetDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317581112C89589D00DD5B13 /* BetDetailsView.swift */; };
 		317581142C89642E00DD5B13 /* MissionDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317581132C89642E00DD5B13 /* MissionDetailsView.swift */; };
 		317581162C896A7700DD5B13 /* NewBetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317581152C896A7700DD5B13 /* NewBetViewModel.swift */; };
-		317581182C896B2A00DD5B13 /* TimeSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317581172C896B2A00DD5B13 /* TimeSettingView.swift */; };
+		317581182C896B2A00DD5B13 /* SetDeadlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317581172C896B2A00DD5B13 /* SetDeadlineView.swift */; };
 		3175811A2C89768A00DD5B13 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 317581192C89768A00DD5B13 /* FirebaseAnalyticsOnDeviceConversion */; };
 		3175811C2C89768A00DD5B13 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 3175811B2C89768A00DD5B13 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		3175811E2C89768A00DD5B13 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 3175811D2C89768A00DD5B13 /* FirebaseAppCheck */; };
@@ -111,7 +111,7 @@
 		317581112C89589D00DD5B13 /* BetDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetDetailsView.swift; sourceTree = "<group>"; };
 		317581132C89642E00DD5B13 /* MissionDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDetailsView.swift; sourceTree = "<group>"; };
 		317581152C896A7700DD5B13 /* NewBetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBetViewModel.swift; sourceTree = "<group>"; };
-		317581172C896B2A00DD5B13 /* TimeSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSettingView.swift; sourceTree = "<group>"; };
+		317581172C896B2A00DD5B13 /* SetDeadlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDeadlineView.swift; sourceTree = "<group>"; };
 		317581252C89A57100DD5B13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31B8ED962C89BEC9004474B6 /* SetLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLocationView.swift; sourceTree = "<group>"; };
 		31B8ED982C89BF8C004474B6 /* MapSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchBar.swift; sourceTree = "<group>"; };
@@ -171,6 +171,7 @@
 			children = (
 				31B8ED962C89BEC9004474B6 /* SetLocationView.swift */,
 				311626E12CDEA46B00E1D4E0 /* LocationService.swift */,
+				31B8ED982C89BF8C004474B6 /* MapSearchBar.swift */,
 			);
 			path = SetLocation;
 			sourceTree = "<group>";
@@ -270,9 +271,8 @@
 			isa = PBXGroup;
 			children = (
 				317581092C880B9300DD5B13 /* CreateBetView.swift */,
-				317581172C896B2A00DD5B13 /* TimeSettingView.swift */,
+				317581172C896B2A00DD5B13 /* SetDeadlineView.swift */,
 				311626E32CDEA47700E1D4E0 /* SetLocation */,
-				31B8ED982C89BF8C004474B6 /* MapSearchBar.swift */,
 				311238912C89D75600EC7DBC /* ConfirmNewBetView.swift */,
 				317581152C896A7700DD5B13 /* NewBetViewModel.swift */,
 				3112388F2C89D1C300EC7DBC /* SharedBetViewModel.swift */,
@@ -492,7 +492,7 @@
 				3175810A2C880B9300DD5B13 /* CreateBetView.swift in Sources */,
 				311A57582C86D94A0040AA9A /* ContentView.swift in Sources */,
 				311626E22CDEA46B00E1D4E0 /* LocationService.swift in Sources */,
-				317581182C896B2A00DD5B13 /* TimeSettingView.swift in Sources */,
+				317581182C896B2A00DD5B13 /* SetDeadlineView.swift in Sources */,
 				317581142C89642E00DD5B13 /* MissionDetailsView.swift in Sources */,
 				317580FA2C87014400DD5B13 /* HomeViewModel.swift in Sources */,
 				311A57622C86D94D0040AA9A /* Stubet.xcdatamodeld in Sources */,

@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct TimeSettingView: View {
+struct SetDeadlineView: View {
     
     @ObservedObject var newBetData: NewBetData
     @Binding var showNewBetModal: Bool

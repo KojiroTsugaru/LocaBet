@@ -58,7 +58,7 @@ struct CreateBetView: View {
                         .foregroundColor(Color.orange)
                 }),
                 trailing: NavigationLink {
-                    TimeSettingView(
+                    SetDeadlineView(
                         newBetData: newBetData,
                         showNewBetModal: $showNewBetModal
                     )
@@ -69,41 +69,9 @@ struct CreateBetView: View {
         }
     }
     
-    
     // フォームが有効かどうかの判定
     private var isFormValid: Bool {
         newBetData.selectedFriend != nil && !newBetData.title.isEmpty && !newBetData.description.isEmpty
     }
 }
 
-//struct CreateBetView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        let sampleFriends = [
-//            Friend(id: "1", data: [
-//                "userName": "johndoe",
-//                "displayName": "John Doe",
-//                "icon_url": "https://example.com/john.jpg"
-//            ]),
-//            Friend(id: "2", data: [
-//                "userName": "janedoe",
-//                "displayName": "Jane Doe",
-//                "icon_url": "https://example.com/jane.jpg"
-//            ]),
-//            Friend(id: "3", data: [
-//                "userName": "bobsmith",
-//                "displayName": "Bob Smith",
-//                "icon_url": "https://example.com/bob.jpg"
-//            ])
-//        ]
-//
-//        let viewModel = NewBetViewModel()
-//        viewModel.friends = sampleFriends
-//        viewModel.selectedFriend = sampleFriends.first
-//        viewModel.title = "サンプルベット"
-//        viewModel.description = "これはサンプルのベット内容です。友人と楽しく賭けましょう！"
-//
-//        return NavigationView {
-//            NewBetView()
-//        }
-//    }
-//}
