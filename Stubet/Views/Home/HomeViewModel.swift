@@ -3,7 +3,7 @@ import Combine
 import FirebaseFirestore
 import SwiftUI
 
-class HomeViewModel: ObservableObject
+class HomeViewModel: ObservableObject {
     
     @Published var selectedTab: Tab = .mission
     
@@ -12,4 +12,7 @@ class HomeViewModel: ObservableObject
         case bet
     }
 
+    init() {
+        
+    }
 }
