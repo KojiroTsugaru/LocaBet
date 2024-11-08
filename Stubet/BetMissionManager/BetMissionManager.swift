@@ -112,5 +112,40 @@ class BetMissionManager: ObservableObject {
     }
     
     // craete bet
-    
+    func createBet(newBetData: NewBetData) async {
+        // Convert CLLocationCoordinate2D to Location object
+        let coordinate = newBetData.selectedCoordinates?.coordinate
+        let locationData = Location(
+            data: [
+                "name": newBetData.locationName,
+                "address": "Sample Address",
+                "latitude": coordinate?.latitude,
+                "longitude": coordinate?.longitude
+            ]
+        )
+        
+        // Create the Bet object
+        let data: [String: Any] = [
+            "title": newBetData.title,
+            "description": newBetData.description,
+            "deadline": Timestamp(date: newBetData.date), // Use the date as the deadline
+            "createdAt": Timestamp(date: Date()), // The creation date is now
+            "updatedAt": Timestamp(
+                date: Date()
+            ), // Initial value for updatedAt is the same as createdAt
+            "senderId": currentUserId,
+            "receiverId": newBetData.selectedFriend?.id ?? "1", // The friend that was selected
+            "status": "invitePending", // Default status
+            "location": locationData
+        ]
+        
+        // Upload the Bet object to Firestore
+        db.collection("bets").addDocument(data: data) { error in
+            if let error = error {
+                print("Error creating bet: \(error)")
+            } else {
+                print("Bet successfully created!")
+            }
+        }
+    }
 }

@@ -19,7 +19,6 @@ class SharedBetViewModel: ObservableObject {
     @Published var locationName: String?
     @Published var friends: [Friend] = []
     
-    
     // For map
     @Published var searchText: String = ""
     @Published var selectedCoordinates: [IdentifiableCoordinate] = []

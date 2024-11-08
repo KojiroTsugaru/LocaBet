@@ -2,12 +2,12 @@ import SwiftUI
 
 struct TimeSettingView: View {
     
-    @ObservedObject var viewModel: SharedBetViewModel
+    @ObservedObject var newBetData: NewBetData
+    @Binding var showNewBetModal: Bool
+    
     @Environment(\.presentationMode) var presentationMode
     @State private var showAlert = false
     @State private var alertMessage = ""
-    @Binding var showNewBet: Bool // Accept showNewBet as a Binding
-    @Binding var showingClearModal: Bool
 
     var body: some View {
         VStack(spacing: 40) {
@@ -19,7 +19,7 @@ struct TimeSettingView: View {
                     .foregroundColor(.primary)
                 
                 HStack {
-                    DatePicker("", selection: $viewModel.date, displayedComponents: .date)
+                    DatePicker("", selection: $newBetData.date, displayedComponents: .date)
                         .labelsHidden()
                         .accentColor(.purple) // Change the accent color for the date picker
                     Image(systemName: "calendar")
@@ -37,7 +37,7 @@ struct TimeSettingView: View {
                     .foregroundColor(.primary)
                 
                 HStack {
-                    DatePicker("", selection: $viewModel.time, displayedComponents: .hourAndMinute)
+                    DatePicker("", selection: $newBetData.time, displayedComponents: .hourAndMinute)
                         .labelsHidden()
                         .accentColor(.purple) // Change the accent color for the time picker
                     Image(systemName: "clock")
@@ -53,7 +53,7 @@ struct TimeSettingView: View {
         }
         .padding()
         .navigationBarTitle("時間を設定", displayMode: .inline)
-        .navigationBarItems(trailing: NavigationLink(destination: LocationSettingView(viewModel: viewModel, showNewBet: $showNewBet, showingClearModal: $showingClearModal)) {
+        .navigationBarItems(trailing: NavigationLink(destination: LocationSettingView(newBetData: newBetData, showNewBetModal: $showNewBetModal)) {
             Text("次へ")
                 .font(.headline)
                 .foregroundColor(.orange)
