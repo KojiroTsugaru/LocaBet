@@ -13,6 +13,8 @@ struct HomeView: View {
     
     @ObservedObject var viewModel: HomeViewModel
     
+    let betManager = BetMissionManager.shared
+    
     // Use the locationManager as an EnvironmentObject
     @EnvironmentObject var locationManager: UserLocationManager
     
@@ -22,7 +24,7 @@ struct HomeView: View {
     @State private var nearestMission: Mission?
     
     @State private var bets: [Bet] = []
-    @State private var showModal: Bool = false  
+    @State private var showModal: Bool = false
     @State private var changedBet: Bet? // Track which bet changed
     
     private var db = Firestore.firestore()
@@ -124,15 +126,15 @@ struct HomeView: View {
             }.accentColor(.orange)
 }
 
-
+    // MARK: - Mission Section
 var missionSection: some View {
     VStack(alignment: .leading, spacing: 20) {
-        if viewModel.newMissions.count > 0 {
+        if betManager.newMissions.count > 0 {
             Text("新しいミッションが届いています")
                 .font(.headline)
                 .padding(.leading)
             
-            ForEach(viewModel.newMissions) { mission in
+            ForEach(betManager.newMissions) { mission in
                 NavigationLink(destination: MissionDetailsView(mission: mission)) {
                     MissionRowView(mission: mission, isNew: true)
                 }
@@ -140,12 +142,12 @@ var missionSection: some View {
             }
         }
         
-        if viewModel.ongoingMissions.count > 0 {
+        if betManager.ongoingMissions.count > 0 {
             Text("進行中のミッション")
                 .font(.headline)
                 .padding(.leading)
             
-            ForEach(viewModel.ongoingMissions) { mission in
+            ForEach(betManager.ongoingMissions) { mission in
                 NavigationLink(destination: MissionDetailsView(mission: mission)) {
                     MissionRowView(mission: mission, isNew: false)
                 }
@@ -162,12 +164,12 @@ var missionSection: some View {
 // MARK: - Bet Section
 var betSection: some View {
     VStack(alignment: .leading, spacing: 20) {
-        if viewModel.rewardPendingBets.count > 0 {
+        if betManager.rewardPendingBets.count > 0 {
             Text("報酬を受け取っていません！")
                 .font(.headline)
                 .padding(.leading)
             
-            ForEach(viewModel.rewardPendingBets) { bet in
+            ForEach(betManager.rewardPendingBets) { bet in
                 NavigationLink(destination: BetDetailsView(bet: bet)) {
                     BetRowView(bet: bet, isNew: true)
                 }
@@ -175,12 +177,12 @@ var betSection: some View {
             }
         }
         
-        if viewModel.ongoingBets.count > 0 {
+        if betManager.ongoingBets.count > 0 {
             Text("進行中のベット")
                 .font(.headline)
                 .padding(.leading)
             
-            ForEach(viewModel.ongoingBets) { bet in
+            ForEach(betManager.ongoingBets) { bet in
                 NavigationLink(destination: BetDetailsView(bet: bet)) {
                     BetRowView(bet: bet, isNew: false)
                 }
@@ -230,61 +232,3 @@ var betSection: some View {
 //            }
 //        }
 }
-
-
-//struct HomeView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        // Dummy location data
-//        let dummyLocation = Location(data: [
-//            "name": "Location 1",
-//            "address": "123 Street, City",
-//            "latitude": 35.6586,
-//            "longitude": 139.7454
-//        ])
-//
-//        // Dummy bets
-//        let dummyBets = [
-//            Bet(id: "1", data: [
-//                "title": "Dummy Bet 1",
-//                "description": "Description for bet 1",
-//                "deadline": Timestamp(date: Date().addingTimeInterval(3600)),
-//                "createdAt": Timestamp(date: Date()),
-//                "updatedAt": Timestamp(date: Date()),
-//                "senderId": "user1",
-//                "receiverId": "user2",
-//                "status": "pending",
-//                "location": dummyLocation
-//            ]),
-//            Bet(id: "2", data: [
-//                "title": "Dummy Bet 2",
-//                "description": "Description for bet 2",
-//                "deadline": Timestamp(date: Date().addingTimeInterval(7200)),
-//                "createdAt": Timestamp(date: Date()),
-//                "updatedAt": Timestamp(date: Date()),
-//                "senderId": "user2",
-//                "receiverId": "user3",
-//                "status": "ongoing",
-//                "location": dummyLocation
-//            ])
-//        ]
-//
-//        // Dummy missions (wrapping the bets)
-//        let dummyMissions = dummyBets.map { bet -> Mission in
-//            return Mission(from: bet)
-//        }
-//
-//        // Initialize HomeViewModel with dummy data
-//        let viewModel = HomeViewModel(
-//            newMissions: dummyMissions,
-//            ongoingMissions: dummyMissions,
-//            rewardPendingBets: dummyBets,
-//            ongoingBets: dummyBets
-//        )
-//
-//        return HomeView()
-//    }
-//}
-//
-//#Preview {
-//    HomeView_Previews.previews
-//}
