@@ -14,10 +14,10 @@
             filePath = "Stubet/BetMissionManager/BetMissionManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
-            landmarkName = "BetMissionManager"
-            landmarkType = "3">
+            startingLineNumber = "163"
+            endingLineNumber = "163"
+            landmarkName = "createBet(newBetData:)"
+            landmarkType = "7">
             <Locations>
                <Location
                   uuid = "243EBC9F-C0B0-4BE5-9481-2B9B30A5BD88 - 130c0e5770afa73c"

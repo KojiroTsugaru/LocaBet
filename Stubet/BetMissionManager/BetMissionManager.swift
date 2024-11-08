@@ -114,6 +114,7 @@ class BetMissionManager: ObservableObject {
     // craete bet
     func createBet(newBetData: NewBetData) async {
         // Convert CLLocationCoordinate2D to Location object
+        
         let coordinate = newBetData.selectedCoordinates?.coordinate
         
         // create Location obj
@@ -121,10 +122,8 @@ class BetMissionManager: ObservableObject {
             data: [
                 "name": newBetData.locationName,
                 "address": "Sample Address",
-//                "latitude": coordinate?.latitude,
-//                "longitude": coordinate?.longitude
-                "latitude": "",
-                "longitude": ""
+                "latitude": coordinate?.latitude,
+                "longitude": coordinate?.longitude
             ]
         )
         
