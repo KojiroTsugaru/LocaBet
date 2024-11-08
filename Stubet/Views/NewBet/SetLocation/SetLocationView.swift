@@ -4,14 +4,14 @@ import MapKit
 struct SetLocationView: View {
     @ObservedObject var newBetData: NewBetData
     @Binding var showNewBetModal: Bool // Accept showNewBet as a Binding
-
-    @State private var locationName = ""
-    @State private var searchText: String = ""
     
     @State private var camera: MapCameraPosition = .automatic
     @State private var markerCoord: CLLocationCoordinate2D?
     
+    @State private var locationName = ""
+    
     var body: some View {
+        
         VStack(spacing: 16) {
             MapReader { proxy in
                 Map(position: $camera, interactionModes: .all) {
@@ -54,6 +54,9 @@ struct SetLocationView: View {
         }.simultaneousGesture(TapGesture().onEnded {
             // Set the value here before navigation
             newBetData.locationName = locationName
+            if let markerCoord = markerCoord {
+                newBetData.selectedCoordinates = IdentifiableCoordinate(coordinate: markerCoord)
+            }
         }))
     }
     
