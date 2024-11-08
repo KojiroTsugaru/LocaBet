@@ -1,32 +1,34 @@
 import SwiftUI
 import MapKit
 
-struct LocationSettingView: View {
+struct SetLocationView: View {
     @ObservedObject var newBetData: NewBetData
     @Binding var showNewBetModal: Bool // Accept showNewBet as a Binding
 
     @State private var locationName = ""
     @State private var searchText: String = ""
     
+    @State private var camera: MapCameraPosition = .automatic
+    @State private var markerCoord: CLLocationCoordinate2D?
+    
     var body: some View {
         VStack(spacing: 16) {
-            
-            // Map Search Bar
-//            MapSearchBar(text: $searchText, onSearchButtonClicked: {
-//                viewModel.searchForLocation(searchText: searchText)
-//            })
-//            .padding(.horizontal, 16)
-//            
-//            // Map View
-//            Map(coordinateRegion: $viewModel.region, interactionModes: .all, annotationItems: viewModel.selectedCoordinates) { coord in
-//                MapPin(coordinate: coord.coordinate)
-//            }
-//            .cornerRadius(16)
-//            .padding(.horizontal, 16)
-//            .onTapGesture {
-//                let coordinate = viewModel.region.center
-//                viewModel.selectLocation(coordinate: coordinate)
-//            }
+            MapReader { proxy in
+                Map(position: $camera, interactionModes: .all) {
+                    if let markerCoord = markerCoord  {
+                        Marker(coordinate: markerCoord) {
+                            Image(systemName: "flag.fill")
+                        }
+                    }
+                }
+                .cornerRadius(16)
+                .onTapGesture { position in
+                    if let coordinate = proxy.convert(position, from: .local) {
+                        print(coordinate)
+                        markerCoord = coordinate
+                    }
+                }
+            }
             
             // Location Name Field
             VStack(alignment: .leading, spacing: 8) {
@@ -37,8 +39,7 @@ struct LocationSettingView: View {
                 TextField("例: 千葉大学１号館", text: $locationName)
                     .padding()
                     .background(Color(UIColor.systemGray6))
-                    .cornerRadius(10)
-                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
+                    .cornerRadius(16)
                     .padding(.horizontal, 16)
             }
             .padding(.vertical, 16)
@@ -57,3 +58,9 @@ struct LocationSettingView: View {
     }
     
 }
+
+#Preview {
+    let mockNewBet = NewBetData()
+    SetLocationView(newBetData: mockNewBet, showNewBetModal: .constant(true))
+}
+

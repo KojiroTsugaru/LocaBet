@@ -53,7 +53,7 @@ struct TimeSettingView: View {
         }
         .padding()
         .navigationBarTitle("時間を設定", displayMode: .inline)
-        .navigationBarItems(trailing: NavigationLink(destination: LocationSettingView(newBetData: newBetData, showNewBetModal: $showNewBetModal)) {
+        .navigationBarItems(trailing: NavigationLink(destination: SetLocationView(newBetData: newBetData, showNewBetModal: $showNewBetModal)) {
             Text("次へ")
                 .font(.headline)
                 .foregroundColor(.orange)

@@ -17,6 +17,8 @@
 		311626D92CDE506100E1D4E0 /* MissionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311626D62CDE506100E1D4E0 /* MissionModel.swift */; };
 		311626DA2CDE506100E1D4E0 /* BetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311626D52CDE506100E1D4E0 /* BetModel.swift */; };
 		311626DC2CDE5C3100E1D4E0 /* NewBetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311626DB2CDE5C3100E1D4E0 /* NewBetData.swift */; };
+		311626DE2CDE8FFE00E1D4E0 /* SetLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311626DD2CDE8FFE00E1D4E0 /* SetLocationViewModel.swift */; };
+		311626E02CDE930D00E1D4E0 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311626DF2CDE930D00E1D4E0 /* SwiftUIView.swift */; };
 		311A57562C86D94A0040AA9A /* StubetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311A57552C86D94A0040AA9A /* StubetApp.swift */; };
 		311A57582C86D94A0040AA9A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311A57572C86D94A0040AA9A /* ContentView.swift */; };
 		311A575A2C86D94D0040AA9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 311A57592C86D94D0040AA9A /* Assets.xcassets */; };
@@ -45,7 +47,7 @@
 		3175811C2C89768A00DD5B13 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 3175811B2C89768A00DD5B13 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		3175811E2C89768A00DD5B13 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 3175811D2C89768A00DD5B13 /* FirebaseAppCheck */; };
 		317581202C89768A00DD5B13 /* FirebaseAppDistribution-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 3175811F2C89768A00DD5B13 /* FirebaseAppDistribution-Beta */; };
-		31B8ED972C89BEC9004474B6 /* LocationSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B8ED962C89BEC9004474B6 /* LocationSettingView.swift */; };
+		31B8ED972C89BEC9004474B6 /* SetLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B8ED962C89BEC9004474B6 /* SetLocationView.swift */; };
 		31B8ED992C89BF8C004474B6 /* MapSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B8ED982C89BF8C004474B6 /* MapSearchBar.swift */; };
 		31B8ED9B2C89C070004474B6 /* MapLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B8ED9A2C89C070004474B6 /* MapLocationManager.swift */; };
 		31B8ED9F2C89C200004474B6 /* IdentifiableCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B8ED9E2C89C200004474B6 /* IdentifiableCoordinate.swift */; };
@@ -84,6 +86,8 @@
 		311626D52CDE506100E1D4E0 /* BetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetModel.swift; sourceTree = "<group>"; };
 		311626D62CDE506100E1D4E0 /* MissionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionModel.swift; sourceTree = "<group>"; };
 		311626DB2CDE5C3100E1D4E0 /* NewBetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBetData.swift; sourceTree = "<group>"; };
+		311626DD2CDE8FFE00E1D4E0 /* SetLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLocationViewModel.swift; sourceTree = "<group>"; };
+		311626DF2CDE930D00E1D4E0 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		311A57522C86D94A0040AA9A /* Stubet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stubet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		311A57552C86D94A0040AA9A /* StubetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubetApp.swift; sourceTree = "<group>"; };
 		311A57572C86D94A0040AA9A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -109,7 +113,7 @@
 		317581152C896A7700DD5B13 /* NewBetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBetViewModel.swift; sourceTree = "<group>"; };
 		317581172C896B2A00DD5B13 /* TimeSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSettingView.swift; sourceTree = "<group>"; };
 		317581252C89A57100DD5B13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		31B8ED962C89BEC9004474B6 /* LocationSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSettingView.swift; sourceTree = "<group>"; };
+		31B8ED962C89BEC9004474B6 /* SetLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLocationView.swift; sourceTree = "<group>"; };
 		31B8ED982C89BF8C004474B6 /* MapSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchBar.swift; sourceTree = "<group>"; };
 		31B8ED9A2C89C070004474B6 /* MapLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLocationManager.swift; sourceTree = "<group>"; };
 		31B8ED9E2C89C200004474B6 /* IdentifiableCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableCoordinate.swift; sourceTree = "<group>"; };
@@ -248,6 +252,7 @@
 				317581132C89642E00DD5B13 /* MissionDetailsView.swift */,
 				317581112C89589D00DD5B13 /* BetDetailsView.swift */,
 				311238972C8AB0A300EC7DBC /* MapEventView.swift */,
+				311626DF2CDE930D00E1D4E0 /* SwiftUIView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -257,7 +262,8 @@
 			children = (
 				317581092C880B9300DD5B13 /* CreateBetView.swift */,
 				317581172C896B2A00DD5B13 /* TimeSettingView.swift */,
-				31B8ED962C89BEC9004474B6 /* LocationSettingView.swift */,
+				31B8ED962C89BEC9004474B6 /* SetLocationView.swift */,
+				311626DD2CDE8FFE00E1D4E0 /* SetLocationViewModel.swift */,
 				31B8ED982C89BF8C004474B6 /* MapSearchBar.swift */,
 				311238912C89D75600EC7DBC /* ConfirmNewBetView.swift */,
 				317581152C896A7700DD5B13 /* NewBetViewModel.swift */,
@@ -465,11 +471,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				311626DE2CDE8FFE00E1D4E0 /* SetLocationViewModel.swift in Sources */,
 				4CEB9A8D2C8952930061921E /* SignupView.swift in Sources */,
+				311626E02CDE930D00E1D4E0 /* SwiftUIView.swift in Sources */,
 				31B8ED9F2C89C200004474B6 /* IdentifiableCoordinate.swift in Sources */,
 				4CEB9A8B2C8952690061921E /* SignupViewModel.swift in Sources */,
 				31B8ED9B2C89C070004474B6 /* MapLocationManager.swift in Sources */,
-				31B8ED972C89BEC9004474B6 /* LocationSettingView.swift in Sources */,
+				31B8ED972C89BEC9004474B6 /* SetLocationView.swift in Sources */,
 				311238962C8A834300EC7DBC /* UserLocationManager.swift in Sources */,
 				317580FC2C8701AC00DD5B13 /* MissionRowView.swift in Sources */,
 				311238982C8AB0A300EC7DBC /* MapEventView.swift in Sources */,
