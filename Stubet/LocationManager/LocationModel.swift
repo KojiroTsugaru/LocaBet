@@ -21,9 +21,4 @@ struct Location {
         self.latitude = data["latitude"] as? Double ?? 0.0
         self.longitude = data["longitude"] as? Double ?? 0.0
     }
-    
-    // Convert latitude and longitude to CLLocation for proximity checks
-        var clLocation: CLLocation {
-            return CLLocation(latitude: latitude, longitude: longitude)
-        }
 }

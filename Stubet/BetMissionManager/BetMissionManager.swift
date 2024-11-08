@@ -121,8 +121,10 @@ class BetMissionManager: ObservableObject {
             data: [
                 "name": newBetData.locationName,
                 "address": "Sample Address",
-                "latitude": coordinate?.latitude,
-                "longitude": coordinate?.longitude
+//                "latitude": coordinate?.latitude,
+//                "longitude": coordinate?.longitude
+                "latitude": "",
+                "longitude": ""
             ]
         )
         
@@ -138,17 +140,26 @@ class BetMissionManager: ObservableObject {
             "senderId": currentUserId,
             "receiverId": newBetData.selectedFriend?.id ?? "1", // The friend that was selected
             "status": "invitePending", // Default status
-            "location": locationData
+            "location": "test"
         ]
         
-        // Upload the Bet object to Firestore
-        db.collection("bets").addDocument(data: data) { error in
-            if let error = error {
-                print("Error creating bet: \(error)")
-            } else {
-                print("Bet successfully created!")
-                print("Bet Details: \(data)")
-            }
+//        // Upload the Bet object to Firestore
+//        db.collection("bets").addDocument(data: data) { error in
+//            if let error = error {
+//                print("Error creating bet: \(error)")
+//            } else {
+//                print("Bet successfully created!")
+//                print("Bet Details: \(data)")
+//            }
+//        }
+        
+        // Add a new document in collection "cities"
+        do {
+            try await db.collection("bets").addDocument(data: data)
+          print("Document successfully written!")
+            print(data)
+        } catch {
+          print("Error writing document: \(error)")
         }
     }
 }
