@@ -15,10 +15,6 @@ struct HomeView: View {
     
     let betManager = BetMissionManager.shared
     
-    // Use the locationManager as an EnvironmentObject
-    @EnvironmentObject var locationManager: UserLocationManager
-    
-    
     // Track the nearest mission location to the user gets close to
     @State private var nearestMission: Mission?
     
