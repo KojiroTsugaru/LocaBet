@@ -5,14 +5,15 @@ import SwiftUI
 
 class HomeViewModel: ObservableObject {
     
-    @Published var selectedTab: Tab = .mission
-    
     enum Tab {
         case mission
         case bet
     }
+    
+    @Published var selectedTab: Tab = .mission
+    let betMissionManager = BetMissionManager.shared
 
     init() {
-        
+        betMissionManager.fetchData()
     }
 }

@@ -23,31 +23,35 @@ class BetMissionManager: ObservableObject {
     @Published var ongoingMissions: [Mission] = []
     
     @Published var rewardPendingBets: [Bet] = []
-    @Published var ongoingBets: [Bet] = []
+    @Published var ongoingBets: [Bet] = [] 
     
-    private init(newMissions: [Mission] = [], ongoingMissions: [Mission] = [],
-                 rewardPendingBets: [Bet] = [], ongoingBets: [Bet] = []) {
-        // UserProviderからcurrentUserIdを取得
-        //        self.currentUserId = UserProvider.shared.getCurrentUserId() ?? "1"
-        
-        // currentUserIdを手動で設定する
+//    private init(newMissions: [Mission] = [], ongoingMissions: [Mission] = [],
+//                 rewardPendingBets: [Bet] = [], ongoingBets: [Bet] = []) {
+//        // UserProviderからcurrentUserIdを取得
+//        //        self.currentUserId = UserProvider.shared.getCurrentUserId() ?? "1"
+//        
+//        // currentUserIdを手動で設定する
+//        self.currentUserId = "12345"
+//        
+//        if newMissions.isEmpty && ongoingMissions.isEmpty && rewardPendingBets.isEmpty && ongoingBets.isEmpty {
+//            // Fetch from Firebase only if no dummy data is provided
+//            fetchData()
+//        } else {
+//            // Use dummy data if provided
+//            self.newMissions = newMissions
+//            self.ongoingMissions = ongoingMissions
+//            self.rewardPendingBets = rewardPendingBets
+//            self.ongoingBets = ongoingBets
+//        }
+//    }
+    
+    init() {
         self.currentUserId = "12345"
-        
-        if newMissions.isEmpty && ongoingMissions.isEmpty && rewardPendingBets.isEmpty && ongoingBets.isEmpty {
-            // Fetch from Firebase only if no dummy data is provided
-            fetchBets()
-        } else {
-            // Use dummy data if provided
-            self.newMissions = newMissions
-            self.ongoingMissions = ongoingMissions
-            self.rewardPendingBets = rewardPendingBets
-            self.ongoingBets = ongoingBets
-        }
     }
     
     
-    // fetch bets
-    func fetchBets() {
+    // fetch bets and mission
+    func fetchData() {
         db.collection("bets").getDocuments { snapshot, error in
             if let error = error {
                 print("Error fetching bets: \(error)")
