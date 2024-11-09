@@ -8,7 +8,6 @@
 import Foundation
 
 class NewBetData: ObservableObject {
-    
     @Published var selectedFriend: Friend?
     @Published var title: String = ""
     @Published var description: String = ""

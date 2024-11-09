@@ -13,12 +13,12 @@ struct CreateBetView: View {
     @Binding var showNewBetModal: Bool // Accept showNewBet as a Binding
     
     let sampleFriends = [
-        Friend(id: "1", data: [
+        Friend(id: "2525", data: [
             "userName": "johndoe",
             "displayName": "John Doe",
             "icon_url": "https://example.com/john.jpg"
         ]),
-        Friend(id: "2", data: [
+        Friend(id: "8686", data: [
             "userName": "janedoe",
             "displayName": "Jane Doe",
             "icon_url": "https://example.com/jane.jpg"
