@@ -114,7 +114,7 @@ class BetMissionManager: ObservableObject {
     // craete bet
     func createBet(newBetData: NewBetData) async {
         
-        guard let coordinate = newBetData.selectedCoordinates?.coordinate else {
+        guard let coordinate = newBetData.selectedCoordinates else {
             print("No coordinates selected.")
             return
         }

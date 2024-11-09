@@ -50,7 +50,6 @@
 		31B8ED972C89BEC9004474B6 /* SetLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B8ED962C89BEC9004474B6 /* SetLocationView.swift */; };
 		31B8ED992C89BF8C004474B6 /* MapSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B8ED982C89BF8C004474B6 /* MapSearchBar.swift */; };
 		31B8ED9B2C89C070004474B6 /* MapLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B8ED9A2C89C070004474B6 /* MapLocationManager.swift */; };
-		31B8ED9F2C89C200004474B6 /* IdentifiableCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B8ED9E2C89C200004474B6 /* IdentifiableCoordinate.swift */; };
 		4C771D8F2C8809D000543A57 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C771D8E2C8809D000543A57 /* LoginView.swift */; };
 		4C771D912C880FB900543A57 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C771D902C880FB900543A57 /* LoginViewModel.swift */; };
 		4CA5B7162C89C68300158688 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA5B7142C89C68300158688 /* UserProvider.swift */; };
@@ -116,7 +115,6 @@
 		31B8ED962C89BEC9004474B6 /* SetLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLocationView.swift; sourceTree = "<group>"; };
 		31B8ED982C89BF8C004474B6 /* MapSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchBar.swift; sourceTree = "<group>"; };
 		31B8ED9A2C89C070004474B6 /* MapLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLocationManager.swift; sourceTree = "<group>"; };
-		31B8ED9E2C89C200004474B6 /* IdentifiableCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableCoordinate.swift; sourceTree = "<group>"; };
 		4C771D8E2C8809D000543A57 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		4C771D902C880FB900543A57 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		4CA5B7142C89C68300158688 /* UserProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProvider.swift; sourceTree = "<group>"; };
@@ -323,7 +321,6 @@
 				31B8ED9A2C89C070004474B6 /* MapLocationManager.swift */,
 				311238952C8A834300EC7DBC /* UserLocationManager.swift */,
 				3175810F2C88195D00DD5B13 /* LocationModel.swift */,
-				31B8ED9E2C89C200004474B6 /* IdentifiableCoordinate.swift */,
 			);
 			path = LocationManager;
 			sourceTree = "<group>";
@@ -481,7 +478,6 @@
 			files = (
 				4CEB9A8D2C8952930061921E /* SignupView.swift in Sources */,
 				311626E02CDE930D00E1D4E0 /* SwiftUIView.swift in Sources */,
-				31B8ED9F2C89C200004474B6 /* IdentifiableCoordinate.swift in Sources */,
 				4CEB9A8B2C8952690061921E /* SignupViewModel.swift in Sources */,
 				31B8ED9B2C89C070004474B6 /* MapLocationManager.swift in Sources */,
 				31B8ED972C89BEC9004474B6 /* SetLocationView.swift in Sources */,
