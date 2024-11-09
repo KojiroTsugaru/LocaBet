@@ -162,7 +162,6 @@ struct LocationTestView: View {
                     Text("You are close to \(target.name)!")
                         .font(.title)
                         .padding()
-                    Text("Address: \(target.address)")
                     Text("Latitude: \(target.latitude)")
                     Text("Longitude: \(target.longitude)")
                 } else {
