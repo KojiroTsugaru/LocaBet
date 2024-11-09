@@ -8,85 +8,70 @@
 import SwiftUI
 
 struct CreateBetView: View {
-    @ObservedObject var viewModel: SharedBetViewModel = SharedBetViewModel(currentUserId: "1")
+    @StateObject var newBetData = NewBetData()
     @Environment(\.presentationMode) var presentationMode
-    @Binding var showNewBet: Bool // Accept showNewBet as a Binding
-    @Binding var showingClearModal: Bool
+    @Binding var showNewBetModal: Bool // Accept showNewBet as a Binding
+    
+    let sampleFriends = [
+        Friend(id: "2525", data: [
+            "userName": "johndoe",
+            "displayName": "John Doe",
+            "icon_url": "https://example.com/john.jpg"
+        ]),
+        Friend(id: "8686", data: [
+            "userName": "janedoe",
+            "displayName": "Jane Doe",
+            "icon_url": "https://example.com/jane.jpg"
+        ]),
+    ]
     
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
                 Form {
                     Section(header: Text("誰にベットする？")) {
-                        Picker("名前", selection: $viewModel.selectedFriend) {
+                        Picker("名前", selection: $newBetData.selectedFriend) {
                             Text("選択してください").tag(nil as Friend?)
-                            ForEach(viewModel.friends) { friend in
+                            ForEach(sampleFriends) { friend in
                                 Text(friend.displayName).tag(friend as Friend?)
                             }
                         }
                     }
                     
                     Section(header: Text("タイトル")) {
-                        TextField("タイトル", text: $viewModel.title)
+                        TextField("タイトル", text: $newBetData.title)
                     }
                     
                     Section(header: Text("ベット内容")) {
-                        TextEditor(text: $viewModel.description)
+                        TextEditor(text: $newBetData.description)
                             .frame(height: 100)
                     }
                 }
             }
             .navigationTitle("ベット作成")
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(leading: Button(action: {
-                presentationMode.wrappedValue.dismiss()
-            }, label: {
-                Text("戻る")
-                    .foregroundColor(Color.orange)
-            }), trailing: NavigationLink {
-                TimeSettingView(viewModel: viewModel, showNewBet: $showNewBet, showingClearModal: $showingClearModal)
-            } label: {
-                Text("次へ")
-                    .foregroundColor(Color.orange)
-            })
+            .navigationBarItems(
+                leading: Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }, label: {
+                    Text("戻る")
+                        .foregroundColor(Color.orange)
+                }),
+                trailing: NavigationLink {
+                    SetDeadlineView(
+                        newBetData: newBetData,
+                        showNewBetModal: $showNewBetModal
+                    )
+                } label: {
+                    Text("次へ")
+                        .foregroundColor(Color.orange)
+                })
         }
     }
     
-    
     // フォームが有効かどうかの判定
     private var isFormValid: Bool {
-        viewModel.selectedFriend != nil && !viewModel.title.isEmpty && !viewModel.description.isEmpty
+        newBetData.selectedFriend != nil && !newBetData.title.isEmpty && !newBetData.description.isEmpty
     }
 }
 
-//struct CreateBetView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        let sampleFriends = [
-//            Friend(id: "1", data: [
-//                "userName": "johndoe",
-//                "displayName": "John Doe",
-//                "icon_url": "https://example.com/john.jpg"
-//            ]),
-//            Friend(id: "2", data: [
-//                "userName": "janedoe",
-//                "displayName": "Jane Doe",
-//                "icon_url": "https://example.com/jane.jpg"
-//            ]),
-//            Friend(id: "3", data: [
-//                "userName": "bobsmith",
-//                "displayName": "Bob Smith",
-//                "icon_url": "https://example.com/bob.jpg"
-//            ])
-//        ]
-//
-//        let viewModel = NewBetViewModel()
-//        viewModel.friends = sampleFriends
-//        viewModel.selectedFriend = sampleFriends.first
-//        viewModel.title = "サンプルベット"
-//        viewModel.description = "これはサンプルのベット内容です。友人と楽しく賭けましょう！"
-//
-//        return NavigationView {
-//            NewBetView()
-//        }
-//    }
-//}

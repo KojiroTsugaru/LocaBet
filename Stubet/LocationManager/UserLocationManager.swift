@@ -39,33 +39,33 @@ class UserLocationManager: NSObject, ObservableObject, CLLocationManagerDelegate
     }
 
     // Delegate method to update location
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let latestLocation = locations.last else { return }
-        location = latestLocation
-
-        // Check proximity to all target locations
-        checkProximity(to: targetLocations, from: latestLocation)
-    }
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        guard let latestLocation = locations.last else { return }
+//        location = latestLocation
+//
+//        // Check proximity to all target locations
+//        checkProximity(to: targetLocations, from: latestLocation)
+//    }
 
     // Method to check if user is within proximity of any target location
-    private func checkProximity(to targets: [Location], from userLocation: CLLocation) {
-        
-        for target in targets {
-            let distance = userLocation.distance(from: target.clLocation)
-            print("Distance to \(target.name): \(distance) meters")
-
-            // If user is within the threshold for any location, update the flag and nearest target
-            if distance <= proximityThreshold {
-                isCloseToAnyTarget = true
-                nearestLocation = target
-                return
-            }
-        }
-
-        // If no target is within range, reset the flag and nearest target
-        isCloseToAnyTarget = false
-        nearestLocation = nil
-    }
+//    private func checkProximity(to targets: [Location], from userLocation: CLLocation) {
+//        
+//        for target in targets {
+//            let distance = userLocation.distance(from: target.clLocation)
+//            print("Distance to \(target.name): \(distance) meters")
+//
+//            // If user is within the threshold for any location, update the flag and nearest target
+//            if distance <= proximityThreshold {
+//                isCloseToAnyTarget = true
+//                nearestLocation = target
+//                return
+//            }
+//        }
+//
+//        // If no target is within range, reset the flag and nearest target
+//        isCloseToAnyTarget = false
+//        nearestLocation = nil
+//    }
 
     // Methods to dynamically add, remove, or clear target locations
     func addTargetLocation(_ location: Location) {
@@ -162,7 +162,6 @@ struct LocationTestView: View {
                     Text("You are close to \(target.name)!")
                         .font(.title)
                         .padding()
-                    Text("Address: \(target.address)")
                     Text("Latitude: \(target.latitude)")
                     Text("Longitude: \(target.longitude)")
                 } else {

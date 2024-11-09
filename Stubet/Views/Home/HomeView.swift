@@ -18,19 +18,17 @@ struct HomeView: View {
     // Use the locationManager as an EnvironmentObject
     @EnvironmentObject var locationManager: UserLocationManager
     
-    @State private var showingClearModal = false
     
     // Track the nearest mission location to the user gets close to
     @State private var nearestMission: Mission?
     
     @State private var bets: [Bet] = []
-    @State private var showModal: Bool = false
     @State private var changedBet: Bet? // Track which bet changed
     
     private var db = Firestore.firestore()
     private var listener: ListenerRegistration?
     
-    @State private var showNewBet = false
+    @State private var showNewBetModal = false
     
     @State var showModalAfter40 = false
     
@@ -85,46 +83,18 @@ struct HomeView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 trailing: Button(action: {
-                    showNewBet = true
+                    showNewBetModal = true
                 }, label: {
                     Image(systemName: "plus")
                         .font(.title2)
                 })
             )
-            .sheet(isPresented: $showNewBet, content: {
-                CreateBetView(showNewBet: $showNewBet, showingClearModal: $showingClearModal)
+            .sheet(isPresented: $showNewBetModal, content: {
+                CreateBetView(showNewBetModal: $showNewBetModal)
             })
             
-            
-            //自分がミッションクリアモーダル
-            .sheet(isPresented: $showingClearModal) {
-                // The modal content
-                VStack(spacing: 10) {
-                    Text("ミッションをクリアしました!")
-                        .font(.title)
-                        .padding()
-                    Text("ミッション アーク森ビル!")
-                    Button("閉じる") {
-                        showingClearModal = false
-                    }
-                }.background(Color.orange)
-            }
-        }.accentColor(.orange)
-        //            ミッションをクリアされた場合のモーダル
-            .sheet(isPresented: $showModal) {
-                if let changedBet = changedBet {
-                    VStack {
-                        Text("Status Changed!")
-                            .font(.largeTitle)
-                        Text("Bet: \(changedBet.title)")
-                        Text("New Status: \(changedBet.status)")
-                        Button("Dismiss") {
-                            showModal = false
-                        }
-                    }
-                }
-            }.accentColor(.orange)
-}
+        }
+    }
 
     // MARK: - Mission Section
 var missionSection: some View {

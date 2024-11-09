@@ -112,5 +112,44 @@ class BetMissionManager: ObservableObject {
     }
     
     // craete bet
-    
+    func createBet(newBetData: NewBetData) async {
+        
+        guard let coordinate = newBetData.selectedCoordinates?.coordinate else {
+            print("No coordinates selected.")
+            return
+        }
+        
+        // create location data
+        let locationData: [String: Any] = [
+            "name": newBetData.locationName,
+            "latitude": coordinate.latitude,
+            "longitude": coordinate.longitude
+        ]
+        
+        // create bet data
+        let data: [String: Any] = [
+            "title": newBetData.title,
+            "description": newBetData.description,
+            "deadline": Timestamp(
+                date: newBetData.date
+            ), // Use the date as the deadline
+            "createdAt": Timestamp(date: Date()), // The creation date is now
+            "updatedAt": Timestamp(
+                date: Date()
+            ), // Initial value for updatedAt is the same as createdAt
+            "senderId": currentUserId,
+            "receiverId": newBetData.selectedFriend?.id ?? "0000", // selected friend's id
+            "status": "invitePending", // Default status
+            "location": locationData
+        ]
+        
+        // Add a new document in collection "bets"
+        do {
+            try await db.collection("bets").addDocument(data: data)
+            print("Document successfully written!")
+            print(data)
+        } catch {
+            print("Error writing document: \(error)")
+        }
+    }
 }

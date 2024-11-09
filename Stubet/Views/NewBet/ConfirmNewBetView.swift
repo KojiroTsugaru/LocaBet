@@ -9,10 +9,10 @@ import SwiftUI
 import FirebaseFirestore
 
 struct ConfirmNewBetView: View {
-    @ObservedObject var viewModel: SharedBetViewModel
     @Environment(\.presentationMode) var presentationMode
-    @Binding var showNewBet: Bool // Accept showNewBet as a Binding
-    @Binding var showingClearModal: Bool
+    
+    @ObservedObject var newBetData: NewBetData
+    @Binding var showNewBetModal: Bool
     
     var body: some View {
         ScrollView {
@@ -45,13 +45,13 @@ struct ConfirmNewBetView: View {
                                 .font(.subheadline)
                                 .fontWeight(.medium)
 
-                            Text(viewModel.title)
+                            Text(newBetData.title)
                                 .font(.title2)
                                 .fontWeight(.bold)
                         }
                     }
 
-                    Text(viewModel.description)
+                    Text(newBetData.description)
                         .font(.body)
                         .padding()
                         .background(Color(.systemGray6))
@@ -81,7 +81,7 @@ struct ConfirmNewBetView: View {
 
                         HStack {
                             Image(systemName: "location")
-                            Text(viewModel.locationName ?? "")
+                            Text(newBetData.locationName ?? "")
                                 .font(.subheadline)
 
                             Spacer()
@@ -103,14 +103,11 @@ struct ConfirmNewBetView: View {
         .navigationTitle("詳細")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarItems(trailing: Button(action: {
-//            viewModel.createBet()
-             // Dismiss the current view
-            showNewBet = false
-    
-            // Show the second modal after the first is dismissed
-            DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
-                showingClearModal = true
+            Task.init {
+                await BetMissionManager.shared.createBet(newBetData: newBetData)
             }
+             // Dismiss the current view
+            showNewBetModal = false
             
         }) {
             Text("ベット作成")
