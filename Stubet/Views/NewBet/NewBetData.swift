@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 class NewBetData: ObservableObject {
     @Published var selectedFriend: Friend?
@@ -14,5 +15,5 @@ class NewBetData: ObservableObject {
     @Published var date: Date = Date()
     @Published var time: Date = Date()
     @Published var locationName: String = ""
-    @Published var selectedCoordinates: IdentifiableCoordinate?
+    @Published var selectedCoordinates: CLLocationCoordinate2D?
 }

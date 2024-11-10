@@ -81,7 +81,7 @@ struct ConfirmNewBetView: View {
 
                         HStack {
                             Image(systemName: "location")
-                            Text(newBetData.locationName ?? "")
+                            Text(newBetData.locationName)
                                 .font(.subheadline)
 
                             Spacer()

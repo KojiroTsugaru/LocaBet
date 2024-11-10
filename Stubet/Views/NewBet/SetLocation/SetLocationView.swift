@@ -55,7 +55,7 @@ struct SetLocationView: View {
             // Set the value here before navigation
             newBetData.locationName = locationName
             if let markerCoord = markerCoord {
-                newBetData.selectedCoordinates = IdentifiableCoordinate(coordinate: markerCoord)
+                newBetData.selectedCoordinates = markerCoord
             }
         }))
     }
