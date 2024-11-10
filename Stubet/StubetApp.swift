@@ -21,13 +21,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct StubetApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    
-    @StateObject var locationManager = UserLocationManager()
 
     var body: some Scene {
         WindowGroup {
            ContentView()
-               .environmentObject(locationManager)
         }
     }
 }

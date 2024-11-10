@@ -6,17 +6,18 @@
 //
 
 import SwiftUI
-import FirebaseCore
 
 struct ProfileView: View {
     
-    let userId: String
-    
     var body: some View {
-        VStack(spacing: 20) {
-            Text("My Profile")
-                .font(.headline)
-        }
-        
+        Group {
+            VStack(spacing: 20) {
+                Text("My Profile")
+                    .font(.headline)
+            }
+        }.background(Color(UIColor.systemGroupedBackground))
+            .edgesIgnoringSafeArea(.bottom)
+            .navigationTitle("プロフィール")
+            .navigationBarTitleDisplayMode(.inline)
     }
 }
