@@ -9,15 +9,22 @@ import SwiftUI
 
 struct ProfileView: View {
     
+    @ObservedObject private var viewModel: ProfileViewModel
+    
+    init() {
+        self.viewModel = ProfileViewModel()
+    }
+    
     var body: some View {
-        Group {
-            VStack(spacing: 20) {
-                Text("My Profile")
-                    .font(.headline)
-            }
-        }.background(Color(UIColor.systemGroupedBackground))
-            .edgesIgnoringSafeArea(.bottom)
-            .navigationTitle("プロフィール")
-            .navigationBarTitleDisplayMode(.inline)
+        VStack(spacing: 20) {
+            Text("My Profile")
+                .font(.headline)
+            Text(viewModel.user?.userName ?? "null")
+        }
+        .background(Color(UIColor.systemGroupedBackground))
+        .edgesIgnoringSafeArea(.all)
+        .navigationTitle("プロフィール")
+        .navigationBarTitleDisplayMode(.inline)
+
     }
 }
