@@ -1,8 +1,15 @@
-import SwiftUI
-import Firebase
-import FirebaseAuth
+//
+//  MainTabView.swift
+//  Stubet
+//
+//  Created by KJ on 11/13/24.
+//
 
-struct ContentView: View {
+import SwiftUI
+
+struct MainTabView: View {
+    
+    @State private var selectedTab = 0 // Set HomeView as the default tab
     
     init() {
         // Set tab bar appearance
@@ -19,6 +26,7 @@ struct ContentView: View {
                 Image(systemName: "house")
                 Text("ホーム")
             }
+            .tag(0)
 
             
             NavigationView {
@@ -28,7 +36,12 @@ struct ContentView: View {
                 Image(systemName: "person.fill")
                 Text("プロフィール")
             }
+            .tag(1)
         }.accentColor(Color.orange)
         
     }
+}
+
+#Preview {
+    MainTabView()
 }

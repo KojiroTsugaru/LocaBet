@@ -8,12 +8,8 @@ import Foundation
 import SwiftUI
 
 struct SignupView: View {
-    @ObservedObject var viewModel: SignupViewModel
-    @Environment(\.presentationMode) var presentationMode // ログイン画面に戻るために追加
-    
-    init(){
-        self.viewModel = SignupViewModel()
-    }
+    @Binding var showSignupView: Bool
+    @ObservedObject var viewModel = SignupViewModel()   
 
     var body: some View {
         VStack {
@@ -26,7 +22,7 @@ struct SignupView: View {
                     .frame(width: 150, height: 150) // サイズを調整
 
                 // 文字のサイズを少し小さくして上に配置
-                Text("Stu BET")
+                Text("StuBet")
                     .font(.title2) // 文字のサイズを調整
                     .bold()
             }
@@ -143,7 +139,8 @@ struct SignupView: View {
             HStack {
                 Text("既にアカウントをお持ちですか？")
                 Button("ログイン") {
-                    presentationMode.wrappedValue.dismiss() // ログイン画面に戻る
+                    // ログイン画面に戻る
+                    showSignupView = false
                 }
             }
             .padding()
