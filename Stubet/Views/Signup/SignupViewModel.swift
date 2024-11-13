@@ -13,7 +13,6 @@ import FirebaseFirestore
 
 class SignupViewModel: ObservableObject {
     @Published var username = ""
-    @Published var email = ""
     @Published var password = ""
     @Published var confirmPassword = ""
     
@@ -34,13 +33,10 @@ class SignupViewModel: ObservableObject {
     func validateFields() {
         // テキストボックスが空かどうか
         usernameError = username.isEmpty ? "Username is required." : ""
-        emailError = email.isEmpty ? "Email is required." : ""
         passwordError = password.isEmpty ? "Password is required." : ""
         confirmPasswordError = confirmPassword.isEmpty ? "Confirmation is required." : ""
 
         // username条件
-        
-        // email条件
         
         // password条件
         passwordError = (password.count < 8) ? "Password length error" : ""
@@ -53,15 +49,16 @@ class SignupViewModel: ObservableObject {
         
     }
         
-    func signup() {
+    func signup() async throws {
         validateFields()
 
         // エラーがなければ続行
         if usernameError.isEmpty && emailError.isEmpty && passwordError.isEmpty && confirmPasswordError.isEmpty {
            
-            // TODO：ユーザーの詳細入力に進む
+            // TODO：ユーザーネームとパスワードの画面とそれ以外の詳細入力画面を分ける
             
-            
+            // サインアップする
+            try await AccountManager.shared.signUp(password: password, userName: username, displayName: username, iconUrl: "")
             
         } else {
             showError = true

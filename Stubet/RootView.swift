@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RootView: View {
-    let accountManager = AccountManager.shared
+    @StateObject private var accountManager = AccountManager.shared
 
     var body: some View {
         Group {

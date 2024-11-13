@@ -21,7 +21,6 @@ struct User: Identifiable {
         self.createdAt = data["createdAt"] as? Timestamp ?? Timestamp(date: Date())
         self.updatedAt = data["updatedAt"] as? Timestamp ?? Timestamp(date: Date())
         
-        // Initialize friends as an empty array, to be populated later
         self.friends = [] // 必要に応じてフレンドリストを初期化
     }
 }

@@ -9,9 +9,10 @@ import Foundation
 import FirebaseFirestore
 import FirebaseAuth
 
-class AccountManager: NSObject {
+class AccountManager: NSObject, ObservableObject    {
     
     static let shared = AccountManager()
+    let db = Firestore.firestore()
     
     // ローカルの現在のユーザーを保持するためのPublishedプロパティ
     @Published var currentUser: FirebaseAuth.User?
@@ -24,16 +25,18 @@ class AccountManager: NSObject {
     
     // ユーザーがログインしているか確認するメソッド
     func setUp() {
-        self.handle = Auth.auth().addStateDidChangeListener({ [weak self] auth, user in
-            if let self = self {
-                self.currentUser = user
-                if user != nil {
-                    print("User is logged in")
-                } else {
-                    print("User is logged out")
+        self.handle = Auth
+            .auth()
+            .addStateDidChangeListener({ [weak self] auth, user in
+                if let self = self {
+                    self.currentUser = user
+                    if user != nil {
+                        print("User is logged in")
+                    } else {
+                        print("User is logged out")
+                    }
                 }
-            }
-        })
+            })
     }
     
     // cleanup method to remove the listener if needed
@@ -66,9 +69,8 @@ class AccountManager: NSObject {
                 "createdAt": Timestamp(date: Date()),
                 "updatedAt": Timestamp(date: Date())
             ]
+
             
-            // Save user data to Firestore
-            let db = Firestore.firestore()
             let userRef = db.collection("users").document(user.uid)
             try await userRef.setData(userData)
             
@@ -83,7 +85,10 @@ class AccountManager: NSObject {
         
         do {
             // Attempt to sign in with Firebase Authentication
-            let authResult = try await Auth.auth().signIn(withEmail: email, password: password)
+            let authResult = try await Auth.auth().signIn(
+                withEmail: email,
+                password: password
+            )
             self.currentUser = authResult.user // Update the currentUser on successful sign-in
         } catch let error as NSError {
             // Handle specific Firebase Authentication errors if needed
@@ -109,6 +114,40 @@ class AccountManager: NSObject {
             self.currentUser = nil // Clear the current user on sign-out
         } catch {
             throw SignInError.signOutFailed
+        }
+    }
+    
+    // userIDの取得
+    public func getCurrentUserId() -> String? {
+        return currentUser?.uid
+    }
+
+    // convert Firestore data to User struct
+    public func getUser() async throws -> User? {
+        // Ensure that we have a current user
+        guard let id = Auth.auth().currentUser?.uid else {
+            throw NSError(domain: "UserError", code: 1, userInfo: [NSLocalizedDescriptionKey: "No authenticated user found."])
+        }
+
+        // Reference to the Firestore document
+        let documentRef = Firestore.firestore().collection("users").document(id)
+        
+        do {
+            // Fetch the document
+            let documentSnapshot = try await documentRef.getDocument()
+            
+            // Check if the document exists and contains data
+            guard let data = documentSnapshot.data() else {
+                print("User document does not exist or has no data")
+                return nil
+            }
+            
+            // Initialize the User model from Firestore data
+            return User(id: id, data: data)
+            
+        } catch {
+            print("Error fetching user data: \(error.localizedDescription)")
+            throw error
         }
     }
     
