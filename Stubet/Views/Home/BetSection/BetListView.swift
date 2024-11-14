@@ -11,7 +11,9 @@ struct BetListView: View {
     @StateObject private var betManager = BetManager.shared
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
+        LazyVStack(alignment: .leading, spacing: 20) {
+            
+            // 報酬を受け取っていないベット
             if betManager.rewardPendingBets.count > 0 {
                 Text("報酬を受け取っていません！")
                     .font(.headline)
@@ -24,9 +26,24 @@ struct BetListView: View {
                     .padding(.horizontal)
                 }
             }
-        
+            
+            // 承認待ちのベット
+            if betManager.invitePendingBets.count > 0 {
+                Text("フレンドの承認待ち")
+                    .font(.headline)
+                    .padding(.leading)
+            
+                ForEach(betManager.invitePendingBets) { bet in
+                    NavigationLink(destination: BetDetailsView(bet: bet)) {
+                        BetRowView(bet: bet, isNew: false)
+                    }
+                    .padding(.horizontal)
+                }
+            }
+            
+            // 進行中のベット
             if betManager.ongoingBets.count > 0 {
-                Text("進行中のベット")
+                Text("進行中")
                     .font(.headline)
                     .padding(.leading)
             
@@ -42,6 +59,7 @@ struct BetListView: View {
                     .offset(y: 250)
             }
         }
+        .padding(.bottom, 100)
     }
 }
 

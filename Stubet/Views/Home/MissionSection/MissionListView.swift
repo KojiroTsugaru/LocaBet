@@ -11,7 +11,7 @@ struct MissionListView: View {
     @StateObject private var betManager = BetManager.shared
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
+        LazyVStack(alignment: .leading, spacing: 20) {
             if betManager.newMissions.count > 0 {
                 Text("新しいミッションが届いています")
                     .font(.headline)
@@ -46,5 +46,6 @@ struct MissionListView: View {
                     .offset(y: 250)
             }
         }
+        .padding(.bottom, 100)
     }
 }

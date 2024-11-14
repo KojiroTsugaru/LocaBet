@@ -19,11 +19,13 @@ class BetManager: ObservableObject {
     
     @Published var allMissions: [Mission] = []
     @Published var allBets: [Bet] = []
+    
     @Published var newMissions: [Mission] = []
     @Published var ongoingMissions: [Mission] = []
     
     @Published var rewardPendingBets: [Bet] = []
     @Published var ongoingBets: [Bet] = []
+    @Published var invitePendingBets: [Bet] = []
     
     // Track already fetched document IDs to avoid refetching
     private var fetchedBetIDs: Set<String> = []
@@ -76,6 +78,8 @@ class BetManager: ObservableObject {
                         self.ongoingBets.append(bet)
                     } else if bet.status == "rewardPending" {
                         self.rewardPendingBets.append(bet)
+                    } else if bet.status == "invitePending" {
+                        self.invitePendingBets.append(bet)
                     }
                 }
             }
