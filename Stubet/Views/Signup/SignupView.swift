@@ -8,12 +8,8 @@ import Foundation
 import SwiftUI
 
 struct SignupView: View {
-    @ObservedObject var viewModel: SignupViewModel
-    @Environment(\.presentationMode) var presentationMode // ログイン画面に戻るために追加
-    
-    init(){
-        self.viewModel = SignupViewModel()
-    }
+    @Binding var showSignupView: Bool
+    @ObservedObject var viewModel = SignupViewModel()
 
     var body: some View {
         VStack {
@@ -26,7 +22,7 @@ struct SignupView: View {
                     .frame(width: 150, height: 150) // サイズを調整
 
                 // 文字のサイズを少し小さくして上に配置
-                Text("Stu BET")
+                Text("StuBet")
                     .font(.title2) // 文字のサイズを調整
                     .bold()
             }
@@ -61,27 +57,6 @@ struct SignupView: View {
                 }
             }
             .padding(.bottom, 10) // 各フィールドの間に隙間を追加
-
-            // メールアドレス入力フィールドとエラーメッセージ
-            VStack(alignment: .leading, spacing: 5) {
-                TextField("email", text: $viewModel.email)
-                    .padding()
-                    .background(Color(.systemGray6))
-                    .cornerRadius(8)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.gray, lineWidth: 0.5)
-                    )
-                    .padding(.horizontal)
-                
-                if viewModel.emailError != "" {
-                    Text(viewModel.emailError)
-                        .font(.caption)
-                        .foregroundColor(.red)
-                        .padding(.leading, 16)
-                }
-            }
-            .padding(.bottom, 10)
 
             // パスワード入力フィールドとエラーメッセージ
             VStack(alignment: .leading, spacing: 5) {
@@ -127,9 +102,11 @@ struct SignupView: View {
 
             // 新規登録ボタン
             Button(action: {
-                viewModel.signup() // 新規登録処理をviewModelに委譲
+                Task.init {
+                    try await viewModel.signup() // 新規登録処理
+                }
             }) {
-                Text("SIGN UP")
+                Text("登録する")
                     .font(.headline)
                     .foregroundColor(.white)
                     .padding()
@@ -143,7 +120,8 @@ struct SignupView: View {
             HStack {
                 Text("既にアカウントをお持ちですか？")
                 Button("ログイン") {
-                    presentationMode.wrappedValue.dismiss() // ログイン画面に戻る
+                    // ログイン画面に戻る
+                    showSignupView = false
                 }
             }
             .padding()

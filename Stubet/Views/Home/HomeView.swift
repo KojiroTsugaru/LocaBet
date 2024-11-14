@@ -9,6 +9,7 @@ import SwiftUI
 import FirebaseFirestore
 
 struct HomeView: View {
+    @EnvironmentObject var accountManager: AccountManager
     @ObservedObject var viewModel: HomeViewModel
     let betManager = BetMissionManager.shared
     @StateObject private var locationManager = LocationManager.shared
@@ -87,12 +88,11 @@ struct HomeView: View {
                 CreateBetView(showNewBetModal: $showNewBetModal)
             })
             .onChange(
-                of: locationManager.showModalForRegion
-            ) { regionIdentifier in
-                if regionIdentifier != nil {
-                    showMissionClearModal = true // Trigger modal display
-                }
-            }
+                of: locationManager.showModalForRegion, perform: { regionIdentifier in
+                    if regionIdentifier != nil {
+                        showMissionClearModal = true // Trigger modal display
+                    }
+                })
             .sheet(isPresented: $showMissionClearModal, onDismiss: {
                 // Reset the modal trigger after dismissal
                 locationManager.showModalForRegion = nil
@@ -102,7 +102,16 @@ struct HomeView: View {
                     MissionClearModalView(regionIdentifier: regionIdentifier)
                 }
             }
-            
+            .task {
+                do {
+                    try await accountManager.fetchCurrentUser()
+                } catch {
+                    print(error)
+                }
+                
+                viewModel.fetchData()
+            }
+             
         }
     }
 
