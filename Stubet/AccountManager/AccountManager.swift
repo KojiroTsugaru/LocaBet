@@ -90,7 +90,7 @@ class AccountManager: NSObject, ObservableObject    {
         
         do {
             // Attempt to sign in with Firebase Authentication
-            let authResult = try await Auth.auth().signIn(
+            _ = try await Auth.auth().signIn(
                 withEmail: email,
                 password: password
             )

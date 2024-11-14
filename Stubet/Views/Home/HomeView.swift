@@ -9,9 +9,8 @@ import SwiftUI
 import FirebaseFirestore
 
 struct HomeView: View {
-    @EnvironmentObject var accountManager: AccountManager
-    @ObservedObject var viewModel: HomeViewModel
-    let betManager = BetMissionManager.shared
+    @EnvironmentObject private var accountManager: AccountManager
+    @StateObject private var betManager = BetManager.shared
     @StateObject private var locationManager = LocationManager.shared
     
     @State private var navigationPath = NavigationPath()
@@ -19,10 +18,12 @@ struct HomeView: View {
     @State private var showNewBetModal = false
     @State private var showMissionClearModal = false
     
-    init() {
-        self.viewModel = HomeViewModel()
+    enum Tab {
+        case mission
+        case bet
     }
     
+    @State private var selectedTab: Tab = .bet
     
     var body: some View {
         NavigationStack(path: $navigationPath) {
@@ -31,31 +32,31 @@ struct HomeView: View {
                 HStack {
                     Spacer()
                     Button(action: {
-                        viewModel.selectedTab = .mission
+                        selectedTab = .mission
                     }) {
                         Text("ミッション")
                             .font(.system(size: 12))
                             .padding(10)
                             .background(
-                                viewModel.selectedTab == .mission ? Color.orange : Color.clear
+                                selectedTab == .mission ? Color.orange : Color.clear
                             )
                             .foregroundColor(
-                                viewModel.selectedTab == .mission ? .white : .gray
+                                selectedTab == .mission ? .white : .gray
                             )
                             .cornerRadius(48)
                     }
                     Spacer()
                     Button(action: {
-                        viewModel.selectedTab = .bet
+                        selectedTab = .bet
                     }) {
                         Text("ベット")
                             .font(.system(size: 12))
                             .padding(10)
                             .background(
-                                viewModel.selectedTab == .bet ? Color.orange : Color.clear
+                                selectedTab == .bet ? Color.orange : Color.clear
                             )
                             .foregroundColor(
-                                viewModel.selectedTab == .bet ? .white : .gray
+                                selectedTab == .bet ? .white : .gray
                             )
                             .cornerRadius(48)
                     }
@@ -65,7 +66,7 @@ struct HomeView: View {
                 
                 // Content depending on the selected tab
                 ScrollView {
-                    if viewModel.selectedTab == .mission {
+                    if selectedTab == .mission {
                         missionSection
                     } else {
                         betSection
@@ -109,7 +110,7 @@ struct HomeView: View {
                     print(error)
                 }
                 
-                viewModel.fetchData()
+                betManager.fetchData()
             }
              
         }

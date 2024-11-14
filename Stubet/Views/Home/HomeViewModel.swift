@@ -4,17 +4,14 @@ import FirebaseFirestore
 import SwiftUI
 
 class HomeViewModel: ObservableObject {
-    
-    enum Tab {
-        case mission
-        case bet
-    }
-    
-    @Published var selectedTab: Tab = .mission
-    let betMissionManager = BetMissionManager.shared
+    @StateObject private var betManager = BetManager.shared
 
-    func fetchData() {
-        betMissionManager.fetchData()
-    }
+    func fetchData() async {
+        DispatchQueue.main.async {
+            withAnimation {
+                self.betManager.fetchData()
+            }
+        }
+}
     
 }

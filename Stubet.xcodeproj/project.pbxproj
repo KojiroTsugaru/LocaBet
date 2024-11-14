@@ -11,7 +11,7 @@
 		311238982C8AB0A300EC7DBC /* MapEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311238972C8AB0A300EC7DBC /* MapEventView.swift */; };
 		3112389A2C8AB60C00EC7DBC /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311238992C8AB60C00EC7DBC /* ProfileView.swift */; };
 		3112389E2C8AB6A700EC7DBC /* FriendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3112389D2C8AB6A700EC7DBC /* FriendRequest.swift */; };
-		311626D82CDE506100E1D4E0 /* BetMissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311626D42CDE506100E1D4E0 /* BetMissionManager.swift */; };
+		311626D82CDE506100E1D4E0 /* BetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311626D42CDE506100E1D4E0 /* BetManager.swift */; };
 		311626D92CDE506100E1D4E0 /* MissionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311626D62CDE506100E1D4E0 /* MissionModel.swift */; };
 		311626DA2CDE506100E1D4E0 /* BetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311626D52CDE506100E1D4E0 /* BetModel.swift */; };
 		311626DC2CDE5C3100E1D4E0 /* NewBetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311626DB2CDE5C3100E1D4E0 /* NewBetData.swift */; };
@@ -80,7 +80,7 @@
 		311238972C8AB0A300EC7DBC /* MapEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapEventView.swift; sourceTree = "<group>"; };
 		311238992C8AB60C00EC7DBC /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		3112389D2C8AB6A700EC7DBC /* FriendRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequest.swift; sourceTree = "<group>"; };
-		311626D42CDE506100E1D4E0 /* BetMissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetMissionManager.swift; sourceTree = "<group>"; };
+		311626D42CDE506100E1D4E0 /* BetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetManager.swift; sourceTree = "<group>"; };
 		311626D52CDE506100E1D4E0 /* BetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetModel.swift; sourceTree = "<group>"; };
 		311626D62CDE506100E1D4E0 /* MissionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionModel.swift; sourceTree = "<group>"; };
 		311626DB2CDE5C3100E1D4E0 /* NewBetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBetData.swift; sourceTree = "<group>"; };
@@ -159,7 +159,7 @@
 		311626D72CDE506100E1D4E0 /* BetMissionManager */ = {
 			isa = PBXGroup;
 			children = (
-				311626D42CDE506100E1D4E0 /* BetMissionManager.swift */,
+				311626D42CDE506100E1D4E0 /* BetManager.swift */,
 				311626D52CDE506100E1D4E0 /* BetModel.swift */,
 				311626D62CDE506100E1D4E0 /* MissionModel.swift */,
 			);
@@ -503,7 +503,7 @@
 				314665662CDF98EE00441AC6 /* MissionClearModalView.swift in Sources */,
 				3146656E2CE50A8D00441AC6 /* ProfileViewModel.swift in Sources */,
 				311A57562C86D94A0040AA9A /* StubetApp.swift in Sources */,
-				311626D82CDE506100E1D4E0 /* BetMissionManager.swift in Sources */,
+				311626D82CDE506100E1D4E0 /* BetManager.swift in Sources */,
 				314665682CE0E99100441AC6 /* AccountManager.swift in Sources */,
 				311626D92CDE506100E1D4E0 /* MissionModel.swift in Sources */,
 				311626DA2CDE506100E1D4E0 /* BetModel.swift in Sources */,

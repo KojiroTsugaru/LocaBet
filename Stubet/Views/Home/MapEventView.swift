@@ -50,7 +50,7 @@ struct EventView: View {
 
             // Map Section
             Map(coordinateRegion: $region)
-                .frame(height: 150)
+                .frame(height: 200)
                 .cornerRadius(10)
                 .padding(.horizontal)
                 .padding(.top, 10)
