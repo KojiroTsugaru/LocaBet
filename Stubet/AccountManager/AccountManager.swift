@@ -15,9 +15,9 @@ class AccountManager: NSObject, ObservableObject    {
     let db = Firestore.firestore()
     
     // ローカルの現在のユーザーを保持するためのPublishedプロパティ
-    @Published var currentUser: FirebaseAuth.User?
+    @Published var currentUser: User?
     @Published var handle: AuthStateDidChangeListenerHandle?
-    
+
     private override init() {
         super.init()
         self.setUp()
@@ -29,11 +29,16 @@ class AccountManager: NSObject, ObservableObject    {
             .auth()
             .addStateDidChangeListener({ [weak self] auth, user in
                 if let self = self {
-                    self.currentUser = user
-                    if user != nil {
-                        print("User is logged in")
-                    } else {
-                        print("User is logged out")
+                    Task {
+                        try await self.fetchCurrentUser()
+                    }
+                    DispatchQueue.main.async {
+                        if user != nil {
+                            print("User is logged in")
+                        } else {
+                            print("User is logged out")
+                            self.currentUser = nil // Clear the current user if logged out
+                        }
                     }
                 }
             })
@@ -89,7 +94,11 @@ class AccountManager: NSObject, ObservableObject    {
                 withEmail: email,
                 password: password
             )
-            self.currentUser = authResult.user // Update the currentUser on successful sign-in
+            
+            Task.init {
+                try await fetchCurrentUser() // Update the currentUser on successful sign-in
+            }
+            
         } catch let error as NSError {
             // Handle specific Firebase Authentication errors if needed
             switch AuthErrorCode(rawValue: error.code) {
@@ -119,14 +128,18 @@ class AccountManager: NSObject, ObservableObject    {
     
     // userIDの取得
     public func getCurrentUserId() -> String? {
-        return currentUser?.uid
+        return currentUser?.id
     }
 
     // convert Firestore data to User struct
-    public func getUser() async throws -> User? {
+    public func fetchCurrentUser() async throws {
         // Ensure that we have a current user
         guard let id = Auth.auth().currentUser?.uid else {
-            throw NSError(domain: "UserError", code: 1, userInfo: [NSLocalizedDescriptionKey: "No authenticated user found."])
+            throw NSError(
+                domain: "UserError",
+                code: 1,
+                userInfo: [NSLocalizedDescriptionKey: "No authenticated user found."]
+            )
         }
 
         // Reference to the Firestore document
@@ -139,11 +152,13 @@ class AccountManager: NSObject, ObservableObject    {
             // Check if the document exists and contains data
             guard let data = documentSnapshot.data() else {
                 print("User document does not exist or has no data")
-                return nil
+                return
             }
             
-            // Initialize the User model from Firestore data
-            return User(id: id, data: data)
+            // Update currentUser on the main thread
+            DispatchQueue.main.async {
+                self.currentUser = User(id: id, data: data)
+            }
             
         } catch {
             print("Error fetching user data: \(error.localizedDescription)")

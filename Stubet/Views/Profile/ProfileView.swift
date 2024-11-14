@@ -8,18 +8,17 @@
 import SwiftUI
 
 struct ProfileView: View {
-    
-    @ObservedObject private var viewModel: ProfileViewModel
-    
-    init() {
-        self.viewModel = ProfileViewModel()
-    }
+    @EnvironmentObject var accountManager: AccountManager
     
     var body: some View {
         VStack(spacing: 20) {
             Text("My Profile")
                 .font(.headline)
-            Text(viewModel.user?.userName ?? "null")
+            if let user = accountManager.currentUser {
+                Text(user.userName)
+            } else {
+                Text("loading user data")
+            }
         }
         .background(Color(UIColor.systemGroupedBackground))
         .edgesIgnoringSafeArea(.all)

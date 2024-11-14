@@ -12,13 +12,8 @@ class ProfileViewModel: ObservableObject {
     @Published var user: User?
     
     init() {
-        Task.init {
-            user = try await fetchUser()
-        }
+        
     }
     
-    private func fetchUser() async throws -> User? {
-        return try await AccountManager.shared.getUser()
-    }
     
 }
