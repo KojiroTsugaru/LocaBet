@@ -9,7 +9,6 @@ struct User: Identifiable {
     let email: String           // Email address of the user
     let createdAt: Timestamp    // Creation timestamp
     var updatedAt: Timestamp    // Last updated timestamp
-    var friends: [Friend] = []  // List of friends (Subcollection)
 
     // Initialize from Firebase document data
     init(id: String, data: [String: Any]) {
@@ -20,7 +19,5 @@ struct User: Identifiable {
         self.email = data["email"] as? String ?? ""
         self.createdAt = data["createdAt"] as? Timestamp ?? Timestamp(date: Date())
         self.updatedAt = data["updatedAt"] as? Timestamp ?? Timestamp(date: Date())
-        
-        self.friends = [] // 必要に応じてフレンドリストを初期化
     }
 }
