@@ -104,7 +104,7 @@ struct ConfirmNewBetView: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarItems(trailing: Button(action: {
             Task.init {
-                await BetMissionManager.shared.createBet(newBetData: newBetData)
+                await BetManager.shared.createBet(newBetData: newBetData)
             }
              // Dismiss the current view
             showNewBetModal = false

@@ -9,44 +9,29 @@ import Foundation
 import FirebaseFirestore
 
 
-class BetMissionManager: ObservableObject {
+class BetManager: ObservableObject {
     
     // create singleton obj
-    static let shared = BetMissionManager()
+    static let shared = BetManager()
     
     private var db = Firestore.firestore()
-    private let currentUserId: String  // Pass the current logged-in user's ID
+    private let currentUserId: String?  // Pass the current logged-in user's ID
     
     @Published var allMissions: [Mission] = []
     @Published var allBets: [Bet] = []
+    
     @Published var newMissions: [Mission] = []
     @Published var ongoingMissions: [Mission] = []
     
     @Published var rewardPendingBets: [Bet] = []
-    @Published var ongoingBets: [Bet] = [] 
+    @Published var ongoingBets: [Bet] = []
+    @Published var invitePendingBets: [Bet] = []
     
-//    private init(newMissions: [Mission] = [], ongoingMissions: [Mission] = [],
-//                 rewardPendingBets: [Bet] = [], ongoingBets: [Bet] = []) {
-//        // UserProviderからcurrentUserIdを取得
-//        //        self.currentUserId = UserProvider.shared.getCurrentUserId() ?? "1"
-//        
-//        // currentUserIdを手動で設定する
-//        self.currentUserId = "12345"
-//        
-//        if newMissions.isEmpty && ongoingMissions.isEmpty && rewardPendingBets.isEmpty && ongoingBets.isEmpty {
-//            // Fetch from Firebase only if no dummy data is provided
-//            fetchData()
-//        } else {
-//            // Use dummy data if provided
-//            self.newMissions = newMissions
-//            self.ongoingMissions = ongoingMissions
-//            self.rewardPendingBets = rewardPendingBets
-//            self.ongoingBets = ongoingBets
-//        }
-//    }
+    // Track already fetched document IDs to avoid refetching
+    private var fetchedBetIDs: Set<String> = []
     
     init() {
-        self.currentUserId = "12345"
+        self.currentUserId = AccountManager.shared.currentUser?.id
     }
     
     
@@ -61,58 +46,45 @@ class BetMissionManager: ObservableObject {
             guard let documents = snapshot?.documents else { return }
             
             for doc in documents {
+                
+                let docID = doc.documentID
+                               
+                // Skip if already fetched
+                guard !self.fetchedBetIDs.contains(docID) else { continue }
+               
+                // Mark the document as fetched
+                self.fetchedBetIDs.insert(docID)
+                
                 let data = doc.data()
                 let bet = Bet(id: doc.documentID, data: data)
                 
-                // If receiverId is matched with current user's id, treat it as Mission
+                // If receiverId matches current user, treat it as Mission
                 if bet.receiverId == self.currentUserId {
                     let mission = Mission(from: bet)
                     self.allMissions.append(mission)
+                    
+                    // Categorize mission based on status
+                    if mission.status == "ongoing" {
+                        self.ongoingMissions.append(mission)
+                    } else if mission.status == "invitePending" {
+                        self.newMissions.append(mission)
+                    }
+                    
                 } else {
                     self.allBets.append(bet)
-                }
-            }
-            
-            // Assign bets and missions based on status
-            // For Bets
-            for bet in self.allBets {
-                if bet.status == "ongoing" {
-                    self.ongoingBets.append(bet)
-                } else if bet.status == "rewardPending" {
-                    self.rewardPendingBets.append(bet)
-                }
-            }
-            
-            // For Missions
-            for mission in self.allMissions {
-                if mission.status == "ongoing" {
-                    self.ongoingMissions.append(mission)
-                } else if mission.status == "invitePending" {
-                    self.newMissions.append(mission)
+                    
+                    // Categorize bet based on status
+                    if bet.status == "ongoing" {
+                        self.ongoingBets.append(bet)
+                    } else if bet.status == "rewardPending" {
+                        self.rewardPendingBets.append(bet)
+                    } else if bet.status == "invitePending" {
+                        self.invitePendingBets.append(bet)
+                    }
                 }
             }
         }
         print("on going mission", self.ongoingMissions)
-    }
-    
-    func updateMissionStatus(mission: Mission, newStatus: String) {
-        // Find the mission in the ongoingMissions array and update its status
-        if let index = ongoingMissions.firstIndex(
-            where: { $0.id == mission.id
-            }) {
-            ongoingMissions[index].status = newStatus
-            
-            // You can also update the Firestore document if necessary
-            db.collection("bets").document(mission.id).updateData([
-                "status": newStatus
-            ]) { error in
-                if let error = error {
-                    print("Error updating mission status: \(error)")
-                } else {
-                    print("Mission status updated successfully")
-                }
-            }
-        }
     }
     
     // craete bet
@@ -141,7 +113,7 @@ class BetMissionManager: ObservableObject {
             "updatedAt": Timestamp(
                 date: Date()
             ), // Initial value for updatedAt is the same as createdAt
-            "senderId": currentUserId,
+            "senderId": currentUserId!,
             "receiverId": newBetData.selectedFriend?.id ?? "0000", // selected friend's id
             "status": "invitePending", // Default status
             "location": locationData
