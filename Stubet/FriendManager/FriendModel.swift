@@ -6,28 +6,21 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 struct Friend: Identifiable, Hashable {
     let id: String
     let userName: String
     let displayName: String
-    let iconUrl: String
-    
-    // Initialize from Firebase document data
+    let addedAt: Date
+    var iconUrl: String         // URL of the user's icon
+
     init(id: String, data: [String: Any]) {
         self.id = id
         self.userName = data["userName"] as? String ?? ""
         self.displayName = data["displayName"] as? String ?? ""
-        self.iconUrl = data["icon_url"] as? String ?? ""
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-    
-    // MARK: - Equatable
-    
-    static func == (lhs: Friend, rhs: Friend) -> Bool {
-        return lhs.id == rhs.id
+        self.addedAt = (data["addedAt"] as? Timestamp)?.dateValue() ?? Date()
+        self.iconUrl = data["iconUrl"] as? String ?? ""
     }
 }
+

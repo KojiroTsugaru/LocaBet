@@ -12,18 +12,28 @@ struct ProfileView: View {
     
     var body: some View {
         VStack(spacing: 20) {
-            Text("My Profile")
-                .font(.headline)
+            NavigationLink {
+                FriendRequestsTest()
+            } label: {
+                HStack {
+                    Image(systemName: "person.fill.badge.plus")
+                    Text("フレンド")
+                }
+                
+                .padding()
+                .background(Color.orange) // Set background color
+                .foregroundColor(.white) // Set text and icon color
+                .cornerRadius(8) // Optional: Add rounded corners
+            }
+                
             if let user = accountManager.currentUser {
                 Text(user.userName)
             } else {
                 Text("loading user data")
             }
         }
-        .background(Color(UIColor.systemGroupedBackground))
-        .edgesIgnoringSafeArea(.all)
         .navigationTitle("プロフィール")
         .navigationBarTitleDisplayMode(.inline)
-
+            
     }
 }
