@@ -9,20 +9,23 @@ import Foundation
 import FirebaseFirestore
 
 struct FriendRequest: Identifiable {
-    let id: String              // requestId (UUID or unique string)
-    let senderId: String        // ID of the user who sent the request
-    let receiverId: String      // ID of the user who received the request
-    let status: String          // Status of the request (accepted, pending, rejected)
-    let createdAt: Timestamp    // Creation timestamp
-    let updatedAt: Timestamp    // Last updated timestamp
+    let id: String
+    let senderId: String
+    let senderName: String
+    let senderDisplayName: String
+    let senderIconUrl: String
+    let status: String
+    let sentAt: Timestamp
 
-    // Initialize from Firebase document data
     init(id: String, data: [String: Any]) {
         self.id = id
         self.senderId = data["senderId"] as? String ?? ""
-        self.receiverId = data["receiverId"] as? String ?? ""
+        self.senderName = data["senderName"] as? String ?? ""
+        self.senderDisplayName = data["senderDisplayName"] as? String ?? ""
+        self.senderIconUrl = data["senderIconUrl"] as? String ?? ""
         self.status = data["status"] as? String ?? "pending"
-        self.createdAt = data["createdAt"] as? Timestamp ?? Timestamp(date: Date())
-        self.updatedAt = data["updatedAt"] as? Timestamp ?? Timestamp(date: Date())
+        self.sentAt = data["sentAt"] as? Timestamp ?? Timestamp(date: Date())
     }
 }
+
+

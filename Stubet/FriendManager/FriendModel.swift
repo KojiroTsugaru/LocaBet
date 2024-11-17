@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseFirestore
 
-struct Friend: Identifiable {
+struct Friend: Identifiable, Hashable {
     let id: String
     let userName: String
     let displayName: String
