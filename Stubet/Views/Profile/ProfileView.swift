@@ -11,6 +11,13 @@ struct ProfileView: View {
     @EnvironmentObject var accountManager: AccountManager
     @StateObject private var friendManager = FriendManager.shared
     
+    @State private var selectedTab: Tab = .mission // Track the selected tab
+
+    enum Tab {
+        case mission
+        case bet
+    }
+    
     var body: some View {
         VStack() {
             ZStack {
@@ -38,7 +45,8 @@ struct ProfileView: View {
                         Image(systemName: "person.crop.circle.fill")
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 100, height: 100)
+                            .frame(width: 80, height: 80)
+                            .foregroundColor(Color.orange)
                             .background(Circle().fill(Color.white)) // White outline
                             .clipShape(Circle()) // Clip to circle
                             .overlay(
@@ -64,13 +72,14 @@ struct ProfileView: View {
             .padding(.bottom, 40) // Space for the profile picture overlap
         
             HStack (spacing: 16) {
+                
                 NavigationLink {
                     FriendRequestsTest()
                 } label: {
                     VStack {
                         Image(systemName: "person.2.circle.fill")
                             .resizable()
-                            .frame(width: 30, height: 30)
+                            .frame(width: 24, height: 24)
                         Text("0 フレンド")
                     }
 
@@ -81,7 +90,9 @@ struct ProfileView: View {
                     .overlay(
                         RoundedRectangle(cornerRadius: 12) // Match corner radius
                             .stroke(Color.gray, lineWidth: 0.5) // Thin stroke line
+                            .frame(width: 120, height: 64)
                     )
+                    .frame(width: 136, height: 64)
                 }
                 
                 NavigationLink {
@@ -90,8 +101,9 @@ struct ProfileView: View {
                     VStack {
                         Image(systemName: "magnifyingglass.circle")
                             .resizable()
-                            .frame(width: 30, height: 30)
+                            .frame(width: 24, height: 24)
                         Text("ユーザーを探す")
+                            .font(.body)
                     }
 
                     .padding(12)
@@ -101,13 +113,37 @@ struct ProfileView: View {
                     .overlay(
                         RoundedRectangle(cornerRadius: 12) // Match corner radius
                             .stroke(Color.gray, lineWidth: 0.5) // Thin stroke line
+                            .frame(width: 120, height: 64)
                     )
+                    .frame(width: 136, height: 64)
                 }
                 
+            }.padding(.bottom, 16)
+            
+            HStack {
+                Text("履歴")
+                    .padding(.horizontal)
+                    .bold()
+                Spacer()
+            }
+            
+            ProfileTabView(selectedTab: $selectedTab)
+                .frame(height: 25)
+                .padding()
+            
+            // Content depending on the selected tab
+            ScrollView {
+                if selectedTab == .mission {
+                    MissionListView()
+                } else {
+                    BetListView()
+                }
             }
 
             Spacer()
         }
+        .edgesIgnoringSafeArea(.bottom)
+        .background(Color(UIColor.systemGroupedBackground))
         .navigationBarTitleDisplayMode(.inline) // No visible title
     }
             

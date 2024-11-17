@@ -30,6 +30,7 @@
 		313F8ECE2CE8FAD000CA3F3D /* FriendManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313F8ECD2CE8FAC400CA3F3D /* FriendManager.swift */; };
 		313F8ED02CE8FB6300CA3F3D /* FriendTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313F8ECF2CE8FB5700CA3F3D /* FriendTestView.swift */; };
 		313F8ED52CEA3C3F00CA3F3D /* FriendRequesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313F8ED42CEA3C3200CA3F3D /* FriendRequesTest.swift */; };
+		313F8ED92CEA8F7800CA3F3D /* ProfileTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313F8ED82CEA8F7800CA3F3D /* ProfileTabView.swift */; };
 		314665642CDF8AC300441AC6 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314665632CDF8AC300441AC6 /* LocationManager.swift */; };
 		314665662CDF98EE00441AC6 /* MissionClearModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314665652CDF98EE00441AC6 /* MissionClearModalView.swift */; };
 		314665682CE0E99100441AC6 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314665672CE0E99100441AC6 /* AccountManager.swift */; };
@@ -107,6 +108,7 @@
 		313F8ECD2CE8FAC400CA3F3D /* FriendManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendManager.swift; sourceTree = "<group>"; };
 		313F8ECF2CE8FB5700CA3F3D /* FriendTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTestView.swift; sourceTree = "<group>"; };
 		313F8ED42CEA3C3200CA3F3D /* FriendRequesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequesTest.swift; sourceTree = "<group>"; };
+		313F8ED82CEA8F7800CA3F3D /* ProfileTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabView.swift; sourceTree = "<group>"; };
 		314665632CDF8AC300441AC6 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		314665652CDF98EE00441AC6 /* MissionClearModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionClearModalView.swift; sourceTree = "<group>"; };
 		314665672CE0E99100441AC6 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 			children = (
 				313F8ECF2CE8FB5700CA3F3D /* FriendTestView.swift */,
 				311238992C8AB60C00EC7DBC /* ProfileView.swift */,
+				313F8ED82CEA8F7800CA3F3D /* ProfileTabView.swift */,
 				3146656D2CE50A8D00441AC6 /* ProfileViewModel.swift */,
 				313F8ED42CEA3C3200CA3F3D /* FriendRequesTest.swift */,
 			);
@@ -538,6 +541,7 @@
 				4C771D912C880FB900543A57 /* LoginViewModel.swift in Sources */,
 				3112389A2C8AB60C00EC7DBC /* ProfileView.swift in Sources */,
 				4C771D8F2C8809D000543A57 /* LoginView.swift in Sources */,
+				313F8ED92CEA8F7800CA3F3D /* ProfileTabView.swift in Sources */,
 				313F8ECA2CE6484700CA3F3D /* BetListView.swift in Sources */,
 				3175810C2C88146500DD5B13 /* UserModel.swift in Sources */,
 				317581102C88195D00DD5B13 /* LocationModel.swift in Sources */,
