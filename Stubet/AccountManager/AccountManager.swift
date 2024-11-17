@@ -72,7 +72,8 @@ class AccountManager: NSObject, ObservableObject    {
                 "iconUrl": iconUrl,
                 "email": email,
                 "createdAt": Timestamp(date: Date()),
-                "updatedAt": Timestamp(date: Date())
+                "updatedAt": Timestamp(date: Date()),
+                "friends" : []
             ]
 
             
