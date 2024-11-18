@@ -36,6 +36,8 @@ struct HomeView: View {
                     } else {
                         BetListView()
                     }
+                }.refreshable {
+                    await betManager.fetchData()
                 }
             }
             .background(Color(UIColor.systemGroupedBackground))
@@ -71,7 +73,7 @@ struct HomeView: View {
             .task {
                 do {
                     try await accountManager.fetchCurrentUser()
-                    betManager.fetchData()
+                    await betManager.fetchData()
                 } catch {
                     print(error)
                 }

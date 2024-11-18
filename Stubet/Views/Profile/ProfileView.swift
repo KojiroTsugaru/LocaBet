@@ -9,31 +9,49 @@ import SwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject var accountManager: AccountManager
+    @StateObject private var friendManager = FriendManager.shared
+    
+    @State private var selectedTab: Tab = .mission // Track the selected tab
+
+    enum Tab {
+        case mission
+        case bet
+    }
     
     var body: some View {
-        VStack(spacing: 20) {
-            NavigationLink {
-                FriendRequestsTest()
-            } label: {
-                HStack {
-                    Image(systemName: "person.fill.badge.plus")
-                    Text("フレンド")
-                }
-                
-                .padding()
-                .background(Color.orange) // Set background color
-                .foregroundColor(.white) // Set text and icon color
-                .cornerRadius(8) // Optional: Add rounded corners
+        VStack() {
+            ProfileViewHeader()
+            HStack {
+                Text("履歴")
+                    .padding(.horizontal)
+                    .bold()
+                Spacer()
             }
-                
-            if let user = accountManager.currentUser {
-                Text(user.userName)
-            } else {
-                Text("loading user data")
-            }
-        }
-        .navigationTitle("プロフィール")
-        .navigationBarTitleDisplayMode(.inline)
             
+            ProfileTabView(selectedTab: $selectedTab)
+                .frame(height: 25)
+                .padding()
+            
+            // Content depending on the selected tab
+            ScrollView {
+                if selectedTab == .mission {
+                    MissionListView()
+                } else {
+                    BetListView()
+                }
+            }
+
+            Spacer()
+        }
+        .edgesIgnoringSafeArea(.bottom)
+        .background(Color(UIColor.systemGroupedBackground))
+        .navigationBarTitleDisplayMode(.inline) // No visible title
     }
+            
+}
+
+
+#Preview {
+    ProfileView()
+        .environmentObject(AccountManager.shared)
 }

@@ -8,14 +8,12 @@
 import Foundation
 import FirebaseFirestore
 
-
-class BetManager: ObservableObject {
-    
+@MainActor
+class BetManager: NSObject, ObservableObject {
     // create singleton obj
     static let shared = BetManager()
     
-    private var db = Firestore.firestore()
-    private let currentUserId: String?  // Pass the current logged-in user's ID
+    private let db = Firestore.firestore()
     
     @Published var allMissions: [Mission] = []
     @Published var allBets: [Bet] = []
@@ -30,65 +28,75 @@ class BetManager: ObservableObject {
     // Track already fetched document IDs to avoid refetching
     private var fetchedBetIDs: Set<String> = []
     
-    init() {
-        self.currentUserId = AccountManager.shared.currentUser?.id
+    private override init() {
+        super.init()
     }
     
-    
     // fetch bets and mission
-    func fetchData() {
-        db.collection("bets").getDocuments { snapshot, error in
-            if let error = error {
-                print("Error fetching bets: \(error)")
-                return
-            }
-            
-            guard let documents = snapshot?.documents else { return }
+    func fetchData() async {
+        guard let currentUserId = AccountManager.shared.getCurrentUserId() else {
+            return
+        }
+        
+        do {
+            let snapshot = try await db.collection("bets").getDocuments()
+            let documents = snapshot.documents
             
             for doc in documents {
-                
                 let docID = doc.documentID
-                               
+                
                 // Skip if already fetched
                 guard !self.fetchedBetIDs.contains(docID) else { continue }
-               
+                
                 // Mark the document as fetched
                 self.fetchedBetIDs.insert(docID)
                 
                 let data = doc.data()
-                let bet = Bet(id: doc.documentID, data: data)
+                let bet = Bet(id: docID, data: data)
                 
-                // If receiverId matches current user, treat it as Mission
-                if bet.receiverId == self.currentUserId {
+                
+                
+                if bet.receiverId == currentUserId {
                     let mission = Mission(from: bet)
                     self.allMissions.append(mission)
                     
                     // Categorize mission based on status
-                    if mission.status == "ongoing" {
+                    switch mission.status {
+                    case "ongoing":
                         self.ongoingMissions.append(mission)
-                    } else if mission.status == "invitePending" {
+                    case "invitePending":
                         self.newMissions.append(mission)
+                    default:
+                        break
                     }
-                    
-                } else {
+                } else if bet.senderId == currentUserId {
                     self.allBets.append(bet)
                     
                     // Categorize bet based on status
-                    if bet.status == "ongoing" {
+                    switch bet.status {
+                    case "ongoing":
                         self.ongoingBets.append(bet)
-                    } else if bet.status == "rewardPending" {
+                    case "rewardPending":
                         self.rewardPendingBets.append(bet)
-                    } else if bet.status == "invitePending" {
+                    case "invitePending":
                         self.invitePendingBets.append(bet)
+                    default:
+                        break
                     }
                 }
             }
+        } catch {
+            print("Error fetching bets: \(error.localizedDescription)")
         }
-        print("on going mission", self.ongoingMissions)
     }
+
     
     // craete bet
     func createBet(newBetData: NewBetData) async {
+        
+        guard let currentUserId = AccountManager.shared.getCurrentUserId() else {
+            return
+        }
         
         guard let coordinate = newBetData.selectedCoordinates else {
             print("No coordinates selected.")
@@ -113,7 +121,7 @@ class BetManager: ObservableObject {
             "updatedAt": Timestamp(
                 date: Date()
             ), // Initial value for updatedAt is the same as createdAt
-            "senderId": currentUserId!,
+            "senderId": currentUserId,
             "receiverId": newBetData.selectedFriend?.id ?? "0000", // selected friend's id
             "status": "invitePending", // Default status
             "location": locationData
@@ -127,5 +135,22 @@ class BetManager: ObservableObject {
         } catch {
             print("Error writing document: \(error)")
         }
+    }
+    
+    // empty all bets and missions on logout
+    func emptyAllData() {
+        allMissions = []
+        allBets = []
+        
+        newMissions = []
+        ongoingMissions = []
+        
+        rewardPendingBets = []
+        ongoingBets = []
+        invitePendingBets = []
+        
+        fetchedBetIDs = []
+        
+        print("all bet/mission data is empty!")
     }
 }
