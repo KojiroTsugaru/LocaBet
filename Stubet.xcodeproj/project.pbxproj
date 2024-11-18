@@ -28,10 +28,11 @@
 		313F8ECA2CE6484700CA3F3D /* BetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313F8EC92CE6484700CA3F3D /* BetListView.swift */; };
 		313F8ECC2CE64A5400CA3F3D /* BetMissionTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313F8ECB2CE64A5400CA3F3D /* BetMissionTabView.swift */; };
 		313F8ECE2CE8FAD000CA3F3D /* FriendManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313F8ECD2CE8FAC400CA3F3D /* FriendManager.swift */; };
-		313F8ED02CE8FB6300CA3F3D /* FriendTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313F8ECF2CE8FB5700CA3F3D /* FriendTestView.swift */; };
-		313F8ED52CEA3C3F00CA3F3D /* FriendRequesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313F8ED42CEA3C3200CA3F3D /* FriendRequesTest.swift */; };
 		313F8ED92CEA8F7800CA3F3D /* ProfileTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313F8ED82CEA8F7800CA3F3D /* ProfileTabView.swift */; };
 		313F8EDD2CEB5CD400CA3F3D /* ProfileViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313F8EDC2CEB5CD400CA3F3D /* ProfileViewHeader.swift */; };
+		313F8EDF2CEB651500CA3F3D /* SearchUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313F8EDE2CEB651500CA3F3D /* SearchUserView.swift */; };
+		313F8EE12CEB676F00CA3F3D /* FriendListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313F8EE02CEB676F00CA3F3D /* FriendListView.swift */; };
+		313F8EE32CEB769B00CA3F3D /* FriendListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313F8EE22CEB769B00CA3F3D /* FriendListCell.swift */; };
 		314665642CDF8AC300441AC6 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314665632CDF8AC300441AC6 /* LocationManager.swift */; };
 		314665662CDF98EE00441AC6 /* MissionClearModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314665652CDF98EE00441AC6 /* MissionClearModalView.swift */; };
 		314665682CE0E99100441AC6 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314665672CE0E99100441AC6 /* AccountManager.swift */; };
@@ -107,10 +108,11 @@
 		313F8EC92CE6484700CA3F3D /* BetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetListView.swift; sourceTree = "<group>"; };
 		313F8ECB2CE64A5400CA3F3D /* BetMissionTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetMissionTabView.swift; sourceTree = "<group>"; };
 		313F8ECD2CE8FAC400CA3F3D /* FriendManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendManager.swift; sourceTree = "<group>"; };
-		313F8ECF2CE8FB5700CA3F3D /* FriendTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTestView.swift; sourceTree = "<group>"; };
-		313F8ED42CEA3C3200CA3F3D /* FriendRequesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequesTest.swift; sourceTree = "<group>"; };
 		313F8ED82CEA8F7800CA3F3D /* ProfileTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabView.swift; sourceTree = "<group>"; };
 		313F8EDC2CEB5CD400CA3F3D /* ProfileViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewHeader.swift; sourceTree = "<group>"; };
+		313F8EDE2CEB651500CA3F3D /* SearchUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserView.swift; sourceTree = "<group>"; };
+		313F8EE02CEB676F00CA3F3D /* FriendListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListView.swift; sourceTree = "<group>"; };
+		313F8EE22CEB769B00CA3F3D /* FriendListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListCell.swift; sourceTree = "<group>"; };
 		314665632CDF8AC300441AC6 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		314665652CDF98EE00441AC6 /* MissionClearModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionClearModalView.swift; sourceTree = "<group>"; };
 		314665672CE0E99100441AC6 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
@@ -348,9 +350,10 @@
 				311238992C8AB60C00EC7DBC /* ProfileView.swift */,
 				3146656D2CE50A8D00441AC6 /* ProfileViewModel.swift */,
 				313F8EDC2CEB5CD400CA3F3D /* ProfileViewHeader.swift */,
+				313F8EDE2CEB651500CA3F3D /* SearchUserView.swift */,
+				313F8EE02CEB676F00CA3F3D /* FriendListView.swift */,
+				313F8EE22CEB769B00CA3F3D /* FriendListCell.swift */,
 				313F8ED82CEA8F7800CA3F3D /* ProfileTabView.swift */,
-				313F8ED42CEA3C3200CA3F3D /* FriendRequesTest.swift */,
-				313F8ECF2CE8FB5700CA3F3D /* FriendTestView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -518,24 +521,24 @@
 			files = (
 				4CEB9A8D2C8952930061921E /* SignupView.swift in Sources */,
 				4CEB9A8B2C8952690061921E /* SignupViewModel.swift in Sources */,
-				313F8ED02CE8FB6300CA3F3D /* FriendTestView.swift in Sources */,
 				31B8ED972C89BEC9004474B6 /* SetLocationView.swift in Sources */,
 				313F8ECC2CE64A5400CA3F3D /* BetMissionTabView.swift in Sources */,
 				317580FC2C8701AC00DD5B13 /* MissionRowView.swift in Sources */,
 				3146656A2CE4F33B00441AC6 /* RootView.swift in Sources */,
-				313F8ED52CEA3C3F00CA3F3D /* FriendRequesTest.swift in Sources */,
 				311238982C8AB0A300EC7DBC /* MapEventView.swift in Sources */,
 				314665642CDF8AC300441AC6 /* LocationManager.swift in Sources */,
 				311238922C89D75600EC7DBC /* ConfirmNewBetView.swift in Sources */,
 				313F8EDD2CEB5CD400CA3F3D /* ProfileViewHeader.swift in Sources */,
 				3175810A2C880B9300DD5B13 /* CreateBetView.swift in Sources */,
 				311626E22CDEA46B00E1D4E0 /* LocationService.swift in Sources */,
+				313F8EDF2CEB651500CA3F3D /* SearchUserView.swift in Sources */,
 				3146656C2CE4F39D00441AC6 /* MainTabView.swift in Sources */,
 				317581182C896B2A00DD5B13 /* SetDeadlineView.swift in Sources */,
 				317581142C89642E00DD5B13 /* MissionDetailsView.swift in Sources */,
 				317580FA2C87014400DD5B13 /* HomeViewModel.swift in Sources */,
 				311A57622C86D94D0040AA9A /* Stubet.xcdatamodeld in Sources */,
 				3112389E2C8AB6A700EC7DBC /* FriendRequest.swift in Sources */,
+				313F8EE32CEB769B00CA3F3D /* FriendListCell.swift in Sources */,
 				317581162C896A7700DD5B13 /* NewBetViewModel.swift in Sources */,
 				3175810E2C8816C900DD5B13 /* FriendModel.swift in Sources */,
 				31B8ED992C89BF8C004474B6 /* MapSearchBar.swift in Sources */,
@@ -559,6 +562,7 @@
 				314665682CE0E99100441AC6 /* AccountManager.swift in Sources */,
 				311626D92CDE506100E1D4E0 /* MissionModel.swift in Sources */,
 				311626DA2CDE506100E1D4E0 /* BetModel.swift in Sources */,
+				313F8EE12CEB676F00CA3F3D /* FriendListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

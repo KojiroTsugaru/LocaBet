@@ -65,7 +65,7 @@ struct ProfileViewHeader: View {
         
         HStack(spacing: 16) { // Add spacing between rectangles
             NavigationLink {
-                FriendRequestsTest()
+                FriendListView()
             } label: {
                 VStack {
                     ZStack {
@@ -92,7 +92,7 @@ struct ProfileViewHeader: View {
             }
 
             NavigationLink {
-                FriendRequestsTest()
+                SearchUserView()
             } label: {
                 VStack {
                     ZStack {

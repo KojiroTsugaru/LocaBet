@@ -31,9 +31,11 @@ class FriendManager: ObservableObject {
             // Fetch the documents asynchronously
             let snapshot = try await friendsRef.getDocuments()
             
-            // Map the documents to Friend objects
-            self.friends = snapshot.documents.compactMap { doc in
-                Friend(id: doc.documentID, data: doc.data())
+            DispatchQueue.main.async {
+                // Map the documents to Friend objects
+                self.friends = snapshot.documents.compactMap { doc in
+                    Friend(id: doc.documentID, data: doc.data())
+                }
             }
         } catch {
             // Handle any errors that occur during the fetch
