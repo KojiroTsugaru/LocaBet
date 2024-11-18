@@ -13,7 +13,7 @@ struct FriendListView: View {
 
     var body: some View {
         VStack {
-            if isLoading {  
+            if isLoading {
                 ProgressView("ロード中...")
                     .padding()
             } else {

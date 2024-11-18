@@ -33,6 +33,7 @@
 		313F8EDF2CEB651500CA3F3D /* SearchUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313F8EDE2CEB651500CA3F3D /* SearchUserView.swift */; };
 		313F8EE12CEB676F00CA3F3D /* FriendListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313F8EE02CEB676F00CA3F3D /* FriendListView.swift */; };
 		313F8EE32CEB769B00CA3F3D /* FriendListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313F8EE22CEB769B00CA3F3D /* FriendListCell.swift */; };
+		313F8EE62CEB795E00CA3F3D /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313F8EE52CEB795E00CA3F3D /* SettingView.swift */; };
 		314665642CDF8AC300441AC6 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314665632CDF8AC300441AC6 /* LocationManager.swift */; };
 		314665662CDF98EE00441AC6 /* MissionClearModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314665652CDF98EE00441AC6 /* MissionClearModalView.swift */; };
 		314665682CE0E99100441AC6 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314665672CE0E99100441AC6 /* AccountManager.swift */; };
@@ -113,6 +114,7 @@
 		313F8EDE2CEB651500CA3F3D /* SearchUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserView.swift; sourceTree = "<group>"; };
 		313F8EE02CEB676F00CA3F3D /* FriendListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListView.swift; sourceTree = "<group>"; };
 		313F8EE22CEB769B00CA3F3D /* FriendListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListCell.swift; sourceTree = "<group>"; };
+		313F8EE52CEB795E00CA3F3D /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		314665632CDF8AC300441AC6 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		314665652CDF98EE00441AC6 /* MissionClearModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionClearModalView.swift; sourceTree = "<group>"; };
 		314665672CE0E99100441AC6 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
@@ -172,14 +174,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		311626D72CDE506100E1D4E0 /* BetMissionManager */ = {
+		311626D72CDE506100E1D4E0 /* BetManager */ = {
 			isa = PBXGroup;
 			children = (
 				311626D42CDE506100E1D4E0 /* BetManager.swift */,
 				311626D52CDE506100E1D4E0 /* BetModel.swift */,
 				311626D62CDE506100E1D4E0 /* MissionModel.swift */,
 			);
-			path = BetMissionManager;
+			path = BetManager;
 			sourceTree = "<group>";
 		};
 		311626E32CDEA47700E1D4E0 /* SetLocation */ = {
@@ -216,13 +218,13 @@
 			isa = PBXGroup;
 			children = (
 				311A57842C86DFF00040AA9A /* Views */,
-				311626D72CDE506100E1D4E0 /* BetMissionManager */,
+				311626D72CDE506100E1D4E0 /* BetManager */,
 				31BB214E2CDBEC1A00260C7D /* LocationManager */,
 				31BB214D2CDBEBD800260C7D /* AccountManager */,
 				313F8ED12CE8FE6D00CA3F3D /* FriendManager */,
-				311A57552C86D94A0040AA9A /* StubetApp.swift */,
 				314665692CE4F33B00441AC6 /* RootView.swift */,
 				3146656B2CE4F39D00441AC6 /* MainTabView.swift */,
+				311A57552C86D94A0040AA9A /* StubetApp.swift */,
 				311A57592C86D94D0040AA9A /* Assets.xcassets */,
 				311A57602C86D94D0040AA9A /* Stubet.xcdatamodeld */,
 				317581252C89A57100DD5B13 /* Info.plist */,
@@ -299,6 +301,14 @@
 			path = FriendManager;
 			sourceTree = "<group>";
 		};
+		313F8EE42CEB792F00CA3F3D /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				313F8EE52CEB795E00CA3F3D /* SettingView.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
 		31BB21482CDBE9FA00260C7D /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -354,6 +364,7 @@
 				313F8EE02CEB676F00CA3F3D /* FriendListView.swift */,
 				313F8EE22CEB769B00CA3F3D /* FriendListCell.swift */,
 				313F8ED82CEA8F7800CA3F3D /* ProfileTabView.swift */,
+				313F8EE42CEB792F00CA3F3D /* Setting */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -540,6 +551,7 @@
 				3112389E2C8AB6A700EC7DBC /* FriendRequest.swift in Sources */,
 				313F8EE32CEB769B00CA3F3D /* FriendListCell.swift in Sources */,
 				317581162C896A7700DD5B13 /* NewBetViewModel.swift in Sources */,
+				313F8EE62CEB795E00CA3F3D /* SettingView.swift in Sources */,
 				3175810E2C8816C900DD5B13 /* FriendModel.swift in Sources */,
 				31B8ED992C89BF8C004474B6 /* MapSearchBar.swift in Sources */,
 				311A57872C86E6080040AA9A /* HomeView.swift in Sources */,

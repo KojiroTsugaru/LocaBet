@@ -25,10 +25,14 @@ struct ProfileViewHeader: View {
                 HStack {
                     Spacer()
                     // Settings Icon
-                    Image(systemName: "gearshape.fill")
-                        .font(.title2)
-                        .foregroundColor(.white)
-                        .padding(.trailing, 16)
+                    NavigationLink {
+                        SettingView()
+                    } label: {
+                        Image(systemName: "gearshape.fill")
+                            .font(.title2)
+                            .foregroundColor(.white)
+                            .padding(.trailing, 16)
+                    }
                 }
                 
                 Spacer()
