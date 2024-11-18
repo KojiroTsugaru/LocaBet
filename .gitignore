@@ -1,5 +1,5 @@
-/GoogleService-Info.plist/
-/Info.plist/
+Stubet/GoogleService-Info.plist
+Stubet/Info.plist
 .DS_Store
-StubetTests
-StubetUITests
+StubetTests/
+StubetUITests/
