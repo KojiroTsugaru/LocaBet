@@ -172,8 +172,11 @@ class FriendManager: ObservableObject {
         }
 
         let requestsSnapshot = try await db.collection("users").document(currentUserId).collection("friendRequests").whereField("status", isEqualTo: "pending").getDocuments()
-        self.incomingRequests = requestsSnapshot.documents.compactMap { doc in
-            FriendRequest(id: doc.documentID, data: doc.data())
+        
+        DispatchQueue.main.async {
+            self.incomingRequests = requestsSnapshot.documents.compactMap { doc in
+                FriendRequest(id: doc.documentID, data: doc.data())
+            }
         }
     }
 }
