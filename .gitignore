@@ -1,1 +1,4 @@
-GoogleService-Info.plist
+/GoogleService-Info.plist/
+/Info.plist/
+StubetTests
+StubetUITests
