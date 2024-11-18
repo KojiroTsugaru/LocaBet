@@ -9,7 +9,7 @@ import Foundation
 import FirebaseFirestore
 import FirebaseAuth
 
-class AccountManager: NSObject, ObservableObject    {
+class AccountManager: NSObject, ObservableObject {
     
     static let shared = AccountManager()
     let db = Firestore.firestore()
@@ -118,10 +118,13 @@ class AccountManager: NSObject, ObservableObject    {
     }
     
     // MARK: - Sign-Out Method
-    func signOut() throws {
+    func signOut() async throws {
         do {
             try Auth.auth().signOut()
-            self.currentUser = nil // Clear the current user on sign-out
+            DispatchQueue.main.async {
+                self.currentUser = nil // Clear the current user on sign-out
+            }
+            
         } catch {
             throw SignInError.signOutFailed
         }

@@ -28,30 +28,8 @@ class SignupViewModel: ObservableObject {
     init() {
         // 必要に応じて、初期値を設定
     }
-    
-    // バリデーションロジックを含むメソッド
-    func validateFields() {
-        // テキストボックスが空かどうか
-        usernameError = username.isEmpty ? "Username is required." : ""
-        passwordError = password.isEmpty ? "Password is required." : ""
-        confirmPasswordError = confirmPassword.isEmpty ? "Confirmation is required." : ""
-
-        // username条件
-        
-        // password条件
-        passwordError = (password.count < 8) ? "Password length error" : ""
-        
-        // confirmPassword条件
-        if password != confirmPassword{
-            confirmPasswordError = "Password not match"
-        }
-        
-        
-    }
         
     func signup() async throws {
-        validateFields()
-
         // エラーがなければ続行
         if usernameError.isEmpty && emailError.isEmpty && passwordError.isEmpty && confirmPasswordError.isEmpty {
            
