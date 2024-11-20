@@ -12,8 +12,6 @@ struct HomeView: View {
     @StateObject private var betManager = BetManager.shared
     @StateObject private var locationManager = LocationManager.shared
     
-    @State private var navigationPath = NavigationPath()
-    
     @State private var showNewBetModal = false
     @State private var showMissionClearModal = false
     
