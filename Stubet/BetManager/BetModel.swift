@@ -34,10 +34,10 @@ struct Bet: Identifiable {
         self.status = data["status"] as? String ?? "pending"
         
         if let locationData = data["location"] as? [String: Any] {
-            self.location = Location(id: locationData["id"] as! String, data: locationData)
+            self.location = Location(data: locationData)
         } else {
             // Default location if none provided
-            self.location = Location(id: "0000", data: [
+            self.location = Location(data: [
                 "name": "",
                 "address": "",
                 "latitude": 0.0,

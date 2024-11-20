@@ -8,15 +8,13 @@
 import Foundation
 import CoreLocation
 
-struct Location: Identifiable {
-    let id: String          // id
+struct Location: Codable {
     let name: String        // Name of the location
     let latitude: Double    // Latitude of the location
     let longitude: Double   // Longitude of the location
 
     // Initialize from Firebase document data
-    init(id: String, data: [String: Any]) {
-        self.id = id
+    init(data: [String: Any]) {
         self.name = data["name"] as! String
         self.latitude = data["latitude"] as! Double
         self.longitude = data["longitude"] as! Double
