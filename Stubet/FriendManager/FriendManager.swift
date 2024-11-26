@@ -154,6 +154,9 @@ class FriendManager: ObservableObject {
 
         // Add the sender as a friend (mutual friendship handled in `addFriend`)
         try await addFriend(byUserId: senderId)
+        
+        // remove accepted request from incoming request
+        self.removeFriendRequest()
     }
 
     // Reject a friend request
@@ -165,6 +168,9 @@ class FriendManager: ObservableObject {
         // Fetch the request reference and mark it as rejected
         let requestRef = db.collection("users").document(currentUserId).collection("friendRequests").document(requestId)
         try await requestRef.updateData(["status": "rejected"])
+        
+        // remove rejected request from incoming request
+        self.removeFriendRequest()
     }
 
     // Fetch all incoming friend requests
@@ -179,6 +185,13 @@ class FriendManager: ObservableObject {
             self.incomingRequests = requestsSnapshot.documents.compactMap { doc in
                 FriendRequest(id: doc.documentID, data: doc.data())
             }
+        }
+    }
+    
+    // remove accepted & rejected friend request from incomingRequest
+    private func removeFriendRequest() {
+        incomingRequests.removeAll { request in
+            request.status == "accepted" || request.status == "rejected"
         }
     }
 }
