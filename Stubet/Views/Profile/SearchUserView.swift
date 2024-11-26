@@ -32,10 +32,12 @@ struct SearchUserView: View {
                         .padding(.vertical, 8)
                 }
                 .padding(.horizontal, 4)
-                .onChange(of: searchText, perform: searchUsers)
+                .onChange(of: searchText) { _, newValue in
+                    searchUsers(for: newValue)
+                }
             }
             .padding(.horizontal)
-
+            
             Spacer()
             if isLoading {
                 ProgressView("検索中...")
@@ -51,6 +53,7 @@ struct SearchUserView: View {
                                     do {
                                         try await friendManager
                                             .sendFriendRequest(to: user.id)
+                                        print("sent friend request to \(user.id)")
                                     } catch {
                                         showErrorMessage(error.localizedDescription)
                                     }
@@ -107,6 +110,7 @@ struct SearchUserView: View {
         }
         
         var results: [Friend] = []
+        var resultIds: [String] = []
         let group = DispatchGroup()
 
         // Query for userName
@@ -120,10 +124,12 @@ struct SearchUserView: View {
                 if let documents = snapshot?.documents {
                     results.append(
                         contentsOf: documents.compactMap { doc in
-                            guard doc.documentID != currentUserId else {
+                            if doc.documentID != currentUserId {
+                                resultIds.append(doc.documentID)
+                                return Friend(id: doc.documentID, data: doc.data())
+                            } else {
                                 return nil
                             }
-                            return Friend(id: doc.documentID, data: doc.data())
                         })
                 }
                 group.leave()
@@ -143,7 +149,12 @@ struct SearchUserView: View {
                             guard doc.documentID != currentUserId else {
                                 return nil
                             }
-                            return Friend(id: doc.documentID, data: doc.data())
+                            if doc.documentID != currentUserId && !resultIds.contains(doc.documentID) {
+                                resultIds.append(doc.documentID)
+                                return Friend(id: doc.documentID, data: doc.data())
+                            } else {
+                                return nil
+                            }
                         })
                 }
                 group.leave()
@@ -152,7 +163,7 @@ struct SearchUserView: View {
         // Merge results when all queries are done
         group.notify(queue: .main) {
             self.isLoading = false
-            self.searchResults = Array(Set(results)) // Remove duplicates
+            self.searchResults = results
         }
     }
 

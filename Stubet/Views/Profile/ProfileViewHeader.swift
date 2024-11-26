@@ -10,6 +10,7 @@ import SwiftUI
 struct ProfileViewHeader: View {
     
     @EnvironmentObject var accountManager: AccountManager
+    @StateObject private var friendManager = FriendManager.shared
     
     var body: some View {
         ZStack {
@@ -80,7 +81,7 @@ struct ProfileViewHeader: View {
                             .foregroundColor(Color.orange)
                     }.frame(width: 32, height: 32)
 
-                    Text("0 フレンド")
+                    Text("\(friendManager.friends.count) フレンド")
                         .font(.subheadline)
                         .foregroundColor(Color.orange)
                 }

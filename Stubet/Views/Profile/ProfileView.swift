@@ -46,6 +46,15 @@ struct ProfileView: View {
         .edgesIgnoringSafeArea(.bottom)
         .background(Color(UIColor.systemGroupedBackground))
         .navigationBarTitleDisplayMode(.inline) // No visible title
+        .task {
+            do {
+                try await friendManager.fetchFriends()
+            } catch {
+                print(
+                    "Error loading friends: \(error.localizedDescription)"
+                )
+            }
+        }
     }
             
 }
