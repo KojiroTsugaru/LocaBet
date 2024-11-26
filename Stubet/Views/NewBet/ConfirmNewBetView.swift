@@ -17,38 +17,39 @@ struct ConfirmNewBetView: View {
     
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading) {
-                // Bet Content Section
-                VStack(alignment: .leading, spacing: 10) {
+            VStack(alignment: .leading, spacing: 12) {
+                HStack {
+                    Image(systemName: "person.circle")
+                        .resizable()
+                        .foregroundColor(.orange)
+                        .frame(width: 50, height: 50)
+                        .clipShape(Circle())
 
-                    HStack {
-                        Image(systemName: "person.circle")
-                            .resizable()
-                            .foregroundColor(.orange)
-                            .frame(width: 50, height: 50)
-                            .clipShape(Circle())
+                    VStack(alignment: .leading) {
+                        Text(newBetData.selectedFriend.displayName)
+                            .font(.subheadline)
+                            .fontWeight(.medium)
 
-                        VStack(alignment: .leading) {
-                            Text(newBetData.selectedFriend.displayName)
-                                .font(.subheadline)
-                                .fontWeight(.medium)
-
-                            Text(newBetData.title)
-                                .font(.title2)
-                                .fontWeight(.bold)
-                        }
+                        Text(newBetData.title)
+                            .font(.title2)
+                            .fontWeight(.bold)
                     }
-
-                    Text(newBetData.description)
-                        .font(.body)
-                        .padding()
-                        .background(Color(.systemGray6))
-                        .cornerRadius(10)
                 }
-                .padding()
+                
+                Text("ベット内容")
+                    .font(.headline)
+                Text(newBetData.description)
+                    .font(.body)
+                    .padding()
+                    .background(Color(.systemGray6))
+                    .cornerRadius(10)
 
                 // Location&Time
-                EventView()
+                VStack(alignment: .leading) {
+                    Text("場所＆時間")
+                        .font(.headline)
+                    TimeLocationDetailsView(newBetData: newBetData)
+                }
             }
             .padding()
         }
@@ -65,7 +66,7 @@ struct ConfirmNewBetView: View {
             Text("作成する")
         })
     }
-    }
+}
 
 fileprivate let dummyFriend = Friend(
     id: "friend001",

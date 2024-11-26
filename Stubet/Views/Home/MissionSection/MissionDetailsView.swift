@@ -66,7 +66,7 @@ struct MissionDetailsView: View {
                     Text("場所＆時間")
                         .font(.headline)
                         .padding(.bottom, 5)
-                    EventView()
+//                    EventView()
                 }
                 
                 // Invite Response Buttons

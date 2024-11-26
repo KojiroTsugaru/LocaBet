@@ -15,7 +15,7 @@ class NewBetData: ObservableObject {
     @Published var date: Date = Date()
     @Published var time: Date = Date()
     @Published var locationName: String = ""
-    @Published var selectedCoordinates: CLLocationCoordinate2D?
+    @Published var selectedCoordinates: CLLocationCoordinate2D
     
     // for dummy data
     init(selectedFriend: Friend = Friend(
@@ -26,7 +26,7 @@ class NewBetData: ObservableObject {
             "addedAt": Date(), // 現在の日時
             "iconUrl": "https://example.com/user_icon/johndoe.png"
         ]
-    ), title: String, description: String, date: Date = Date(), time: Date = Date(), locationName: String, selectedCoordinates: CLLocationCoordinate2D? = nil) {
+    ), title: String, description: String, date: Date = Date(), time: Date = Date(), locationName: String, selectedCoordinates: CLLocationCoordinate2D = CLLocationCoordinate2D()) {
         self.selectedFriend = selectedFriend
         self.title = title
         self.description = description

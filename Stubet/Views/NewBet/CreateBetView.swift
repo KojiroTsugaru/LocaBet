@@ -102,7 +102,7 @@ struct CreateBetView: View {
     
     // フォームが有効かどうかの判定
     private var isFormValid: Bool {
-        newBetData.selectedFriend != nil && !newBetData.title.isEmpty && !newBetData.description.isEmpty
+         !newBetData.title.isEmpty && !newBetData.description.isEmpty
     }
 }
 

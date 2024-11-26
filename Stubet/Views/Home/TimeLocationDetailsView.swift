@@ -1,30 +1,33 @@
 import SwiftUI
 import MapKit
 
-struct EventView: View {
-    @State private var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 35.66719808299951, longitude: 139.74010893973326),
-        span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
-    )
-    let date: Date
-    init() {
-        self.date = Date()
+struct TimeLocationDetailsView: View {
+    
+    let newBetData: NewBetData
+    @State private var region: MKCoordinateRegion
+    
+    init(newBetData: NewBetData) {
+        self.newBetData = newBetData
+        // Initialize the region with selectedCoordinates
+        self._region = State(initialValue: MKCoordinateRegion(
+            center: newBetData.selectedCoordinates,
+            span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        ))
     }
     
-    
     var body: some View {
-        VStack(spacing: 0) {
-            // Time and Date Section
+        VStack() {
             HStack {
                 Image(systemName: "clock.fill")
                     .foregroundColor(.orange)
                     .font(.system(size: 20))
                 Spacer()
-                Text(formattedDate(date: date))
+                Text(formattedDate(date: newBetData.date, time: newBetData.time))
                     .font(.system(size: 16, weight: .semibold))
+                    .padding(.leading)
                 Spacer()
                 Text("1分後")
-                    .font(.system(size: 12))
+                    .font(.system(size: 16))
                     .foregroundColor(.orange)
             }
             .padding(.horizontal)
@@ -36,8 +39,8 @@ struct EventView: View {
                     .foregroundColor(.orange)
                     .font(.system(size: 20))
                 Spacer()
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("アーク森ビル")
+                VStack(alignment: .center, spacing: 4) {
+                    Text(newBetData.locationName)
                         .font(.system(size: 16, weight: .semibold))
                     Text("0.1 km")
                         .font(.system(size: 14))
@@ -54,6 +57,7 @@ struct EventView: View {
                 .cornerRadius(10)
                 .padding(.horizontal)
                 .padding(.top, 10)
+
 
             // Confirmation Button
             Button(action: {
@@ -72,26 +76,26 @@ struct EventView: View {
         }
         .background(Color(UIColor.systemGray6))
         .cornerRadius(15)
-        .padding()
-        .shadow(radius: 5)
+        .shadow(radius: 2)
     }
 }
-func formattedDate(date: Date) -> String {
+
+func formattedDate(date: Date, time: Date) -> String {
     let dateFormatter = DateFormatter()
-    
-    // Set the time format
-    dateFormatter.dateFormat = "h:mm a"
-    let timeString = dateFormatter.string(from: date)
     
     // Set the date format
     dateFormatter.dateFormat = "MM/dd/yyyy"
     let dateString = dateFormatter.string(from: date)
     
-    return "\(timeString) - \(dateString)"
+    // Set the time format
+    dateFormatter.dateFormat = "h:mm a"
+    let timeString = dateFormatter.string(from: time)
+    
+    return "\(dateString) - \(timeString)"
 }
 
-struct EventView_Previews: PreviewProvider {
+struct TimeLocationDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        EventView()
+        TimeLocationDetailsView(newBetData: NewBetData(title: "テストベット", description: "アイス奢って！", locationName: "テストロケーション"))
     }
 }

@@ -98,16 +98,11 @@ class BetManager: NSObject, ObservableObject {
             return
         }
         
-        guard let coordinate = newBetData.selectedCoordinates else {
-            print("No coordinates selected.")
-            return
-        }
-        
         // create location data
         let locationData: [String: Any] = [
             "name": newBetData.locationName,
-            "latitude": coordinate.latitude,
-            "longitude": coordinate.longitude
+            "latitude": newBetData.selectedCoordinates.latitude,
+            "longitude": newBetData.selectedCoordinates.longitude
         ]
         
         // create bet data
