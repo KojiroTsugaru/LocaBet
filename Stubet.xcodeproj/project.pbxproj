@@ -56,7 +56,6 @@
 		317581122C89589D00DD5B13 /* BetDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317581112C89589D00DD5B13 /* BetDetailsView.swift */; };
 		317581142C89642E00DD5B13 /* MissionDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317581132C89642E00DD5B13 /* MissionDetailsView.swift */; };
 		317581162C896A7700DD5B13 /* NewBetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317581152C896A7700DD5B13 /* NewBetViewModel.swift */; };
-		317581182C896B2A00DD5B13 /* SetDeadlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317581172C896B2A00DD5B13 /* SetDeadlineView.swift */; };
 		3175811A2C89768A00DD5B13 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 317581192C89768A00DD5B13 /* FirebaseAnalyticsOnDeviceConversion */; };
 		3175811C2C89768A00DD5B13 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 3175811B2C89768A00DD5B13 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		3175811E2C89768A00DD5B13 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 3175811D2C89768A00DD5B13 /* FirebaseAppCheck */; };
@@ -136,7 +135,6 @@
 		317581112C89589D00DD5B13 /* BetDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetDetailsView.swift; sourceTree = "<group>"; };
 		317581132C89642E00DD5B13 /* MissionDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDetailsView.swift; sourceTree = "<group>"; };
 		317581152C896A7700DD5B13 /* NewBetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBetViewModel.swift; sourceTree = "<group>"; };
-		317581172C896B2A00DD5B13 /* SetDeadlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDeadlineView.swift; sourceTree = "<group>"; };
 		317581252C89A57100DD5B13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31B8ED962C89BEC9004474B6 /* SetLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLocationView.swift; sourceTree = "<group>"; };
 		31B8ED982C89BF8C004474B6 /* MapSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchBar.swift; sourceTree = "<group>"; };
@@ -341,7 +339,6 @@
 			isa = PBXGroup;
 			children = (
 				317581092C880B9300DD5B13 /* CreateBetView.swift */,
-				317581172C896B2A00DD5B13 /* SetDeadlineView.swift */,
 				311626E32CDEA47700E1D4E0 /* SetLocation */,
 				311238912C89D75600EC7DBC /* ConfirmNewBetView.swift */,
 				317581152C896A7700DD5B13 /* NewBetViewModel.swift */,
@@ -559,7 +556,6 @@
 				313F8EDF2CEB651500CA3F3D /* SearchUserView.swift in Sources */,
 				313F8FEB2CF6149400CA3F3D /* FriendRequestCell.swift in Sources */,
 				3146656C2CE4F39D00441AC6 /* MainTabView.swift in Sources */,
-				317581182C896B2A00DD5B13 /* SetDeadlineView.swift in Sources */,
 				317581142C89642E00DD5B13 /* MissionDetailsView.swift in Sources */,
 				317580FA2C87014400DD5B13 /* HomeViewModel.swift in Sources */,
 				311A57622C86D94D0040AA9A /* Stubet.xcdatamodeld in Sources */,
