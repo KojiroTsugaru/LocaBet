@@ -1,7 +1,7 @@
 import SwiftUI
 import MapKit
 
-struct TimeLocationDetailsView: View {
+struct TimeLocationCell: View {
     
     let newBetData: NewBetData
     @State private var region: MKCoordinateRegion
@@ -75,8 +75,8 @@ struct TimeLocationDetailsView: View {
             .padding(.vertical, 10)
         }
         .background(Color(UIColor.systemGray6))
-        .cornerRadius(15)
-        .shadow(radius: 2)
+        .cornerRadius(12)
+        .shadow(radius: 1)
     }
 }
 
@@ -96,6 +96,6 @@ func formattedDate(date: Date, time: Date) -> String {
 
 struct TimeLocationDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        TimeLocationDetailsView(newBetData: NewBetData(title: "テストベット", description: "アイス奢って！", locationName: "テストロケーション"))
+        TimeLocationCell(newBetData: NewBetData(title: "テストベット", description: "アイス奢って！", locationName: "テストロケーション"))
     }
 }

@@ -42,13 +42,14 @@ struct ConfirmNewBetView: View {
                     .font(.body)
                     .padding()
                     .background(Color(.systemGray6))
-                    .cornerRadius(10)
+                    .cornerRadius(12)
+                    .shadow(radius: 1)
 
                 // Location&Time
                 VStack(alignment: .leading) {
                     Text("場所＆時間")
                         .font(.headline)
-                    TimeLocationDetailsView(newBetData: newBetData)
+                    TimeLocationCell(newBetData: newBetData)
                 }
             }
             .padding()

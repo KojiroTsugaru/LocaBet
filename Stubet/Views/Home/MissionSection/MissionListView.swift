@@ -18,12 +18,7 @@ struct MissionListView: View {
                     .padding(.leading)
             
                 ForEach(betManager.newMissions) { mission in
-                    NavigationLink(
-                        destination: MissionDetailsView(mission: mission)
-                    ) {
-                        MissionRowView(mission: mission, isNew: true)
-                    }
-                    .padding(.horizontal)
+                    MissionListCell(mission: mission)
                 }
             }
         
@@ -33,12 +28,7 @@ struct MissionListView: View {
                     .padding(.leading)
             
                 ForEach(betManager.ongoingMissions) { mission in
-                    NavigationLink(
-                        destination: MissionDetailsView(mission: mission)
-                    ) {
-                        MissionRowView(mission: mission, isNew: false)
-                    }
-                    .padding(.horizontal)
+                    MissionListCell(mission: mission)
                 }
             } else {
                 Text("進行中のミッションはありません")

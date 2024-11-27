@@ -49,7 +49,7 @@ struct CreateBetView: View {
                             ) // Change the accent color for the date picker
                             Image(systemName: "calendar")
                                 .foregroundColor(.gray)
-                        }.padding(.vertical)
+                        }.padding(.vertical, 2)
                     }
                     
                     Section(header: Text("時間を選択")) {
@@ -65,7 +65,7 @@ struct CreateBetView: View {
                             ) // Change the accent color for the time picker
                             Image(systemName: "clock")
                                 .foregroundColor(.gray)
-                        }.padding(.vertical)
+                        }.padding(.vertical, 2)
                     }
                     
                 }

@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		311238922C89D75600EC7DBC /* ConfirmNewBetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311238912C89D75600EC7DBC /* ConfirmNewBetView.swift */; };
-		311238982C8AB0A300EC7DBC /* TimeLocationDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311238972C8AB0A300EC7DBC /* TimeLocationDetailsView.swift */; };
+		311238982C8AB0A300EC7DBC /* TimeLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311238972C8AB0A300EC7DBC /* TimeLocationCell.swift */; };
 		3112389A2C8AB60C00EC7DBC /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311238992C8AB60C00EC7DBC /* ProfileView.swift */; };
 		3112389E2C8AB6A700EC7DBC /* FriendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3112389D2C8AB6A700EC7DBC /* FriendRequest.swift */; };
 		311626D82CDE506100E1D4E0 /* BetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311626D42CDE506100E1D4E0 /* BetManager.swift */; };
-		311626D92CDE506100E1D4E0 /* MissionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311626D62CDE506100E1D4E0 /* MissionModel.swift */; };
-		311626DA2CDE506100E1D4E0 /* BetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311626D52CDE506100E1D4E0 /* BetModel.swift */; };
+		311626D92CDE506100E1D4E0 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311626D62CDE506100E1D4E0 /* Mission.swift */; };
+		311626DA2CDE506100E1D4E0 /* Bet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311626D52CDE506100E1D4E0 /* Bet.swift */; };
 		311626DC2CDE5C3100E1D4E0 /* NewBetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311626DB2CDE5C3100E1D4E0 /* NewBetData.swift */; };
 		311626E22CDEA46B00E1D4E0 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311626E12CDEA46B00E1D4E0 /* LocationService.swift */; };
 		311A57562C86D94A0040AA9A /* StubetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311A57552C86D94A0040AA9A /* StubetApp.swift */; };
@@ -43,16 +43,16 @@
 		3146656C2CE4F39D00441AC6 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3146656B2CE4F39D00441AC6 /* MainTabView.swift */; };
 		3146656E2CE50A8D00441AC6 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3146656D2CE50A8D00441AC6 /* ProfileViewModel.swift */; };
 		317580FA2C87014400DD5B13 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317580F92C87014400DD5B13 /* HomeViewModel.swift */; };
-		317580FC2C8701AC00DD5B13 /* MissionRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317580FB2C8701AC00DD5B13 /* MissionRowView.swift */; };
-		317580FE2C8701C600DD5B13 /* BetRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317580FD2C8701C600DD5B13 /* BetRowView.swift */; };
+		317580FC2C8701AC00DD5B13 /* MissionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317580FB2C8701AC00DD5B13 /* MissionListCell.swift */; };
+		317580FE2C8701C600DD5B13 /* BetListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317580FD2C8701C600DD5B13 /* BetListCell.swift */; };
 		317581012C87313900DD5B13 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 317581002C87313900DD5B13 /* GoogleService-Info.plist */; };
 		317581042C8737DA00DD5B13 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 317581032C8737DA00DD5B13 /* FirebaseAnalytics */; };
 		317581062C8739A700DD5B13 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 317581052C8739A700DD5B13 /* FirebaseAuth */; };
 		317581082C8739A700DD5B13 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 317581072C8739A700DD5B13 /* FirebaseFirestore */; };
 		3175810A2C880B9300DD5B13 /* CreateBetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317581092C880B9300DD5B13 /* CreateBetView.swift */; };
-		3175810C2C88146500DD5B13 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3175810B2C88146500DD5B13 /* UserModel.swift */; };
+		3175810C2C88146500DD5B13 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3175810B2C88146500DD5B13 /* User.swift */; };
 		3175810E2C8816C900DD5B13 /* FriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3175810D2C8816C900DD5B13 /* FriendModel.swift */; };
-		317581102C88195D00DD5B13 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3175810F2C88195D00DD5B13 /* LocationModel.swift */; };
+		317581102C88195D00DD5B13 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3175810F2C88195D00DD5B13 /* Location.swift */; };
 		317581122C89589D00DD5B13 /* BetDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317581112C89589D00DD5B13 /* BetDetailsView.swift */; };
 		317581142C89642E00DD5B13 /* MissionDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317581132C89642E00DD5B13 /* MissionDetailsView.swift */; };
 		317581162C896A7700DD5B13 /* NewBetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317581152C896A7700DD5B13 /* NewBetViewModel.swift */; };
@@ -87,12 +87,12 @@
 
 /* Begin PBXFileReference section */
 		311238912C89D75600EC7DBC /* ConfirmNewBetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmNewBetView.swift; sourceTree = "<group>"; };
-		311238972C8AB0A300EC7DBC /* TimeLocationDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLocationDetailsView.swift; sourceTree = "<group>"; };
+		311238972C8AB0A300EC7DBC /* TimeLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLocationCell.swift; sourceTree = "<group>"; };
 		311238992C8AB60C00EC7DBC /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		3112389D2C8AB6A700EC7DBC /* FriendRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequest.swift; sourceTree = "<group>"; };
 		311626D42CDE506100E1D4E0 /* BetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetManager.swift; sourceTree = "<group>"; };
-		311626D52CDE506100E1D4E0 /* BetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetModel.swift; sourceTree = "<group>"; };
-		311626D62CDE506100E1D4E0 /* MissionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionModel.swift; sourceTree = "<group>"; };
+		311626D52CDE506100E1D4E0 /* Bet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bet.swift; sourceTree = "<group>"; };
+		311626D62CDE506100E1D4E0 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
 		311626DB2CDE5C3100E1D4E0 /* NewBetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBetData.swift; sourceTree = "<group>"; };
 		311626E12CDEA46B00E1D4E0 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		311A57522C86D94A0040AA9A /* Stubet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stubet.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,13 +125,13 @@
 		3146656B2CE4F39D00441AC6 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		3146656D2CE50A8D00441AC6 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		317580F92C87014400DD5B13 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		317580FB2C8701AC00DD5B13 /* MissionRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionRowView.swift; sourceTree = "<group>"; };
-		317580FD2C8701C600DD5B13 /* BetRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetRowView.swift; sourceTree = "<group>"; };
+		317580FB2C8701AC00DD5B13 /* MissionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionListCell.swift; sourceTree = "<group>"; };
+		317580FD2C8701C600DD5B13 /* BetListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetListCell.swift; sourceTree = "<group>"; };
 		317581002C87313900DD5B13 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		317581092C880B9300DD5B13 /* CreateBetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBetView.swift; sourceTree = "<group>"; };
-		3175810B2C88146500DD5B13 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		3175810B2C88146500DD5B13 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3175810D2C8816C900DD5B13 /* FriendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendModel.swift; sourceTree = "<group>"; };
-		3175810F2C88195D00DD5B13 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
+		3175810F2C88195D00DD5B13 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		317581112C89589D00DD5B13 /* BetDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetDetailsView.swift; sourceTree = "<group>"; };
 		317581132C89642E00DD5B13 /* MissionDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDetailsView.swift; sourceTree = "<group>"; };
 		317581152C896A7700DD5B13 /* NewBetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBetViewModel.swift; sourceTree = "<group>"; };
@@ -180,8 +180,8 @@
 			isa = PBXGroup;
 			children = (
 				311626D42CDE506100E1D4E0 /* BetManager.swift */,
-				311626D52CDE506100E1D4E0 /* BetModel.swift */,
-				311626D62CDE506100E1D4E0 /* MissionModel.swift */,
+				311626D52CDE506100E1D4E0 /* Bet.swift */,
+				311626D62CDE506100E1D4E0 /* Mission.swift */,
 			);
 			path = BetManager;
 			sourceTree = "<group>";
@@ -276,9 +276,9 @@
 		313F8EC52CE6477600CA3F3D /* BetSection */ = {
 			isa = PBXGroup;
 			children = (
-				317580FD2C8701C600DD5B13 /* BetRowView.swift */,
-				317581112C89589D00DD5B13 /* BetDetailsView.swift */,
 				313F8EC92CE6484700CA3F3D /* BetListView.swift */,
+				317580FD2C8701C600DD5B13 /* BetListCell.swift */,
+				317581112C89589D00DD5B13 /* BetDetailsView.swift */,
 			);
 			path = BetSection;
 			sourceTree = "<group>";
@@ -286,7 +286,7 @@
 		313F8EC62CE6478600CA3F3D /* MissionSection */ = {
 			isa = PBXGroup;
 			children = (
-				317580FB2C8701AC00DD5B13 /* MissionRowView.swift */,
+				317580FB2C8701AC00DD5B13 /* MissionListCell.swift */,
 				317581132C89642E00DD5B13 /* MissionDetailsView.swift */,
 				313F8EC72CE6481D00CA3F3D /* MissionListView.swift */,
 			);
@@ -330,7 +330,6 @@
 				314665652CDF98EE00441AC6 /* MissionClearModalView.swift */,
 				313F8EC62CE6478600CA3F3D /* MissionSection */,
 				313F8EC52CE6477600CA3F3D /* BetSection */,
-				311238972C8AB0A300EC7DBC /* TimeLocationDetailsView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -343,6 +342,7 @@
 				311238912C89D75600EC7DBC /* ConfirmNewBetView.swift */,
 				317581152C896A7700DD5B13 /* NewBetViewModel.swift */,
 				311626DB2CDE5C3100E1D4E0 /* NewBetData.swift */,
+				311238972C8AB0A300EC7DBC /* TimeLocationCell.swift */,
 			);
 			path = NewBet;
 			sourceTree = "<group>";
@@ -384,7 +384,7 @@
 			isa = PBXGroup;
 			children = (
 				314665672CE0E99100441AC6 /* AccountManager.swift */,
-				3175810B2C88146500DD5B13 /* UserModel.swift */,
+				3175810B2C88146500DD5B13 /* User.swift */,
 			);
 			path = AccountManager;
 			sourceTree = "<group>";
@@ -393,7 +393,7 @@
 			isa = PBXGroup;
 			children = (
 				314665632CDF8AC300441AC6 /* LocationManager.swift */,
-				3175810F2C88195D00DD5B13 /* LocationModel.swift */,
+				3175810F2C88195D00DD5B13 /* Location.swift */,
 			);
 			path = LocationManager;
 			sourceTree = "<group>";
@@ -545,9 +545,9 @@
 				4CEB9A8B2C8952690061921E /* SignupViewModel.swift in Sources */,
 				31B8ED972C89BEC9004474B6 /* SetLocationView.swift in Sources */,
 				313F8ECC2CE64A5400CA3F3D /* BetMissionTabView.swift in Sources */,
-				317580FC2C8701AC00DD5B13 /* MissionRowView.swift in Sources */,
+				317580FC2C8701AC00DD5B13 /* MissionListCell.swift in Sources */,
 				3146656A2CE4F33B00441AC6 /* RootView.swift in Sources */,
-				311238982C8AB0A300EC7DBC /* TimeLocationDetailsView.swift in Sources */,
+				311238982C8AB0A300EC7DBC /* TimeLocationCell.swift in Sources */,
 				314665642CDF8AC300441AC6 /* LocationManager.swift in Sources */,
 				311238922C89D75600EC7DBC /* ConfirmNewBetView.swift in Sources */,
 				313F8EDD2CEB5CD400CA3F3D /* ProfileViewHeader.swift in Sources */,
@@ -568,14 +568,14 @@
 				31B8ED992C89BF8C004474B6 /* MapSearchBar.swift in Sources */,
 				311A57872C86E6080040AA9A /* HomeView.swift in Sources */,
 				317581122C89589D00DD5B13 /* BetDetailsView.swift in Sources */,
-				317580FE2C8701C600DD5B13 /* BetRowView.swift in Sources */,
+				317580FE2C8701C600DD5B13 /* BetListCell.swift in Sources */,
 				4C771D912C880FB900543A57 /* LoginViewModel.swift in Sources */,
 				3112389A2C8AB60C00EC7DBC /* ProfileView.swift in Sources */,
 				4C771D8F2C8809D000543A57 /* LoginView.swift in Sources */,
 				313F8ED92CEA8F7800CA3F3D /* ProfileTabView.swift in Sources */,
 				313F8ECA2CE6484700CA3F3D /* BetListView.swift in Sources */,
-				3175810C2C88146500DD5B13 /* UserModel.swift in Sources */,
-				317581102C88195D00DD5B13 /* LocationModel.swift in Sources */,
+				3175810C2C88146500DD5B13 /* User.swift in Sources */,
+				317581102C88195D00DD5B13 /* Location.swift in Sources */,
 				313F8EC82CE6481D00CA3F3D /* MissionListView.swift in Sources */,
 				311626DC2CDE5C3100E1D4E0 /* NewBetData.swift in Sources */,
 				314665662CDF98EE00441AC6 /* MissionClearModalView.swift in Sources */,
@@ -584,8 +584,8 @@
 				313F8ECE2CE8FAD000CA3F3D /* FriendManager.swift in Sources */,
 				311626D82CDE506100E1D4E0 /* BetManager.swift in Sources */,
 				314665682CE0E99100441AC6 /* AccountManager.swift in Sources */,
-				311626D92CDE506100E1D4E0 /* MissionModel.swift in Sources */,
-				311626DA2CDE506100E1D4E0 /* BetModel.swift in Sources */,
+				311626D92CDE506100E1D4E0 /* Mission.swift in Sources */,
+				311626DA2CDE506100E1D4E0 /* Bet.swift in Sources */,
 				313F8EE12CEB676F00CA3F3D /* FriendListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
