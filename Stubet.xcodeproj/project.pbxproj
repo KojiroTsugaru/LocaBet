@@ -286,9 +286,9 @@
 		313F8EC62CE6478600CA3F3D /* MissionSection */ = {
 			isa = PBXGroup;
 			children = (
+				313F8EC72CE6481D00CA3F3D /* MissionListView.swift */,
 				317580FB2C8701AC00DD5B13 /* MissionListCell.swift */,
 				317581132C89642E00DD5B13 /* MissionDetailsView.swift */,
-				313F8EC72CE6481D00CA3F3D /* MissionListView.swift */,
 			);
 			path = MissionSection;
 			sourceTree = "<group>";

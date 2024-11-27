@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct BetListCell: View {
+    
+    @EnvironmentObject private var accountManager: AccountManager
+    
     let bet: Bet
     var isPendingStatus: Bool
+    
+    @State private var receiver: User?
     
     init(bet: Bet) {
         self.bet = bet
@@ -38,12 +43,21 @@ struct BetListCell: View {
                         
                         Spacer()
                         
-                        // Profile Image
-                        Image("DummyProfileImage")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 30, height: 30)
-                            .clipShape(Circle())
+                        // Profile Image of sender
+                        AsyncImage(url: URL(string: receiver?.iconUrl ?? "")) { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 30, height: 30)
+                                .clipShape(Circle())
+                        } placeholder: {
+                            Image(systemName: "person.crop.circle.fill")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(.gray)
+                                .clipShape(Circle())
+                        }
                     }
                     .font(.caption)
                     .foregroundColor(isPendingStatus ? Color.white : Color.secondary)
@@ -66,6 +80,14 @@ struct BetListCell: View {
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(isPendingStatus ? Color.orange.opacity(0) : Color.gray.opacity(0.2), lineWidth: 1)
             )
+            .task {
+                do {
+                    receiver = try await accountManager.fetchUser(id: bet.receiverId)
+                    print("fetch sender is called")
+                } catch {
+                    print("error fetching sender informatin: \(error)")
+                }
+           }
         }.padding(.horizontal)
     }
 }

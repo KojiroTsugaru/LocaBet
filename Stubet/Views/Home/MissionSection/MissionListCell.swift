@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct MissionListCell: View {
+    
+    @EnvironmentObject private var accountManager: AccountManager
+    
     var mission: Mission
     var isPendingStatus: Bool
+    
+    @State private var sender: User?
     
     init(mission: Mission) {
         self.mission = mission
@@ -38,12 +43,21 @@ struct MissionListCell: View {
                         
                         Spacer()
                         
-                        // Profile Image
-                        Image("DummyProfileImage")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 30, height: 30)
-                            .clipShape(Circle())
+                        // Profile Image of sender
+                        AsyncImage(url: URL(string: sender?.iconUrl ?? "")) { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 30, height: 30)
+                                .clipShape(Circle())
+                        } placeholder: {
+                            Image(systemName: "person.crop.circle.fill")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(isPendingStatus ? Color.white : Color.secondary)
+                                .clipShape(Circle())
+                        }
                     }
                     .font(.caption)
                     .foregroundColor(isPendingStatus ? Color.white : Color.secondary)
@@ -66,7 +80,14 @@ struct MissionListCell: View {
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(isPendingStatus ? Color.orange.opacity(0) : Color.gray.opacity(0.2), lineWidth: 1)
             )
-            
+            .task {
+                do {
+                    sender = try await accountManager.fetchUser(id: mission.senderId)
+                    print("fetch sender is called")
+                } catch {
+                    print("error fetching sender informatin: \(error)")
+                }
+           }
         }
         .padding(.horizontal)
     }
