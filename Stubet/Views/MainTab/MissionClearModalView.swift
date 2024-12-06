@@ -13,10 +13,13 @@ struct MissionClearModalView: View {
     
     var body: some View {
         VStack(spacing: 20) {
-            Text("Entered Region")
-                .font(.headline)
-            Text("You have entered region: \(regionIdentifier)")
-            Button("Close") {
+            Text("ミッションをクリアしました🎉")
+                .font(.title2)
+                .bold()
+            Text("\(regionIdentifier)に時間内に到着")
+                .bold()
+
+            Button("閉じる") {
                 // Code to dismiss modal will automatically work with the sheet binding
             }
         }

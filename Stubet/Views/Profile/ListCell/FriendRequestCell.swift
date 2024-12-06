@@ -9,6 +9,8 @@ import SwiftUI
 
 struct FriendRequestCell: View {
     
+    @Environment(\.presentationMode) var presentationMode
+    
     @StateObject private var friendManager = FriendManager.shared
     let request: FriendRequest
     
@@ -27,6 +29,7 @@ struct FriendRequestCell: View {
                     Task {
                         await accceptRequest()
                     }
+                    presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("承諾する")
                         .foregroundColor(.white)
@@ -39,6 +42,7 @@ struct FriendRequestCell: View {
                     Task {
                         await rejectRequest()
                     }
+                    presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("拒否する")
                         .foregroundColor(.white)

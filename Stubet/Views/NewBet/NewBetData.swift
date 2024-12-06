@@ -9,7 +9,7 @@ import Foundation
 import CoreLocation
 
 class NewBetData: ObservableObject {
-    @Published var selectedFriend: Friend
+    @Published var selectedFriend: Friend?
     @Published var title: String = ""
     @Published var description: String = ""
     @Published var date: Date = Date()
@@ -21,13 +21,29 @@ class NewBetData: ObservableObject {
     init(selectedFriend: Friend = Friend(
         id: "friend001",
         data: [
-            "userName": "john_doe",
-            "displayName": "John Doe",
+            "userName": "John",
+            "displayName": "John",
             "addedAt": Date(), // 現在の日時
             "iconUrl": "https://example.com/user_icon/johndoe.png"
         ]
     ), title: String, description: String, date: Date = Date(), time: Date = Date(), locationName: String, selectedCoordinates: CLLocationCoordinate2D = CLLocationCoordinate2D()) {
         self.selectedFriend = selectedFriend
+        self.title = title
+        self.description = description
+        self.date = date
+        self.time = time
+        self.locationName = locationName
+        self.selectedCoordinates = selectedCoordinates
+    }
+    
+    init(
+        title: String,
+        description: String,
+        date: Date = Date(),
+        time: Date = Date(),
+        locationName: String,
+        selectedCoordinates: CLLocationCoordinate2D = CLLocationCoordinate2D()
+    ) {
         self.title = title
         self.description = description
         self.date = date

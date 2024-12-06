@@ -60,6 +60,7 @@ struct TimeLocationDetailsPanel: View {
             // Map Section
             Map(
                 coordinateRegion: $region,
+                interactionModes: .zoom,
                 annotationItems: [annotatedCoordinate]
             ) { item in
                 MapMarker(coordinate: item.coordinate, tint: .red)
@@ -72,7 +73,8 @@ struct TimeLocationDetailsPanel: View {
 
             // Confirmation Button
             Button(action: {
-                // Action for map confirmation
+                // Action to open external map
+                openMaps()
             }) {
                 Text("マップで確認する")
                     .font(.system(size: 16, weight: .semibold))
@@ -88,6 +90,21 @@ struct TimeLocationDetailsPanel: View {
         .background(Color(UIColor.systemGray6))
         .cornerRadius(12)
         .shadow(radius: 1)
+    }
+    
+    private func openMaps() {
+        let latitude = annotatedCoordinate.coordinate.latitude
+        let longitude = annotatedCoordinate.coordinate.longitude
+        
+        if UIApplication.shared.canOpenURL(URL(string: "comgooglemaps://")!) {
+            // Open Google Maps
+            let googleMapsURL = URL(string: "comgooglemaps://?q=\(latitude),\(longitude)&zoom=14")!
+            UIApplication.shared.open(googleMapsURL, options: [:], completionHandler: nil)
+        } else {
+            // Fallback to Apple Maps
+            let appleMapsURL = URL(string: "http://maps.apple.com/?q=\(latitude),\(longitude)&z=14")!
+            UIApplication.shared.open(appleMapsURL, options: [:], completionHandler: nil)
+        }
     }
 }
 

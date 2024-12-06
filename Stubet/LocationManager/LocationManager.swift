@@ -10,7 +10,7 @@ import CoreLocation
 import SwiftUI
 
 
-class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
+final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     static let shared = LocationManager() // Singleton instance
         
     private var locationManager: CLLocationManager
@@ -27,13 +27,37 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         locationManager.requestWhenInUseAuthorization()
     }
     
-    // MARK: - Location Tracking
-    
-    func startTrackingLocation() {
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.startUpdatingLocation()
+    // MARK: - Location Authorization
+    func checkLocationAuthorization() {
+        switch locationManager.authorizationStatus {
+        case .notDetermined:
+            print("Authorization not determined. Requesting permission.")
+            locationManager.requestWhenInUseAuthorization()
+
+        case .restricted, .denied:
+            print("Location access is restricted or denied. Update your settings.")
+
+        case .authorizedWhenInUse, .authorizedAlways:
+            print("Authorization granted. Starting location updates.")
+            // Start updating location
+            DispatchQueue.global(qos: .userInitiated).async {
+                self.startTrackingLocation()
+            }
+
+        @unknown default:
+            print("Unexpected authorization status.")
         }
     }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        checkLocationAuthorization()
+    }
+    
+    // MARK: - Location Tracking
+    func startTrackingLocation() {
+        self.locationManager.startUpdatingLocation()
+    }
+
     
     func stopTrackingLocation() {
         locationManager.stopUpdatingLocation()

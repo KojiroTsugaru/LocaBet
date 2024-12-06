@@ -26,7 +26,7 @@ struct ConfirmNewBetView: View {
                         .clipShape(Circle())
 
                     VStack(alignment: .leading) {
-                        Text(newBetData.selectedFriend.displayName)
+                        Text(newBetData.selectedFriend?.displayName ?? "フレンドが選択されていません")
                             .font(.subheadline)
                             .fontWeight(.medium)
 

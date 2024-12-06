@@ -13,7 +13,6 @@ struct HomeView: View {
     @StateObject private var locationManager = LocationManager.shared
     
     @State private var showNewBetModal = false
-    @State private var showMissionClearModal = false
     
     enum Tab {
         case mission
@@ -23,59 +22,35 @@ struct HomeView: View {
     @State private var selectedTab: Tab = .bet
     
     var body: some View {
-            VStack {
-                // Tab: ミッション and ベット buttons
-                BetMissionTabView(selectedTab: $selectedTab)
-                
-                // Content depending on the selected tab
-                ScrollView {
-                    if selectedTab == .mission {
-                        MissionListView()
-                    } else {
-                        BetListView()
-                    }
-                }.refreshable {
-                    await betManager.fetchData()
+        VStack {
+            // Tab: ミッション and ベット buttons
+            BetMissionTabView(selectedTab: $selectedTab)
+            
+            // Content depending on the selected tab
+            ScrollView {
+                if selectedTab == .mission {
+                    MissionListView()
+                } else {
+                    BetListView()
                 }
+            }.refreshable {
+                await betManager.fetchData()
             }
-            .background(Color(UIColor.systemGroupedBackground))
-            .edgesIgnoringSafeArea(.bottom)
-            .navigationTitle("ホーム")
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(
-                trailing: Button(action: {
-                    showNewBetModal = true
-                }, label: {
-                    Image(systemName: "plus")
-                        .font(.title2)
-                })
-            )
-            .sheet(isPresented: $showNewBetModal, content: {
-                CreateBetView(showNewBetModal: $showNewBetModal)
-            })
-            .onChange(
-                of: locationManager.showModalForRegion, perform: { regionIdentifier in
-                    if regionIdentifier != nil {
-                        showMissionClearModal = true // Trigger modal display
-                    }
-                })
-            .sheet(isPresented: $showMissionClearModal, onDismiss: {
-                // Reset the modal trigger after dismissal
-                locationManager.showModalForRegion = nil
-            }) {
-                // Modal Content
-                if let regionIdentifier = locationManager.showModalForRegion {
-                    MissionClearModalView(regionIdentifier: regionIdentifier)
-                }
-            }
-            .task {
-                do {
-                    try await accountManager.fetchCurrentUser()
-                    await betManager.fetchData()
-                } catch {
-                    print(error)
-                }
-            }
-             
         }
+        .background(Color(UIColor.systemGroupedBackground))
+        .edgesIgnoringSafeArea(.bottom)
+        .navigationTitle("ホーム")
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarItems(
+            trailing: Button(action: {
+                showNewBetModal = true
+            }, label: {
+                Image(systemName: "plus")
+                    .font(.title2)
+            })
+        )
+        .sheet(isPresented: $showNewBetModal, content: {
+            CreateBetView(showNewBetModal: $showNewBetModal)
+        })
+    }
 }
