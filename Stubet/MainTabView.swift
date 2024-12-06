@@ -11,6 +11,7 @@ struct MainTabView: View {
     
     @State private var selectedTab = 0 // Set HomeView as the default tab
     @StateObject private var accoutManager = AccountManager.shared
+//    @StateObject private var locationManager = LocationManager.shared
     
     init() {
         // Set tab bar appearance

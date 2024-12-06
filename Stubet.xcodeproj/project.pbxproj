@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		311238922C89D75600EC7DBC /* ConfirmNewBetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311238912C89D75600EC7DBC /* ConfirmNewBetView.swift */; };
-		311238982C8AB0A300EC7DBC /* TimeLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311238972C8AB0A300EC7DBC /* TimeLocationCell.swift */; };
+		311238982C8AB0A300EC7DBC /* TimeLocationConfirmPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311238972C8AB0A300EC7DBC /* TimeLocationConfirmPanel.swift */; };
 		3112389A2C8AB60C00EC7DBC /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311238992C8AB60C00EC7DBC /* ProfileView.swift */; };
 		3112389E2C8AB6A700EC7DBC /* FriendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3112389D2C8AB6A700EC7DBC /* FriendRequest.swift */; };
 		311626D82CDE506100E1D4E0 /* BetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311626D42CDE506100E1D4E0 /* BetManager.swift */; };
@@ -42,6 +42,8 @@
 		3146656A2CE4F33B00441AC6 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314665692CE4F33B00441AC6 /* RootView.swift */; };
 		3146656C2CE4F39D00441AC6 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3146656B2CE4F39D00441AC6 /* MainTabView.swift */; };
 		3146656E2CE50A8D00441AC6 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3146656D2CE50A8D00441AC6 /* ProfileViewModel.swift */; };
+		316FD2182D026966007B993E /* TimeLocationDetailsPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316FD2172D026966007B993E /* TimeLocationDetailsPanel.swift */; };
+		316FD21C2D026BE1007B993E /* BetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316FD21B2D026BE1007B993E /* BetItem.swift */; };
 		317580FA2C87014400DD5B13 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317580F92C87014400DD5B13 /* HomeViewModel.swift */; };
 		317580FC2C8701AC00DD5B13 /* MissionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317580FB2C8701AC00DD5B13 /* MissionListCell.swift */; };
 		317580FE2C8701C600DD5B13 /* BetListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317580FD2C8701C600DD5B13 /* BetListCell.swift */; };
@@ -87,7 +89,7 @@
 
 /* Begin PBXFileReference section */
 		311238912C89D75600EC7DBC /* ConfirmNewBetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmNewBetView.swift; sourceTree = "<group>"; };
-		311238972C8AB0A300EC7DBC /* TimeLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLocationCell.swift; sourceTree = "<group>"; };
+		311238972C8AB0A300EC7DBC /* TimeLocationConfirmPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLocationConfirmPanel.swift; sourceTree = "<group>"; };
 		311238992C8AB60C00EC7DBC /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		3112389D2C8AB6A700EC7DBC /* FriendRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequest.swift; sourceTree = "<group>"; };
 		311626D42CDE506100E1D4E0 /* BetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetManager.swift; sourceTree = "<group>"; };
@@ -124,6 +126,8 @@
 		314665692CE4F33B00441AC6 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		3146656B2CE4F39D00441AC6 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		3146656D2CE50A8D00441AC6 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		316FD2172D026966007B993E /* TimeLocationDetailsPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLocationDetailsPanel.swift; sourceTree = "<group>"; };
+		316FD21B2D026BE1007B993E /* BetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetItem.swift; sourceTree = "<group>"; };
 		317580F92C87014400DD5B13 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		317580FB2C8701AC00DD5B13 /* MissionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionListCell.swift; sourceTree = "<group>"; };
 		317580FD2C8701C600DD5B13 /* BetListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetListCell.swift; sourceTree = "<group>"; };
@@ -182,6 +186,7 @@
 				311626D42CDE506100E1D4E0 /* BetManager.swift */,
 				311626D52CDE506100E1D4E0 /* Bet.swift */,
 				311626D62CDE506100E1D4E0 /* Mission.swift */,
+				316FD21B2D026BE1007B993E /* BetItem.swift */,
 			);
 			path = BetManager;
 			sourceTree = "<group>";
@@ -330,6 +335,7 @@
 				314665652CDF98EE00441AC6 /* MissionClearModalView.swift */,
 				313F8EC62CE6478600CA3F3D /* MissionSection */,
 				313F8EC52CE6477600CA3F3D /* BetSection */,
+				316FD2172D026966007B993E /* TimeLocationDetailsPanel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -342,7 +348,7 @@
 				311238912C89D75600EC7DBC /* ConfirmNewBetView.swift */,
 				317581152C896A7700DD5B13 /* NewBetViewModel.swift */,
 				311626DB2CDE5C3100E1D4E0 /* NewBetData.swift */,
-				311238972C8AB0A300EC7DBC /* TimeLocationCell.swift */,
+				311238972C8AB0A300EC7DBC /* TimeLocationConfirmPanel.swift */,
 			);
 			path = NewBet;
 			sourceTree = "<group>";
@@ -547,11 +553,12 @@
 				313F8ECC2CE64A5400CA3F3D /* BetMissionTabView.swift in Sources */,
 				317580FC2C8701AC00DD5B13 /* MissionListCell.swift in Sources */,
 				3146656A2CE4F33B00441AC6 /* RootView.swift in Sources */,
-				311238982C8AB0A300EC7DBC /* TimeLocationCell.swift in Sources */,
+				311238982C8AB0A300EC7DBC /* TimeLocationConfirmPanel.swift in Sources */,
 				314665642CDF8AC300441AC6 /* LocationManager.swift in Sources */,
 				311238922C89D75600EC7DBC /* ConfirmNewBetView.swift in Sources */,
 				313F8EDD2CEB5CD400CA3F3D /* ProfileViewHeader.swift in Sources */,
 				3175810A2C880B9300DD5B13 /* CreateBetView.swift in Sources */,
+				316FD2182D026966007B993E /* TimeLocationDetailsPanel.swift in Sources */,
 				311626E22CDEA46B00E1D4E0 /* LocationService.swift in Sources */,
 				313F8EDF2CEB651500CA3F3D /* SearchUserView.swift in Sources */,
 				313F8FEB2CF6149400CA3F3D /* FriendRequestCell.swift in Sources */,
@@ -574,6 +581,7 @@
 				4C771D8F2C8809D000543A57 /* LoginView.swift in Sources */,
 				313F8ED92CEA8F7800CA3F3D /* ProfileTabView.swift in Sources */,
 				313F8ECA2CE6484700CA3F3D /* BetListView.swift in Sources */,
+				316FD21C2D026BE1007B993E /* BetItem.swift in Sources */,
 				3175810C2C88146500DD5B13 /* User.swift in Sources */,
 				317581102C88195D00DD5B13 /* Location.swift in Sources */,
 				313F8EC82CE6481D00CA3F3D /* MissionListView.swift in Sources */,

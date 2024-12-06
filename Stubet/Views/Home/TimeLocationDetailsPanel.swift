@@ -1,18 +1,27 @@
+//
+//  TimeLocationDetailPanel.swift
+//  Stubet
+//
+//  Created by KJ on 12/6/24.
+//
+
 import SwiftUI
 import MapKit
 
-struct TimeLocationCell: View {
+struct TimeLocationDetailsPanel: View {
     
-    let newBetData: NewBetData
+    let betItem: any BetItem
     @State private var region: MKCoordinateRegion
+    private var annotatedCoordinate: IdentifiableCoordinate
     
-    init(newBetData: NewBetData) {
-        self.newBetData = newBetData
-        // Initialize the region with selectedCoordinates
+    init(betItem: any BetItem) {
+        self.betItem = betItem        // Initialize the region with selectedCoordinates
+        let initialCoordinate = CLLocationCoordinate2D(latitude: betItem.location.latitude, longitude: betItem.location.longitude)
         self._region = State(initialValue: MKCoordinateRegion(
-            center: newBetData.selectedCoordinates,
+            center: CLLocationCoordinate2D(latitude: betItem.location.latitude, longitude: betItem.location.longitude),
             span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
         ))
+        self.annotatedCoordinate = IdentifiableCoordinate(coordinate: initialCoordinate)
     }
     
     var body: some View {
@@ -22,11 +31,11 @@ struct TimeLocationCell: View {
                     .foregroundColor(.orange)
                     .font(.system(size: 20))
                 Spacer()
-                Text(formattedDate(date: newBetData.date, time: newBetData.time))
+                Text(betItem.formattedDeadline)
                     .font(.system(size: 16, weight: .semibold))
                     .padding(.leading)
                 Spacer()
-                Text("1分後")
+                Text(betItem.formattedDeadline)
                     .font(.system(size: 16))
                     .foregroundColor(.orange)
             }
@@ -40,11 +49,8 @@ struct TimeLocationCell: View {
                     .font(.system(size: 20))
                 Spacer()
                 VStack(alignment: .center, spacing: 4) {
-                    Text(newBetData.locationName)
+                    Text(betItem.location.name)
                         .font(.system(size: 16, weight: .semibold))
-                    Text("0.1 km")
-                        .font(.system(size: 14))
-                        .foregroundColor(.secondary)
                 }
                 Spacer()
             }
@@ -52,11 +58,16 @@ struct TimeLocationCell: View {
             .padding(.top, 10)
 
             // Map Section
-            Map(coordinateRegion: $region)
-                .frame(height: 200)
-                .cornerRadius(10)
-                .padding(.horizontal)
-                .padding(.top, 10)
+            Map(
+                coordinateRegion: $region,
+                annotationItems: [annotatedCoordinate]
+            ) { item in
+                MapMarker(coordinate: item.coordinate, tint: .red)
+            }
+            .frame(height: 200)
+            .cornerRadius(10)
+            .padding(.horizontal)
+            .padding(.top, 10)
 
 
             // Confirmation Button
@@ -80,22 +91,8 @@ struct TimeLocationCell: View {
     }
 }
 
-func formattedDate(date: Date, time: Date) -> String {
-    let dateFormatter = DateFormatter()
-    
-    // Set the date format
-    dateFormatter.dateFormat = "MM/dd/yyyy"
-    let dateString = dateFormatter.string(from: date)
-    
-    // Set the time format
-    dateFormatter.dateFormat = "h:mm a"
-    let timeString = dateFormatter.string(from: time)
-    
-    return "\(dateString) - \(timeString)"
-}
-
-struct TimeLocationDetailsView_Previews: PreviewProvider {
-    static var previews: some View {
-        TimeLocationCell(newBetData: NewBetData(title: "テストベット", description: "アイス奢って！", locationName: "テストロケーション"))
-    }
-}
+//struct TimeLocationDetailsPanel_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TimeLocationDetailsPanel(betItem: )
+//    }
+//}

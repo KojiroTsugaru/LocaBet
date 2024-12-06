@@ -18,7 +18,7 @@ struct BetListCell: View {
     
     init(bet: Bet) {
         self.bet = bet
-        self.isPendingStatus = bet.status == "rewardPending"
+        self.isPendingStatus = bet.status == .rewardPending
     }
     
     var body: some View {

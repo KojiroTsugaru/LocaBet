@@ -61,7 +61,7 @@ class BetManager: NSObject, ObservableObject {
                     self.allMissions.append(mission)
                     
                     // Categorize mission based on status
-                    switch mission.status {
+                    switch mission.status.rawValue {
                     case "ongoing":
                         self.ongoingMissions.append(mission)
                     case "invitePending":
@@ -73,7 +73,7 @@ class BetManager: NSObject, ObservableObject {
                     self.allBets.append(bet)
                     
                     // Categorize bet based on status
-                    switch bet.status {
+                    switch bet.status.rawValue {
                     case "ongoing":
                         self.ongoingBets.append(bet)
                     case "rewardPending":
@@ -131,6 +131,9 @@ class BetManager: NSObject, ObservableObject {
             print("Error writing document: \(error)")
         }
     }
+    
+    // update bet's status
+//    func updateBetStatus()
     
     // empty all bets and missions on logout
     func emptyAllData() {

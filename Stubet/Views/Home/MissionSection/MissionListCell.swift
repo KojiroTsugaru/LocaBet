@@ -18,7 +18,7 @@ struct MissionListCell: View {
     
     init(mission: Mission) {
         self.mission = mission
-        self.isPendingStatus = mission.status == "invitePending"
+        self.isPendingStatus = mission.status == .invitePending
     }
     
     var body: some View {

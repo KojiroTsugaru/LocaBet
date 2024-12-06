@@ -49,7 +49,7 @@ struct ConfirmNewBetView: View {
                 VStack(alignment: .leading) {
                     Text("場所＆時間")
                         .font(.headline)
-                    TimeLocationCell(newBetData: newBetData)
+                    TimeLocationConfirmPanel(newBetData: newBetData)
                 }
             }
             .padding()
