@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @EnvironmentObject private var accountManager: AccountManager
+    @StateObject private var accountManager = AccountManager.shared
     @StateObject private var betManager = BetManager.shared
     @StateObject private var locationManager = LocationManager.shared
     

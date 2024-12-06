@@ -62,8 +62,8 @@ struct SetLocationView: View {
     
 }
 
-#Preview {
-    let mockNewBet = NewBetData()
-    SetLocationView(newBetData: mockNewBet, showNewBetModal: .constant(true))
-}
+//#Preview {
+//    let mockNewBet = NewBetData(title: "", description: "", locationName: "")
+//    SetLocationView(newBetData: mockNewBet, showNewBetModal: .constant(true))
+//}
 

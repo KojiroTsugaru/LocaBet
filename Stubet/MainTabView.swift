@@ -10,7 +10,6 @@ import SwiftUI
 struct MainTabView: View {
     
     @State private var selectedTab = 0 // Set HomeView as the default tab
-    @StateObject private var accoutManager = AccountManager.shared
     
     init() {
         // Set tab bar appearance
@@ -40,7 +39,6 @@ struct MainTabView: View {
             .tag(1)
         }
         .accentColor(Color.orange)
-        .environmentObject(accoutManager) // Inject the singleton into the environment
     }
 }
 

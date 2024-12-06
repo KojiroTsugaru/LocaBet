@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProfileViewHeader: View {
     
-    @EnvironmentObject var accountManager: AccountManager
+    @StateObject private var accountManager = AccountManager.shared
     @StateObject private var friendManager = FriendManager.shared
     
     var body: some View {

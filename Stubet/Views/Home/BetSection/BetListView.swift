@@ -20,10 +20,7 @@ struct BetListView: View {
                     .padding(.leading)
             
                 ForEach(betManager.rewardPendingBets) { bet in
-                    NavigationLink(destination: BetDetailsView(bet: bet)) {
-                        BetRowView(bet: bet, isNew: true)
-                    }
-                    .padding(.horizontal)
+                    BetListCell(bet: bet)
                 }
             }
             
@@ -34,10 +31,7 @@ struct BetListView: View {
                     .padding(.leading)
             
                 ForEach(betManager.invitePendingBets) { bet in
-                    NavigationLink(destination: BetDetailsView(bet: bet)) {
-                        BetRowView(bet: bet, isNew: false)
-                    }
-                    .padding(.horizontal)
+                    BetListCell(bet: bet)
                 }
             }
             
@@ -48,10 +42,7 @@ struct BetListView: View {
                     .padding(.leading)
             
                 ForEach(betManager.ongoingBets) { bet in
-                    NavigationLink(destination: BetDetailsView(bet: bet)) {
-                        BetRowView(bet: bet, isNew: false)
-                    }
-                    .padding(.horizontal)
+                    BetListCell(bet: bet)
                 }
             } else {
                 Text("進行中ベットはありません")

@@ -8,13 +8,14 @@
 import Foundation
 import FirebaseFirestore
 
-struct Mission: Identifiable {
+struct Mission: BetItem {
     let id: String
     let title: String
     let description: String
     let deadline: Timestamp
     let location: Location
-    var status: String
+    let senderId: String
+    var status: Status
 
     init(from bet: Bet) {
         self.id = bet.id
@@ -22,6 +23,7 @@ struct Mission: Identifiable {
         self.description = bet.description
         self.deadline = bet.deadline
         self.location = bet.location
+        self.senderId = bet.senderId
         self.status = bet.status
     }
 }

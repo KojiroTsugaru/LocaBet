@@ -8,22 +8,11 @@
 import SwiftUI
 
 struct CreateBetView: View {
-    @StateObject var newBetData = NewBetData()
+    
+    @StateObject var newBetData = NewBetData(title: "", description: "", locationName: "")
+    @StateObject private var friendManager = FriendManager.shared
     @Environment(\.presentationMode) var presentationMode
     @Binding var showNewBetModal: Bool // Accept showNewBet as a Binding
-    
-    let sampleFriends = [
-        Friend(id: "2525", data: [
-            "userName": "johndoe",
-            "displayName": "John Doe",
-            "icon_url": "https://example.com/john.jpg"
-        ]),
-        Friend(id: "8686", data: [
-            "userName": "janedoe",
-            "displayName": "Jane Doe",
-            "icon_url": "https://example.com/jane.jpg"
-        ]),
-    ]
     
     var body: some View {
         NavigationView {
@@ -32,7 +21,7 @@ struct CreateBetView: View {
                     Section(header: Text("誰にベットする？")) {
                         Picker("名前", selection: $newBetData.selectedFriend) {
                             Text("選択してください").tag(nil as Friend?)
-                            ForEach(sampleFriends) { friend in
+                            ForEach(friendManager.friends) { friend in
                                 Text(friend.displayName).tag(friend as Friend?)
                             }
                         }
@@ -46,6 +35,48 @@ struct CreateBetView: View {
                         TextEditor(text: $newBetData.description)
                             .frame(height: 100)
                     }
+                    
+                    Section(header: Text("日付を選択")) {
+                        HStack {
+                            DatePicker(
+                                "",
+                                selection: $newBetData.date,
+                                displayedComponents: .date
+                            )
+                            .labelsHidden()
+                            .accentColor(
+                                .orange
+                            ) // Change the accent color for the date picker
+                            Image(systemName: "calendar")
+                                .foregroundColor(.gray)
+                        }.padding(.vertical, 2)
+                    }
+                    
+                    Section(header: Text("時間を選択")) {
+                        HStack {
+                            DatePicker(
+                                "",
+                                selection: $newBetData.time,
+                                displayedComponents: .hourAndMinute
+                            )
+                            .labelsHidden()
+                            .accentColor(
+                                .orange
+                            ) // Change the accent color for the time picker
+                            Image(systemName: "clock")
+                                .foregroundColor(.gray)
+                        }.padding(.vertical, 2)
+                    }
+                    
+                }
+            }
+            .task {
+                do {
+                    try await friendManager.fetchFriends()
+                } catch {
+                    print(
+                        "Error loading friends: \(error.localizedDescription)"
+                    )
                 }
             }
             .navigationTitle("ベット作成")
@@ -58,7 +89,7 @@ struct CreateBetView: View {
                         .foregroundColor(Color.orange)
                 }),
                 trailing: NavigationLink {
-                    SetDeadlineView(
+                    SetLocationView(
                         newBetData: newBetData,
                         showNewBetModal: $showNewBetModal
                     )
@@ -71,7 +102,7 @@ struct CreateBetView: View {
     
     // フォームが有効かどうかの判定
     private var isFormValid: Bool {
-        newBetData.selectedFriend != nil && !newBetData.title.isEmpty && !newBetData.description.isEmpty
+         !newBetData.title.isEmpty && !newBetData.description.isEmpty
     }
 }
 

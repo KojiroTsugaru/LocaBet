@@ -170,6 +170,29 @@ class AccountManager: NSObject, ObservableObject {
         }
     }
     
+    // fetch user by user id
+    public func fetchUser(id: String) async throws -> User? {
+        // Reference to the Firestore document
+        let documentRef = Firestore.firestore().collection("users").document(id)
+        
+        do {
+            // Fetch the document
+            let documentSnapshot = try await documentRef.getDocument()
+            
+            // Check if the document exists and contains data
+            guard let data = documentSnapshot.data() else {
+                print("User document does not exist or has no data")
+                return nil
+            }
+            
+            return User(id: id, data: data)
+            
+        } catch {
+            print("Error fetching user data: \(error.localizedDescription)")
+            throw error
+        }
+    }
+    
     // Custom error types for sign-in error handling
     enum SignInError: LocalizedError {
         case invalidEmail

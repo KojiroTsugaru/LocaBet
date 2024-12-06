@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseFirestore
 
-struct Bet: Identifiable {
+struct Bet: BetItem {
     let id: String           // betId (document ID or UUID)
     let title: String        // Title of the bet
     let description: String  // Description of the bet
@@ -18,8 +18,7 @@ struct Bet: Identifiable {
     let senderId: String     // User ID of the person who created the bet
     let receiverId: String   // User ID of the person who receives the bet
     let location: Location   // Location object (nested)
-    
-    var status: String       // invitePending, inviteRejected, inviteExpired, ongoing, rewardReceived, rewardPending, failed
+    var status: Status       // invitePending, inviteRejected, inviteExpired, ongoing, rewardReceived, rewardPending, failed
 
     // Initialize from Firebase document data
     init(id: String, data: [String: Any]) {
@@ -31,7 +30,13 @@ struct Bet: Identifiable {
         self.updatedAt = data["updatedAt"] as? Timestamp ?? Timestamp(date: Date())
         self.senderId = data["senderId"] as? String ?? ""
         self.receiverId = data["receiverId"] as? String ?? ""
-        self.status = data["status"] as? String ?? "pending"
+        
+        if let statusString = data["status"] as? String,
+               let statusEnum = Status(rawValue: statusString) {
+                self.status = statusEnum
+            } else {
+                self.status = .invitePending // Default to invite pending
+            }
         
         if let locationData = data["location"] as? [String: Any] {
             self.location = Location(data: locationData)

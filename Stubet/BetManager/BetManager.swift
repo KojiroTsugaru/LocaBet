@@ -61,7 +61,7 @@ class BetManager: NSObject, ObservableObject {
                     self.allMissions.append(mission)
                     
                     // Categorize mission based on status
-                    switch mission.status {
+                    switch mission.status.rawValue {
                     case "ongoing":
                         self.ongoingMissions.append(mission)
                     case "invitePending":
@@ -73,7 +73,7 @@ class BetManager: NSObject, ObservableObject {
                     self.allBets.append(bet)
                     
                     // Categorize bet based on status
-                    switch bet.status {
+                    switch bet.status.rawValue {
                     case "ongoing":
                         self.ongoingBets.append(bet)
                     case "rewardPending":
@@ -98,16 +98,11 @@ class BetManager: NSObject, ObservableObject {
             return
         }
         
-        guard let coordinate = newBetData.selectedCoordinates else {
-            print("No coordinates selected.")
-            return
-        }
-        
         // create location data
         let locationData: [String: Any] = [
             "name": newBetData.locationName,
-            "latitude": coordinate.latitude,
-            "longitude": coordinate.longitude
+            "latitude": newBetData.selectedCoordinates.latitude,
+            "longitude": newBetData.selectedCoordinates.longitude
         ]
         
         // create bet data
@@ -122,7 +117,7 @@ class BetManager: NSObject, ObservableObject {
                 date: Date()
             ), // Initial value for updatedAt is the same as createdAt
             "senderId": currentUserId,
-            "receiverId": newBetData.selectedFriend?.id ?? "0000", // selected friend's id
+            "receiverId": newBetData.selectedFriend.id, // selected friend's id
             "status": "invitePending", // Default status
             "location": locationData
         ]
@@ -134,6 +129,24 @@ class BetManager: NSObject, ObservableObject {
             print(data)
         } catch {
             print("Error writing document: \(error)")
+        }
+    }
+    
+    // update bet's status
+    func updateBetStatus(betItem: any BetItem, newStatus: Status) {
+        // Assume you have a reference to the Firestore database
+        let db = Firestore.firestore()
+        
+        // Update the status in Firestore
+        db.collection("bets").document(betItem.id).updateData([
+            "status": newStatus.rawValue,
+            "updatedAt": Timestamp(date: Date())
+        ]) { error in
+            if let error = error {
+                print("Error updating bet status: \(error.localizedDescription)")
+            } else {
+                print("Bet status updated successfully to \(newStatus.rawValue)")
+            }
         }
     }
     
