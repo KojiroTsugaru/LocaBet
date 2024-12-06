@@ -10,7 +10,7 @@ import FirebaseFirestore
 
 struct SearchUserView: View {
     @StateObject private var friendManager = FriendManager.shared
-    @EnvironmentObject private var accountManager: AccountManager
+    @StateObject private var accountManager = AccountManager.shared
     @State private var searchText: String = ""
     @State private var searchResults: [Friend] = []
     @State private var isLoading: Bool = false

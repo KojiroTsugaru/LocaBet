@@ -116,7 +116,7 @@ class BetManager: NSObject, ObservableObject {
                 date: Date()
             ), // Initial value for updatedAt is the same as createdAt
             "senderId": currentUserId,
-            "receiverId": newBetData.selectedFriend.id, // selected friend's id
+            "receiverId": newBetData.selectedFriend?.id ?? "" as String, // selected friend's id
             "status": "invitePending", // Default status
             "location": locationData
         ]

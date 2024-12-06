@@ -156,7 +156,7 @@ class FriendManager: ObservableObject {
         try await addFriend(byUserId: senderId)
         
         // remove accepted request from incoming request
-        self.removeFriendRequest()
+        await self.removeFriendRequest()
     }
 
     // Reject a friend request
@@ -170,7 +170,7 @@ class FriendManager: ObservableObject {
         try await requestRef.updateData(["status": "rejected"])
         
         // remove rejected request from incoming request
-        self.removeFriendRequest()
+        await self.removeFriendRequest()
     }
 
     // Fetch all incoming friend requests
@@ -189,9 +189,12 @@ class FriendManager: ObservableObject {
     }
     
     // remove accepted & rejected friend request from incomingRequest
+    @MainActor
     private func removeFriendRequest() {
-        incomingRequests.removeAll { request in
-            request.status == "accepted" || request.status == "rejected"
+        DispatchQueue.main.async {
+            self.incomingRequests.removeAll { request in
+                request.status == "accepted" || request.status == "rejected"
+            }
         }
     }
 }

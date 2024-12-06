@@ -26,7 +26,7 @@ class MainTabViewModel: ObservableObject {
             await BetManager.shared.fetchData()
             await self.addLocationTargets()
         } catch {
-            print(error)
+            print("error fething all data: ", error)
         }
     }
     
