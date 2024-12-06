@@ -28,18 +28,18 @@ struct ProfileView: View {
                 Spacer()
             }
             
-            ProfileTabView(selectedTab: $selectedTab)
-                .frame(height: 25)
-                .padding()
-            
-            // Content depending on the selected tab
-            ScrollView {
-                if selectedTab == .mission {
-                    MissionListView()
-                } else {
-                    BetListView()
-                }
-            }
+//            ProfileTabView(selectedTab: $selectedTab)
+//                .frame(height: 25)
+//                .padding()
+//            
+//            // Content depending on the selected tab
+//            ScrollView {
+//                if selectedTab == .mission {
+//                    MissionListView()
+//                } else {
+//                    BetListView()
+//                }
+//            }
 
             Spacer()
         }

@@ -54,17 +54,16 @@ class BetManager: NSObject, ObservableObject {
                 let data = doc.data()
                 let bet = Bet(id: docID, data: data)
                 
-                
-                
+                // determine bet or mission
                 if bet.receiverId == currentUserId {
                     let mission = Mission(from: bet)
                     self.allMissions.append(mission)
                     
                     // Categorize mission based on status
-                    switch mission.status.rawValue {
-                    case "ongoing":
+                    switch mission.status {
+                    case .ongoing:
                         self.ongoingMissions.append(mission)
-                    case "invitePending":
+                    case .invitePending:
                         self.newMissions.append(mission)
                     default:
                         break
@@ -73,12 +72,12 @@ class BetManager: NSObject, ObservableObject {
                     self.allBets.append(bet)
                     
                     // Categorize bet based on status
-                    switch bet.status.rawValue {
-                    case "ongoing":
+                    switch bet.status {
+                    case .ongoing:
                         self.ongoingBets.append(bet)
-                    case "rewardPending":
+                    case .rewardPending:
                         self.rewardPendingBets.append(bet)
-                    case "invitePending":
+                    case .invitePending:
                         self.invitePendingBets.append(bet)
                     default:
                         break
@@ -117,7 +116,7 @@ class BetManager: NSObject, ObservableObject {
                 date: Date()
             ), // Initial value for updatedAt is the same as createdAt
             "senderId": currentUserId,
-            "receiverId": newBetData.selectedFriend.id, // selected friend's id
+            "receiverId": newBetData.selectedFriend?.id ?? "" as String, // selected friend's id
             "status": "invitePending", // Default status
             "location": locationData
         ]
@@ -133,20 +132,22 @@ class BetManager: NSObject, ObservableObject {
     }
     
     // update bet's status
-    func updateBetStatus(betItem: any BetItem, newStatus: Status) {
+    func updateBetStatus(betItem: any BetItem, newStatus: Status) async {
         // Assume you have a reference to the Firestore database
         let db = Firestore.firestore()
         
         // Update the status in Firestore
-        db.collection("bets").document(betItem.id).updateData([
-            "status": newStatus.rawValue,
-            "updatedAt": Timestamp(date: Date())
-        ]) { error in
-            if let error = error {
-                print("Error updating bet status: \(error.localizedDescription)")
-            } else {
-                print("Bet status updated successfully to \(newStatus.rawValue)")
-            }
+        do {
+            try await db.collection("bets").document(betItem.id).updateData([
+                "status": newStatus.rawValue,
+                "updatedAt": Timestamp(date: Date())
+            ])
+            
+            // re-fetch all bet data
+            emptyAllData()
+            await fetchData()
+        } catch {
+            print("error updating bet status:", error)
         }
     }
     

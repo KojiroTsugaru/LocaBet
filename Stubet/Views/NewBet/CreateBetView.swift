@@ -8,18 +8,23 @@
 import SwiftUI
 
 struct CreateBetView: View {
-    
     @StateObject var newBetData = NewBetData(title: "", description: "", locationName: "")
     @StateObject private var friendManager = FriendManager.shared
     @Environment(\.presentationMode) var presentationMode
     @Binding var showNewBetModal: Bool // Accept showNewBet as a Binding
+    @State private var errorMessage: String?
     
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
                 Form {
+                    if let errorMessage = errorMessage {
+                        Text(errorMessage)
+                            .font(.caption)
+                            .foregroundColor(.red)
+                    }
                     Section(header: Text("誰にベットする？")) {
-                        Picker("名前", selection: $newBetData.selectedFriend) {
+                        Picker(newBetData.selectedFriend?.displayName ?? "フレンド選択", selection: $newBetData.selectedFriend) {
                             Text("選択してください").tag(nil as Friend?)
                             ForEach(friendManager.friends) { friend in
                                 Text(friend.displayName).tag(friend as Friend?)
@@ -96,13 +101,20 @@ struct CreateBetView: View {
                 } label: {
                     Text("次へ")
                         .foregroundColor(Color.orange)
-                })
+                }
+                .disabled(!isFormValid)
+                .onTapGesture {
+                    if !isFormValid {
+                        errorMessage = "フォームにすべての入力項目を記入してください。"
+                    }
+                }
+            )
         }
     }
     
     // フォームが有効かどうかの判定
     private var isFormValid: Bool {
-         !newBetData.title.isEmpty && !newBetData.description.isEmpty
+        (newBetData.selectedFriend != nil) && !newBetData.title.isEmpty && !newBetData.description.isEmpty
     }
 }
 

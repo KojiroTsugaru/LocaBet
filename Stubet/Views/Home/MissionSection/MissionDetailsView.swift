@@ -13,127 +13,172 @@ struct MissionDetailsView: View {
     
     var mission: Mission
     
+    @State private var sender: User?
+    
+    @StateObject private var viewModel = MissionDetailsViewModel()
+    @State private var showGiveupAlert = false
+    
+    @Environment(\.presentationMode) var presentationMode
+    
     init (mission: Mission) {
         self.mission = mission
     }
     
     var body: some View {
-        VStack {
-            // Invite Response Buttons
-            if mission.status == .invitePending {
-                HStack(spacing: 8) {
-                    // 拒否ボタン
-                    Button(
-                        action: {
-                            // 申請を拒否する処理
-                            BetManager.shared
-                                .updateBetStatus(
-                                    betItem: mission,
-                                    newStatus: .inviteRejected
-                                )
-                        }) {
-                            Text("拒否する")
-                                .frame(maxWidth: .infinity, maxHeight: 16)
-                                .padding()
-                                .background(Color.blue)
-                                .foregroundColor(.white)
-                                .cornerRadius(16)
-                        }
-                    
-                    // 受けるボタン
-                    Button(
-                        action: {
-                            // 申請を受ける処理
+        ZStack {
+            VStack {
+                // Invite Response Buttons
+                if mission.status == .invitePending {
+                    HStack(spacing: 8) {
+                        // 拒否ボタン
+                        Button(
+                            action: {
+                                // 申請を拒否する処理
+                                Task {
+                                    await viewModel
+                                        .rejectMissionRequest(mission: mission)
+                                }
+                                presentationMode.wrappedValue.dismiss()
+                            }) {
+                                Text("拒否する")
+                                    .frame(maxWidth: .infinity, maxHeight: 16)
+                                    .padding()
+                                    .background(Color.blue)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(16)
+                            }
                         
-                            // Geofencingにこのロケーションを追加する
-                            LocationManager.shared
-                                .startGeofencingRegion(
-                                    center: CLLocationCoordinate2D(
-                                        latitude: mission.location.latitude,
-                                        longitude: mission.location.longitude
-                                    ),
-                                    identifier: mission.location.name
-                                )
-                            // ステータスを変更
-                            BetManager.shared
-                                .updateBetStatus(
-                                    betItem: mission,
-                                    newStatus: .ongoing
-                                )
-                        
-                        }) {
-                            Text("受ける")
-                                .frame(maxWidth: .infinity, maxHeight: 16)
-                                .padding()
-                                .background(Color.orange)
-                                .foregroundColor(.white)
-                                .cornerRadius(16)
-                        }
+                        // 受けるボタン
+                        Button(
+                            action: {
+                                // 申請を受ける処理
+                                Task {
+                                    await viewModel
+                                        .acceptMissionRequest(mission: mission)
+                                }
+                                presentationMode.wrappedValue.dismiss()
+                            }) {
+                                Text("受ける")
+                                    .frame(maxWidth: .infinity, maxHeight: 16)
+                                    .padding()
+                                    .background(Color.orange)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(16)
+                            }
+                    }
+                    .padding()
                 }
-                .padding()
-            }
-            
-            ScrollView {
-                VStack(alignment: .leading, spacing: 20) {
-                    // Bet Content Section
-                    VStack(alignment: .leading, spacing: 10) {
-                        HStack {
+                
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 20) {
+                        // Bet Content Section
+                        VStack(alignment: .leading, spacing: 10) {
+                            HStack {
+                                AsyncImage(
+                                    url: URL(string: sender?.iconUrl ?? "")
+                                ) { image in
+                                    image
+                                        .resizable()
+                                        .frame(width: 40, height: 40)
+                                        .clipShape(Circle())
+                                } placeholder: {
+                                    Image(systemName: "person.circle")
+                                        .resizable()
+                                        .frame(width: 40, height: 40)
+                                        .clipShape(Circle())
+                                }
+                                    
+                                VStack(alignment: .leading) {
+                                    Text(sender?.displayName ?? "")
+                                        .font(.subheadline)
+                                        .fontWeight(.medium)
+                                        
+                                    Text(mission.title)
+                                        .font(.title2)
+                                        .fontWeight(.bold)
+                                }
+                                Spacer()
+                                Text(
+                                    mission.status == .ongoing ? "進行中" : "許可待ち"
+                                )
+                                .font(.subheadline)
+                                .foregroundColor(.white)
+                                .padding(8)
+                                .background(
+                                    mission.status == .ongoing ? Color.orange : Color.red
+                                )
+                                .cornerRadius(10)
+                            }
                             Text("ベット内容")
                                 .font(.headline)
                                 .padding(.bottom, 5)
-                            
-                            Spacer()
-                            
-                            Text(
-                                mission.status == .ongoing ? "進行中" : "許可待ち"
-                            )
-                            .font(.subheadline)
-                            .foregroundColor(.white)
-                            .padding(8)
-                            .background(
-                                mission.status == .ongoing ? Color.orange : Color.red
-                            )
-                            .cornerRadius(10)
+                            Text(mission.description)
+                                .font(.body)
+                                .padding()
+                                .background(Color(.systemGray6))
+                                .cornerRadius(12)
                         }
-                        
-                        HStack {
-                            Image(systemName: "person.circle")
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                                .clipShape(Circle())
-                            
-                            VStack(alignment: .leading) {
-                                Text("木嶋陸")
-                                    .font(.subheadline)
-                                    .fontWeight(.medium)
-                                
-                                Text(mission.title)
-                                    .font(.title2)
-                                    .fontWeight(.bold)
-                            }
+                       
+                        // Location & Time Section
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("場所＆時間")
+                                .font(.headline)
+                                .padding(.bottom, 5)
+                            TimeLocationDetailsPanel(betItem: mission)
                         }
-                        
-                        Text(mission.description)
-                            .font(.body)
-                            .padding()
-                            .background(Color(.systemGray6))
-                            .cornerRadius(10)
                     }
                     .padding()
-                    
-                    // Location & Time Section
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text("場所＆時間")
-                            .font(.headline)
-                            .padding(.bottom, 5)
-                        TimeLocationDetailsPanel(betItem: mission)
-                    }
+                        
                 }
-                .padding()
-            
+            }
+            if viewModel.isUpdating {
+                Color.black.opacity(0.4) // Dimmed background
+                    .ignoresSafeArea()
+                    
+                ProgressView(viewModel.updateMessage)
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .shadow(radius: 10)
             }
         }
-        .navigationTitle("詳細")
+        .task {
+            do {
+                sender = try await AccountManager.shared
+                    .fetchUser(id: mission.senderId)
+            } catch {
+                print("error fething user data: ", error)
+            }
+        }
+        .navigationTitle("ミッション詳細")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarItems(
+            trailing: Menu(content: {
+                Button(
+                    action: {
+                        // このミッションを諦めるアクション
+                        showGiveupAlert = true
+                    }, label: {
+                        Text("諦める")
+                    })
+            }, label: {
+                Image(systemName: "ellipsis")
+                    .font(.title2)
+            })
+        )
+        .alert("ミッションを諦めますか？", isPresented: $showGiveupAlert) {
+            Button("諦める", role: .destructive) {
+                // Action to give up the mission
+                Task {
+                    await viewModel.giveupMission(mission: mission)
+                }
+                presentationMode.wrappedValue.dismiss()
+            }
+            Button("キャンセル", role: .cancel) {
+                // Action for cancel (optional)
+            }
+        } message: {
+            Text("この操作は取り消せません。")
+        }
     }
 }

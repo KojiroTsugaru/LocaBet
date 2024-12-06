@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct FriendCell: View {
+    @Environment(\.presentationMode) var presentationMode
     
     @StateObject private var friendManager = FriendManager.shared
     let friend: Friend
+    
+    @State private var showUnfollowAlert = false
     
     var body: some View {
         HStack {
@@ -30,6 +33,19 @@ struct FriendCell: View {
             Spacer()
             Button(
                 action: {
+                    showUnfollowAlert = true
+                }) {
+                    Text("フレンド解除")
+                        .foregroundColor(.white)
+                        .padding(8)
+                        .background(Color.red)
+                        .cornerRadius(12)
+                }
+        }
+        .alert("フレンドを解除しますか？", isPresented: $showUnfollowAlert) {
+            Button("削除する", role: .destructive) {
+                // Action to delete bet
+                Task {
                     friendManager
                         .removeFriend(
                             friendId: friend.id
@@ -43,13 +59,12 @@ struct FriendCell: View {
                                 )
                             }
                         }
-                }) {
-                    Text("フレンド解除")
-                        .foregroundColor(.white)
-                        .padding(8)
-                        .background(Color.red)
-                        .cornerRadius(12)
                 }
+                presentationMode.wrappedValue.dismiss()
+            }
+            Button("キャンセル", role: .cancel) {
+                // Action for cancel (optional)
+            }
         }
     }
 }

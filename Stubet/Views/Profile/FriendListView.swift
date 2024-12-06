@@ -19,12 +19,12 @@ struct FriendListView: View {
             } else {
                 if !friendManager.incomingRequests.isEmpty {
                     // Friend Requests Section
-                    Section(header: Text("フレンド申請が届いています").font(.headline)) {
-                        ForEach(friendManager.incomingRequests) { request in
+                    VStack {
+                        Text("フレンド申請が届いています").font(.headline)
+                        List(friendManager.incomingRequests) { request in
                             FriendRequestCell(request: request)
-                        }
+                        }.scrollDisabled(true)
                     }
-                    .padding(.bottom)
                 }
 
                 // Friends Section
