@@ -20,16 +20,6 @@ protocol BetItem: Identifiable {
     var deadlineTimeRemaining: String { get }
 }
 
-enum Status: String {
-    case invitePending = "invitePending"
-    case inviteRejected = "inviteRejected"
-    case inviteExpired = "inviteExpired"
-    case ongoing = "ongoing"
-    case rewardReceived = "rewardReceived"
-    case rewardPending = "rewardPending"
-    case failed = "failed"
-}
-
 extension BetItem {
     // Default implementation for `formattedDeadline`
     var formattedDeadline: String {

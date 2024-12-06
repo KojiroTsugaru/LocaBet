@@ -132,20 +132,22 @@ class BetManager: NSObject, ObservableObject {
     }
     
     // update bet's status
-    func updateBetStatus(betItem: any BetItem, newStatus: Status) {
+    func updateBetStatus(betItem: any BetItem, newStatus: Status) async {
         // Assume you have a reference to the Firestore database
         let db = Firestore.firestore()
         
         // Update the status in Firestore
-        db.collection("bets").document(betItem.id).updateData([
-            "status": newStatus.rawValue,
-            "updatedAt": Timestamp(date: Date())
-        ]) { error in
-            if let error = error {
-                print("Error updating bet status: \(error.localizedDescription)")
-            } else {
-                print("Bet status updated successfully to \(newStatus.rawValue)")
-            }
+        do {
+            try await db.collection("bets").document(betItem.id).updateData([
+                "status": newStatus.rawValue,
+                "updatedAt": Timestamp(date: Date())
+            ])
+            
+            // re-fetch all bet data
+            emptyAllData()
+            await fetchData()
+        } catch {
+            print("error updating bet status:", error)
         }
     }
     

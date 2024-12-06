@@ -45,6 +45,8 @@
 		316FD2182D026966007B993E /* TimeLocationDetailsPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316FD2172D026966007B993E /* TimeLocationDetailsPanel.swift */; };
 		316FD21C2D026BE1007B993E /* BetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316FD21B2D026BE1007B993E /* BetItem.swift */; };
 		316FD2212D034341007B993E /* MainTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316FD2202D034341007B993E /* MainTabViewModel.swift */; };
+		316FD2232D036618007B993E /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316FD2222D036618007B993E /* Status.swift */; };
+		316FD2252D036691007B993E /* MissionDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316FD2242D03668E007B993E /* MissionDetailsViewModel.swift */; };
 		317580FA2C87014400DD5B13 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317580F92C87014400DD5B13 /* HomeViewModel.swift */; };
 		317580FC2C8701AC00DD5B13 /* MissionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317580FB2C8701AC00DD5B13 /* MissionListCell.swift */; };
 		317580FE2C8701C600DD5B13 /* BetListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317580FD2C8701C600DD5B13 /* BetListCell.swift */; };
@@ -130,6 +132,8 @@
 		316FD2172D026966007B993E /* TimeLocationDetailsPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLocationDetailsPanel.swift; sourceTree = "<group>"; };
 		316FD21B2D026BE1007B993E /* BetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetItem.swift; sourceTree = "<group>"; };
 		316FD2202D034341007B993E /* MainTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewModel.swift; sourceTree = "<group>"; };
+		316FD2222D036618007B993E /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		316FD2242D03668E007B993E /* MissionDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDetailsViewModel.swift; sourceTree = "<group>"; };
 		317580F92C87014400DD5B13 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		317580FB2C8701AC00DD5B13 /* MissionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionListCell.swift; sourceTree = "<group>"; };
 		317580FD2C8701C600DD5B13 /* BetListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetListCell.swift; sourceTree = "<group>"; };
@@ -189,6 +193,7 @@
 				311626D52CDE506100E1D4E0 /* Bet.swift */,
 				311626D62CDE506100E1D4E0 /* Mission.swift */,
 				316FD21B2D026BE1007B993E /* BetItem.swift */,
+				316FD2222D036618007B993E /* Status.swift */,
 			);
 			path = BetManager;
 			sourceTree = "<group>";
@@ -295,6 +300,7 @@
 				313F8EC72CE6481D00CA3F3D /* MissionListView.swift */,
 				317580FB2C8701AC00DD5B13 /* MissionListCell.swift */,
 				317581132C89642E00DD5B13 /* MissionDetailsView.swift */,
+				316FD2242D03668E007B993E /* MissionDetailsViewModel.swift */,
 			);
 			path = MissionSection;
 			sourceTree = "<group>";
@@ -341,6 +347,7 @@
 			children = (
 				3146656B2CE4F39D00441AC6 /* MainTabView.swift */,
 				316FD2202D034341007B993E /* MainTabViewModel.swift */,
+				314665652CDF98EE00441AC6 /* MissionClearModalView.swift */,
 			);
 			path = MainTab;
 			sourceTree = "<group>";
@@ -351,7 +358,6 @@
 				311A57862C86E6080040AA9A /* HomeView.swift */,
 				317580F92C87014400DD5B13 /* HomeViewModel.swift */,
 				313F8ECB2CE64A5400CA3F3D /* BetMissionTabView.swift */,
-				314665652CDF98EE00441AC6 /* MissionClearModalView.swift */,
 				313F8EC62CE6478600CA3F3D /* MissionSection */,
 				313F8EC52CE6477600CA3F3D /* BetSection */,
 				316FD2172D026966007B993E /* TimeLocationDetailsPanel.swift */,
@@ -567,6 +573,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CEB9A8D2C8952930061921E /* SignupView.swift in Sources */,
+				316FD2232D036618007B993E /* Status.swift in Sources */,
 				4CEB9A8B2C8952690061921E /* SignupViewModel.swift in Sources */,
 				31B8ED972C89BEC9004474B6 /* SetLocationView.swift in Sources */,
 				313F8ECC2CE64A5400CA3F3D /* BetMissionTabView.swift in Sources */,
@@ -610,6 +617,7 @@
 				3146656E2CE50A8D00441AC6 /* ProfileViewModel.swift in Sources */,
 				311A57562C86D94A0040AA9A /* StubetApp.swift in Sources */,
 				313F8ECE2CE8FAD000CA3F3D /* FriendManager.swift in Sources */,
+				316FD2252D036691007B993E /* MissionDetailsViewModel.swift in Sources */,
 				311626D82CDE506100E1D4E0 /* BetManager.swift in Sources */,
 				314665682CE0E99100441AC6 /* AccountManager.swift in Sources */,
 				311626D92CDE506100E1D4E0 /* Mission.swift in Sources */,
@@ -782,12 +790,13 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Stubet/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show relevant content based on your position.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -818,12 +827,13 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Stubet/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show relevant content based on your position.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

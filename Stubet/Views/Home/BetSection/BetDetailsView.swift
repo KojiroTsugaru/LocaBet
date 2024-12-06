@@ -18,7 +18,9 @@ struct BetDetailsView: View {
             if bet.status == .rewardPending {
                 Button(action: {
                     // 報酬を受け取ったアクション
-                    BetManager.shared.updateBetStatus(betItem: bet, newStatus: .rewardReceived)
+                    Task {
+                        await BetManager.shared.updateBetStatus(betItem: bet, newStatus: .rewardReceived)
+                    }
                 }) {
                     Text("報酬を受け取った")
                         .frame(maxWidth: 24, maxHeight: 16)
@@ -70,5 +72,16 @@ struct BetDetailsView: View {
         }
         .navigationTitle("詳細")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarItems(
+            trailing: Menu(content: {
+                Button("諦める", action: {
+                    // このミッションを諦めるアクション
+                    
+                })
+            }, label: {
+                Image(systemName: "ellipsis")
+                    .font(.title2)
+            })
+        )
     }
 }
