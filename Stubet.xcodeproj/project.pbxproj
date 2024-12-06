@@ -47,6 +47,7 @@
 		316FD2212D034341007B993E /* MainTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316FD2202D034341007B993E /* MainTabViewModel.swift */; };
 		316FD2232D036618007B993E /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316FD2222D036618007B993E /* Status.swift */; };
 		316FD2252D036691007B993E /* MissionDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316FD2242D03668E007B993E /* MissionDetailsViewModel.swift */; };
+		316FD25B2D03870F007B993E /* BetDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316FD25A2D03870F007B993E /* BetDetailsViewModel.swift */; };
 		317580FA2C87014400DD5B13 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317580F92C87014400DD5B13 /* HomeViewModel.swift */; };
 		317580FC2C8701AC00DD5B13 /* MissionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317580FB2C8701AC00DD5B13 /* MissionListCell.swift */; };
 		317580FE2C8701C600DD5B13 /* BetListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317580FD2C8701C600DD5B13 /* BetListCell.swift */; };
@@ -134,6 +135,7 @@
 		316FD2202D034341007B993E /* MainTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewModel.swift; sourceTree = "<group>"; };
 		316FD2222D036618007B993E /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		316FD2242D03668E007B993E /* MissionDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDetailsViewModel.swift; sourceTree = "<group>"; };
+		316FD25A2D03870F007B993E /* BetDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetDetailsViewModel.swift; sourceTree = "<group>"; };
 		317580F92C87014400DD5B13 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		317580FB2C8701AC00DD5B13 /* MissionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionListCell.swift; sourceTree = "<group>"; };
 		317580FD2C8701C600DD5B13 /* BetListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetListCell.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 				313F8EC92CE6484700CA3F3D /* BetListView.swift */,
 				317580FD2C8701C600DD5B13 /* BetListCell.swift */,
 				317581112C89589D00DD5B13 /* BetDetailsView.swift */,
+				316FD25A2D03870F007B993E /* BetDetailsViewModel.swift */,
 			);
 			path = BetSection;
 			sourceTree = "<group>";
@@ -580,6 +583,7 @@
 				317580FC2C8701AC00DD5B13 /* MissionListCell.swift in Sources */,
 				3146656A2CE4F33B00441AC6 /* RootView.swift in Sources */,
 				311238982C8AB0A300EC7DBC /* TimeLocationConfirmPanel.swift in Sources */,
+				316FD25B2D03870F007B993E /* BetDetailsViewModel.swift in Sources */,
 				314665642CDF8AC300441AC6 /* LocationManager.swift in Sources */,
 				311238922C89D75600EC7DBC /* ConfirmNewBetView.swift in Sources */,
 				313F8EDD2CEB5CD400CA3F3D /* ProfileViewHeader.swift in Sources */,

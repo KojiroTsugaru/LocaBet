@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CreateBetView: View {
-    
     @StateObject var newBetData = NewBetData(title: "", description: "", locationName: "")
     @StateObject private var friendManager = FriendManager.shared
     @Environment(\.presentationMode) var presentationMode
@@ -110,9 +109,6 @@ struct CreateBetView: View {
                     }
                 }
             )
-            .onAppear {
-                errorMessage = nil
-            }
         }
     }
     

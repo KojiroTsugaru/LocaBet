@@ -13,6 +13,8 @@ struct MissionDetailsView: View {
     
     var mission: Mission
     
+    @State private var sender: User?
+    
     @StateObject private var viewModel = MissionDetailsViewModel()
     @State private var showGiveupAlert = false
     
@@ -33,7 +35,8 @@ struct MissionDetailsView: View {
                             action: {
                                 // 申請を拒否する処理
                                 Task {
-                                    await viewModel.rejectMissionRequest(mission: mission)
+                                    await viewModel
+                                        .rejectMissionRequest(mission: mission)
                                 }
                                 presentationMode.wrappedValue.dismiss()
                             }) {
@@ -50,7 +53,8 @@ struct MissionDetailsView: View {
                             action: {
                                 // 申請を受ける処理
                                 Task {
-                                    await viewModel.acceptMissionRequest(mission: mission)
+                                    await viewModel
+                                        .acceptMissionRequest(mission: mission)
                                 }
                                 presentationMode.wrappedValue.dismiss()
                             }) {
@@ -70,12 +74,30 @@ struct MissionDetailsView: View {
                         // Bet Content Section
                         VStack(alignment: .leading, spacing: 10) {
                             HStack {
-                                Text("ベット内容")
-                                    .font(.headline)
-                                    .padding(.bottom, 5)
-                                
+                                AsyncImage(
+                                    url: URL(string: sender?.iconUrl ?? "")
+                                ) { image in
+                                    image
+                                        .resizable()
+                                        .frame(width: 40, height: 40)
+                                        .clipShape(Circle())
+                                } placeholder: {
+                                    Image(systemName: "person.circle")
+                                        .resizable()
+                                        .frame(width: 40, height: 40)
+                                        .clipShape(Circle())
+                                }
+                                    
+                                VStack(alignment: .leading) {
+                                    Text(sender?.displayName ?? "")
+                                        .font(.subheadline)
+                                        .fontWeight(.medium)
+                                        
+                                    Text(mission.title)
+                                        .font(.title2)
+                                        .fontWeight(.bold)
+                                }
                                 Spacer()
-                                
                                 Text(
                                     mission.status == .ongoing ? "進行中" : "許可待ち"
                                 )
@@ -87,32 +109,16 @@ struct MissionDetailsView: View {
                                 )
                                 .cornerRadius(10)
                             }
-                            
-                            HStack {
-                                Image(systemName: "person.circle")
-                                    .resizable()
-                                    .frame(width: 40, height: 40)
-                                    .clipShape(Circle())
-                                
-                                VStack(alignment: .leading) {
-                                    Text("木嶋陸")
-                                        .font(.subheadline)
-                                        .fontWeight(.medium)
-                                    
-                                    Text(mission.title)
-                                        .font(.title2)
-                                        .fontWeight(.bold)
-                                }
-                            }
-                            
+                            Text("ベット内容")
+                                .font(.headline)
+                                .padding(.bottom, 5)
                             Text(mission.description)
                                 .font(.body)
                                 .padding()
                                 .background(Color(.systemGray6))
-                                .cornerRadius(10)
+                                .cornerRadius(12)
                         }
-                        .padding()
-                        
+                       
                         // Location & Time Section
                         VStack(alignment: .leading, spacing: 10) {
                             Text("場所＆時間")
@@ -122,18 +128,26 @@ struct MissionDetailsView: View {
                         }
                     }
                     .padding()
-                    
+                        
                 }
             }
             if viewModel.isUpdating {
                 Color.black.opacity(0.4) // Dimmed background
                     .ignoresSafeArea()
-
+                    
                 ProgressView(viewModel.updateMessage)
                     .padding()
                     .background(Color.white)
                     .cornerRadius(10)
                     .shadow(radius: 10)
+            }
+        }
+        .task {
+            do {
+                sender = try await AccountManager.shared
+                    .fetchUser(id: mission.senderId)
+            } catch {
+                print("error fething user data: ", error)
             }
         }
         .navigationTitle("ミッション詳細")
@@ -142,12 +156,11 @@ struct MissionDetailsView: View {
             trailing: Menu(content: {
                 Button(
                     action: {
-                    // このミッションを諦めるアクション
+                        // このミッションを諦めるアクション
                         showGiveupAlert = true
-                }, label: {
-                    Text("諦める")
-                        .foregroundColor(.red)
-                })
+                    }, label: {
+                        Text("諦める")
+                    })
             }, label: {
                 Image(systemName: "ellipsis")
                     .font(.title2)
