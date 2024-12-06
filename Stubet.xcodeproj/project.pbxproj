@@ -48,6 +48,7 @@
 		316FD2232D036618007B993E /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316FD2222D036618007B993E /* Status.swift */; };
 		316FD2252D036691007B993E /* MissionDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316FD2242D03668E007B993E /* MissionDetailsViewModel.swift */; };
 		316FD25B2D03870F007B993E /* BetDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316FD25A2D03870F007B993E /* BetDetailsViewModel.swift */; };
+		316FD25E2D039C6A007B993E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 316FD25D2D039C6A007B993E /* StoreKit.framework */; };
 		317580FA2C87014400DD5B13 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317580F92C87014400DD5B13 /* HomeViewModel.swift */; };
 		317580FC2C8701AC00DD5B13 /* MissionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317580FB2C8701AC00DD5B13 /* MissionListCell.swift */; };
 		317580FE2C8701C600DD5B13 /* BetListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317580FD2C8701C600DD5B13 /* BetListCell.swift */; };
@@ -136,6 +137,7 @@
 		316FD2222D036618007B993E /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		316FD2242D03668E007B993E /* MissionDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDetailsViewModel.swift; sourceTree = "<group>"; };
 		316FD25A2D03870F007B993E /* BetDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetDetailsViewModel.swift; sourceTree = "<group>"; };
+		316FD25D2D039C6A007B993E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		317580F92C87014400DD5B13 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		317580FB2C8701AC00DD5B13 /* MissionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionListCell.swift; sourceTree = "<group>"; };
 		317580FD2C8701C600DD5B13 /* BetListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetListCell.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				317581202C89768A00DD5B13 /* FirebaseAppDistribution-Beta in Frameworks */,
 				317581042C8737DA00DD5B13 /* FirebaseAnalytics in Frameworks */,
 				3175811C2C89768A00DD5B13 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				316FD25E2D039C6A007B993E /* StoreKit.framework in Frameworks */,
 				317581062C8739A700DD5B13 /* FirebaseAuth in Frameworks */,
 				317581082C8739A700DD5B13 /* FirebaseFirestore in Frameworks */,
 				3175811E2C89768A00DD5B13 /* FirebaseAppCheck in Frameworks */,
@@ -216,6 +219,7 @@
 				311A57542C86D94A0040AA9A /* Stubet */,
 				311A576A2C86D94D0040AA9A /* StubetTests */,
 				311A57742C86D94D0040AA9A /* StubetUITests */,
+				316FD25C2D039C6A007B993E /* Frameworks */,
 				311A57532C86D94A0040AA9A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -353,6 +357,14 @@
 				314665652CDF98EE00441AC6 /* MissionClearModalView.swift */,
 			);
 			path = MainTab;
+			sourceTree = "<group>";
+		};
+		316FD25C2D039C6A007B993E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				316FD25D2D039C6A007B993E /* StoreKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		31BB21482CDBE9FA00260C7D /* Home */ = {

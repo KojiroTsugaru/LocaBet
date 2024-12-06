@@ -92,7 +92,7 @@ struct TimeLocationDetailsPanel: View {
         .shadow(radius: 1)
     }
     
-    func openMaps() {
+    private func openMaps() {
         let latitude = annotatedCoordinate.coordinate.latitude
         let longitude = annotatedCoordinate.coordinate.longitude
         
