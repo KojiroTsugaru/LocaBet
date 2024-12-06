@@ -54,17 +54,16 @@ class BetManager: NSObject, ObservableObject {
                 let data = doc.data()
                 let bet = Bet(id: docID, data: data)
                 
-                
-                
+                // determine bet or mission
                 if bet.receiverId == currentUserId {
                     let mission = Mission(from: bet)
                     self.allMissions.append(mission)
                     
                     // Categorize mission based on status
-                    switch mission.status.rawValue {
-                    case "ongoing":
+                    switch mission.status {
+                    case .ongoing:
                         self.ongoingMissions.append(mission)
-                    case "invitePending":
+                    case .invitePending:
                         self.newMissions.append(mission)
                     default:
                         break
@@ -73,12 +72,12 @@ class BetManager: NSObject, ObservableObject {
                     self.allBets.append(bet)
                     
                     // Categorize bet based on status
-                    switch bet.status.rawValue {
-                    case "ongoing":
+                    switch bet.status {
+                    case .ongoing:
                         self.ongoingBets.append(bet)
-                    case "rewardPending":
+                    case .rewardPending:
                         self.rewardPendingBets.append(bet)
-                    case "invitePending":
+                    case .invitePending:
                         self.invitePendingBets.append(bet)
                     default:
                         break

@@ -83,9 +83,9 @@ struct MissionListCell: View {
             .task {
                 do {
                     sender = try await accountManager.fetchUser(id: mission.senderId)
-                    print("fetch sender is called")
+//                    print("fetch sender is called")
                 } catch {
-                    print("error fetching sender informatin: \(error)")
+//                    print("error fetching sender informatin: \(error)")
                 }
            }
         }
