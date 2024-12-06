@@ -41,15 +41,24 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     // MARK: - Geofencing
     
-    func startGeofencingRegion(center: CLLocationCoordinate2D, radius: CLLocationDistance, identifier: String) {
+    func startGeofencingRegion(
+        center: CLLocationCoordinate2D,
+        radius: CLLocationDistance = 50.0,
+        identifier: String
+    ) {
         // Check if geofencing is available
-        guard CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) else {
+        guard CLLocationManager
+            .isMonitoringAvailable(for: CLCircularRegion.self) else {
             print("Geofencing not supported on this device")
             return
         }
         
         // Define the geofence region
-        let region = CLCircularRegion(center: center, radius: radius, identifier: identifier)
+        let region = CLCircularRegion(
+            center: center,
+            radius: radius,
+            identifier: identifier
+        )
         region.notifyOnEntry = true
         region.notifyOnExit = true
         
@@ -62,8 +71,13 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         for region in locationManager.monitoredRegions {
             if let circularRegion = region as? CLCircularRegion, circularRegion.identifier == identifier {
                 locationManager.stopMonitoring(for: circularRegion)
-                insideRegions.remove(identifier) // Ensure the region is removed from the insideRegions set
-                print("Stopped monitoring region with identifier: \(identifier)")
+                insideRegions
+                    .remove(
+                        identifier
+                    ) // Ensure the region is removed from the insideRegions set
+                print(
+                    "Stopped monitoring region with identifier: \(identifier)"
+                )
                 break
             }
         }
@@ -72,17 +86,28 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     // MARK: - CLLocationManagerDelegate Methods
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(
+        _ manager: CLLocationManager,
+        didUpdateLocations locations: [CLLocation]
+    ) {
         guard let location = locations.last else { return }
         currentLocation = location
-        print("Updated Location: \(location.coordinate.latitude), \(location.coordinate.longitude)")
+        print(
+            "Updated Location: \(location.coordinate.latitude), \(location.coordinate.longitude)"
+        )
     }
     
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+    func locationManager(
+        _ manager: CLLocationManager,
+        didFailWithError error: Error
+    ) {
         print("Failed to get user's location: \(error.localizedDescription)")
     }
     
-    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+    func locationManager(
+        _ manager: CLLocationManager,
+        didEnterRegion region: CLRegion
+    ) {
         if let circularRegion = region as? CLCircularRegion {
             insideRegions.insert(circularRegion.identifier)
             print("Entered geofence region: \(circularRegion.identifier)")
@@ -92,18 +117,29 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             
             // Stop monitoring this region after entering it
             locationManager.stopMonitoring(for: circularRegion)
-            print("Stopped monitoring region \(circularRegion.identifier) upon entry")
+            print(
+                "Stopped monitoring region \(circularRegion.identifier) upon entry"
+            )
         }
     }
     
-    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+    func locationManager(
+        _ manager: CLLocationManager,
+        didExitRegion region: CLRegion
+    ) {
         if let circularRegion = region as? CLCircularRegion {
             insideRegions.remove(circularRegion.identifier)
             print("Exited geofence region: \(circularRegion.identifier)")
         }
     }
     
-    func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
-        print("Failed to monitor region: \(region?.identifier ?? "unknown") with error: \(error.localizedDescription)")
+    func locationManager(
+        _ manager: CLLocationManager,
+        monitoringDidFailFor region: CLRegion?,
+        withError error: Error
+    ) {
+        print(
+            "Failed to monitor region: \(region?.identifier ?? "unknown") with error: \(error.localizedDescription)"
+        )
     }
 }

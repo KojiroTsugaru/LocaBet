@@ -35,7 +35,7 @@ struct TimeLocationDetailsPanel: View {
                     .font(.system(size: 16, weight: .semibold))
                     .padding(.leading)
                 Spacer()
-                Text(betItem.formattedDeadline)
+                Text(betItem.deadlineTimeRemaining)
                     .font(.system(size: 16))
                     .foregroundColor(.orange)
             }

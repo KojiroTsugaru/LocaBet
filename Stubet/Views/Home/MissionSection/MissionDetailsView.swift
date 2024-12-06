@@ -7,10 +7,11 @@
 
 import SwiftUI
 import FirebaseFirestore
+import MapKit
 
 struct MissionDetailsView: View {
     
-    let mission: Mission
+    var mission: Mission
     
     init (mission: Mission) {
         self.mission = mission
@@ -22,29 +23,52 @@ struct MissionDetailsView: View {
             if mission.status == .invitePending {
                 HStack(spacing: 8) {
                     // 拒否ボタン
-                    Button(action: {
-                        // 申請を拒否する処理
-                    }) {
-                        Text("拒否する")
-                            .frame(maxWidth: .infinity, maxHeight: 16)
-                            .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(16)
-                    }
+                    Button(
+                        action: {
+                            // 申請を拒否する処理
+                            BetManager.shared
+                                .updateBetStatus(
+                                    betItem: mission,
+                                    newStatus: .inviteRejected
+                                )
+                        }) {
+                            Text("拒否する")
+                                .frame(maxWidth: .infinity, maxHeight: 16)
+                                .padding()
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(16)
+                        }
                     
                     // 受けるボタン
-                    Button(action: {
-                        // 申請を受ける処理
+                    Button(
+                        action: {
+                            // 申請を受ける処理
                         
-                    }) {
-                        Text("受ける")
-                            .frame(maxWidth: .infinity, maxHeight: 16)
-                            .padding()
-                            .background(Color.orange)
-                            .foregroundColor(.white)
-                            .cornerRadius(16)
-                    }
+                            // Geofencingにこのロケーションを追加する
+                            LocationManager.shared
+                                .startGeofencingRegion(
+                                    center: CLLocationCoordinate2D(
+                                        latitude: mission.location.latitude,
+                                        longitude: mission.location.longitude
+                                    ),
+                                    identifier: mission.location.name
+                                )
+                            // ステータスを変更
+                            BetManager.shared
+                                .updateBetStatus(
+                                    betItem: mission,
+                                    newStatus: .ongoing
+                                )
+                        
+                        }) {
+                            Text("受ける")
+                                .frame(maxWidth: .infinity, maxHeight: 16)
+                                .padding()
+                                .background(Color.orange)
+                                .foregroundColor(.white)
+                                .cornerRadius(16)
+                        }
                 }
                 .padding()
             }

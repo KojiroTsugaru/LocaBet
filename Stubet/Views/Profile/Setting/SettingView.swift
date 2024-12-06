@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingView: View {
     
-    @EnvironmentObject private var accountManager: AccountManager
+    @StateObject private var accountManager = AccountManager.shared
     @State private var showLogoutAlert = false
     
     var body: some View {

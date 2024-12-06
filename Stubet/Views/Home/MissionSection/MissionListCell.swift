@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MissionListCell: View {
     
-    @EnvironmentObject private var accountManager: AccountManager
+    @StateObject private var accountManager = AccountManager.shared
     
     var mission: Mission
     var isPendingStatus: Bool

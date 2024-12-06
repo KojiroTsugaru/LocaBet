@@ -17,7 +17,8 @@ struct BetDetailsView: View {
             // Invite Response Buttons
             if bet.status == .rewardPending {
                 Button(action: {
-                    // 申請を受ける処理
+                    // 報酬を受け取ったアクション
+                    BetManager.shared.updateBetStatus(betItem: bet, newStatus: .rewardReceived)
                 }) {
                     Text("報酬を受け取った")
                         .frame(maxWidth: 24, maxHeight: 16)

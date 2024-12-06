@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BetListCell: View {
     
-    @EnvironmentObject private var accountManager: AccountManager
+    @StateObject private var accountManager = AccountManager.shared
     
     let bet: Bet
     var isPendingStatus: Bool
