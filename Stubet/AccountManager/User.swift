@@ -15,7 +15,7 @@ struct User: Identifiable {
         self.id = id
         self.userName = data["userName"] as? String ?? ""
         self.displayName = data["displayName"] as? String ?? "" // 修正点: displayNameの初期化
-        self.iconUrl = data["icon_url"] as? String ?? ""
+        self.iconUrl = data["iconUrl"] as? String ?? ""
         self.email = data["email"] as? String ?? ""
         self.createdAt = data["createdAt"] as? Timestamp ?? Timestamp(date: Date())
         self.updatedAt = data["updatedAt"] as? Timestamp ?? Timestamp(date: Date())

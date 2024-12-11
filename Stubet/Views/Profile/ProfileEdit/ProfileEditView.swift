@@ -1,22 +1,34 @@
 //
-//  SignupView.swift
+//  ProfileEditView.swift
 //  Stubet
 //
-//  Created by HAGIHARA KADOSHIMA on 2024/09/05.
+//  Created by KJ on 12/11/24.
 //
-import Foundation
+
 import SwiftUI
-import PhotosUI
 
-struct SignupView: View {
-    @Binding var showSignupView: Bool
-    @ObservedObject var viewModel = SignupViewModel()
-
+struct ProfileEditView: View {
+    
+    @ObservedObject private var viewModel = ProfileEditViewModel()
+    @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
         ZStack {
             VStack {
+                HStack {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                            .foregroundColor(.orange)
+                    }
+                    
+                    Spacer()
+                }
                 // アイコン画像の選択
-                IconPhotoPickerView(viewModel: viewModel)
+                ProfileEditPhotoPicker(viewModel: viewModel)
 
                 // ディスプレイ名入力フィールドとエラーメッセージ
                 VStack(alignment: .leading, spacing: 5) {
@@ -60,63 +72,20 @@ struct SignupView: View {
                 }
                 .padding(.bottom, 10) // 各フィールドの間に隙間を追加
 
-                // パスワード入力フィールドとエラーメッセージ
-                VStack(alignment: .leading, spacing: 5) {
-                    SecureField("パスワード", text: $viewModel.password)
-                        .padding()
-                        .background(Color(.systemGray6))
-                        .cornerRadius(8)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.gray, lineWidth: 0.5)
-                        )
-                        .padding(.horizontal)
-                    
-                    if viewModel.passwordError != "" {
-                        Text(viewModel.passwordError)
-                            .font(.caption)
-                            .foregroundColor(.red)
-                            .padding(.leading, 16)
-                    }
-                }
-                .padding(.bottom, 10)
-
-                // パスワード確認入力フィールドとエラーメッセージ
-                VStack(alignment: .leading, spacing: 5) {
-                    SecureField("パスワード確認", text: $viewModel.confirmPassword)
-                        .padding()
-                        .background(Color(.systemGray6))
-                        .cornerRadius(8)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.gray, lineWidth: 0.5)
-                        )
-                        .padding(.horizontal)
-                    
-                    if viewModel.confirmPasswordError != "" {
-                        Text(viewModel.confirmPasswordError)
-                            .font(.caption)
-                            .foregroundColor(.red)
-                            .padding(.leading, 16)
-                    }
-                }
-                .padding(.bottom, 10)
-
-                // 新規登録ボタン
+                // 保存ボタン
                 Button(action: {
-                    
-                    Task.init {
+                    Task {
                         await viewModel.checkUsernameAvailability()
-                        try await viewModel.signup() // 新規登録処理
+                        try await viewModel.updateUser() // 変更をfireStoreに反映する
+                        try await AccountManager.shared.fetchCurrentUser()
+                        dismiss()
                     }
                 }) {
                     HStack {
-                        Text("登録する")
+                        Text("保存")
                             .font(.headline)
                             .padding()
-                        Image(systemName: "checkmark.circle")
                     }.foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
                         .background(
                             LinearGradient(
                                 gradient: Gradient(colors: [.orange, .red]),
@@ -126,16 +95,6 @@ struct SignupView: View {
                         )
                         .cornerRadius(8)
                     
-                }
-                .padding()
-
-                // ログイン画面への案内とボタン
-                HStack {
-                    Text("既にアカウントをお持ちですか？")
-                    Button("ログイン") {
-                        // ログイン画面に戻る
-                        showSignupView = false
-                    }
                 }
                 .padding()
 
@@ -149,7 +108,7 @@ struct SignupView: View {
                     .edgesIgnoringSafeArea(.all)
 
                 VStack {
-                    ProgressView("ユーザー登録中...")
+                    ProgressView("保存中...")
                         .progressViewStyle(CircularProgressViewStyle(tint: .white))
                         .padding()
                         .background(Color.orange.opacity(0.8))
@@ -159,4 +118,8 @@ struct SignupView: View {
             }
         }
     }
+}
+
+#Preview {
+    ProfileEditView()
 }

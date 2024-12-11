@@ -1,8 +1,8 @@
 //
-//  SignupViewModel.swift
+//  ProfileEditViewModel.swift
 //  Stubet
 //
-//  Created by HAGIHARA KADOSHIMA on 2024/09/05.
+//  Created by KJ on 12/11/24.
 //
 
 import SwiftUI
@@ -11,7 +11,7 @@ import FirebaseAuth
 import Foundation
 import FirebaseFirestore
 
-class SignupViewModel: ObservableObject {
+class ProfileEditViewModel: ObservableObject {
     @Published var username = ""
     @Published var displayName = ""
     @Published var password = ""
@@ -29,46 +29,47 @@ class SignupViewModel: ObservableObject {
     @Published var confirmPasswordError: String = ""
     
     @Published var isLoading = false
-    
-    let db = Firestore.firestore()
 
-    init() {
-        // 必要に応じて、初期値を設定
-    }
-        
     @MainActor
-    func signup() async throws {
-        // エラーがなければ続行
-        if usernameError.isEmpty && emailError.isEmpty && passwordError.isEmpty && confirmPasswordError.isEmpty {
-           
-            // TODO：ユーザーネームとパスワードの画面とそれ以外の詳細入力画面を分ける
-            
-            isLoading = true
-            
-            if let _ = self.iconImage {
-                iconImageUrl = try await AccountManager.shared
-                    .uploadIconImage(iconImage: iconImage)
-                print("Profile image uploaded to: \(iconImageUrl!)")
+    init() {
+        if let currentUser = AccountManager.shared.currentUser {
+            username = currentUser.userName
+            displayName = currentUser.displayName
+            iconImageUrl = URL(string: currentUser.iconUrl)
+            Task {
+                iconImage = await fetchImage(from: currentUser.iconUrl)
             }
-            // サインアップする
-            try await AccountManager.shared
-                .signUp(
-                    password: password,
-                    userName: username,
-                    displayName: displayName,
-                    iconImageUrl: iconImageUrl
-                )
-            
-            isLoading = false
-            
-        } else {
-            showError = true
-            errorMessage = "Please fix the errors above."
         }
+    }
+    
+    // update user method
+    @MainActor
+    func updateUser() async throws {
+        
+        isLoading = true
+        
+        if let _ = self.iconImage {
+            iconImageUrl = try await AccountManager.shared
+                .uploadIconImage(iconImage: iconImage)
+            print("Profile image uploaded to: \(iconImageUrl!)")
+        }
+        
+        
+        AccountManager.shared
+            .updateCurrentUser(
+                newUserName: username,
+                newDisplayName: displayName,
+                newIconUrl: iconImageUrl?.absoluteString ?? "url error"
+            )
+        
+        isLoading = false
     }
     
     @MainActor
     func checkUsernameAvailability() async {
+        
+        let db = Firestore.firestore()
+        
         guard !username.isEmpty else {
             usernameError = ""
             return
@@ -93,4 +94,17 @@ class SignupViewModel: ObservableObject {
         
         isLoading = false // stop loading
     }
+    
+    func fetchImage(from urlString: String) async -> UIImage? {
+        guard let url = URL(string: urlString) else { return nil }
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            return UIImage(data: data)
+        } catch {
+            print("Error loading image: \(error.localizedDescription)")
+            return nil
+        }
+    }
+
 }
