@@ -211,6 +211,31 @@ class AccountManager: NSObject, ObservableObject {
         }
     }
     
+    func updateCurrentUser(newUserName: String, newDisplayName: String, newIconUrl: String) {
+        
+        guard let currentUser = self.currentUser else {
+            print("Error: User ID is missing.")
+            return
+        }
+        
+        let userData: [String: Any] = [
+            "userName": newUserName,
+            "displayName": newDisplayName,
+            "iconUrl": newIconUrl,
+            "email": currentUser.email,
+            "createdAt": Timestamp(date: Date()),
+            "updatedAt": Timestamp(date: Date()),
+        ]
+        
+        db.collection("users").document(currentUser.id).updateData(userData) { error in
+            if let error = error {
+                print("Error updating user: \(error.localizedDescription)")
+            } else {
+                print("User updated successfully.")
+            }
+        }
+    }
+    
     // Custom error types for sign-in error handling
     enum SignInError: LocalizedError {
         case invalidEmail

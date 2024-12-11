@@ -12,6 +12,8 @@ struct ProfileViewHeader: View {
     @StateObject private var accountManager = AccountManager.shared
     @StateObject private var friendManager = FriendManager.shared
     
+    @State private var showProfileEdit = false
+    
     var body: some View {
         ZStack {
             // Top curved background
@@ -20,7 +22,7 @@ struct ProfileViewHeader: View {
                 .frame(height: 200)
                 .ignoresSafeArea(.all)
             Spacer()
-                
+            
             VStack {
                 // Icons on top-right
                 HStack {
@@ -39,38 +41,49 @@ struct ProfileViewHeader: View {
                 Spacer()
                 
                 VStack {
-                    AsyncImage(
-                        url: URL(
-                            string: accountManager.currentUser?.iconUrl ?? ""
-                        )
-                    ) { phase in
-                        if let image = phase.image {
-                            image
+                    Menu {
+                        Button(action: {
+                            showProfileEdit = true
+                        }) {
+                            Text("プロフィールを編集")
+                        }
+                    } label: {
+                        AsyncImage(
+                            url: URL(
+                                string: accountManager.currentUser?.iconUrl ?? ""
+                            )
+                        ) { phase in
+                            if let image = phase.image {
+                                image
+                                    .resizable()
+                                    .scaledToFill()
+                            } else if phase.error != nil {
+                                // Fallback to placeholder in case of an error
+                                Image(
+                                    systemName: "person.crop.circle.fill.badge.xmark"
+                                )
                                 .resizable()
                                 .scaledToFit()
-                        } else if phase.error != nil {
-                            // Fallback to placeholder in case of an error
-                            Image(
-                                systemName: "person.crop.circle.fill.badge.xmark"
-                            )
-                            .resizable()
-                            .scaledToFit()
-                            .foregroundColor(Color.orange)
-                        } else {
-                            // Placeholder while loading
-                            Image(systemName: "person.crop.circle.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .foregroundColor(.orange)
+                                .foregroundColor(Color.orange)
+                            } else {
+                                // Placeholder while loading
+                                Image(systemName: "person.crop.circle.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .foregroundColor(.orange)
+                            }
                         }
+                        .frame(width: 80, height: 80)
+                        .background(Circle().fill(Color.white)) // White outline
+                        .clipShape(Circle()) // Clip to circle
+                        .overlay(
+                            Circle()
+                                .stroke(
+                                    Color.white,
+                                    lineWidth: 4
+                                ) // White border
+                        )
                     }
-                    .frame(width: 80, height: 80)
-                    .background(Circle().fill(Color.white)) // White outline
-                    .clipShape(Circle()) // Clip to circle
-                    .overlay(
-                        Circle()
-                            .stroke(Color.white, lineWidth: 4) // White border
-                    )
                     
                     // User Info
                     VStack(spacing: 4) {
@@ -105,7 +118,7 @@ struct ProfileViewHeader: View {
                             .frame(width: 32, height: 32) // Icon size
                             .foregroundColor(Color.orange)
                     }.frame(width: 32, height: 32)
-
+                    
                     Text("\(friendManager.friends.count) フレンド")
                         .font(.subheadline)
                         .foregroundColor(Color.orange)
@@ -128,7 +141,7 @@ struct ProfileViewHeader: View {
                         ) // Thin border
                 )
             }
-
+            
             NavigationLink {
                 SearchUserView()
             } label: {
@@ -140,7 +153,7 @@ struct ProfileViewHeader: View {
                             .frame(width: 24, height: 24) // Icon size
                             .foregroundColor(Color.orange)
                     }.frame(width: 32, height: 32)
-
+                    
                     Text("ユーザーを探す")
                         .font(.subheadline)
                         .foregroundColor(Color.orange)
@@ -168,6 +181,17 @@ struct ProfileViewHeader: View {
         .background(
             Color(UIColor.systemGroupedBackground)
         ) // Add subtle background
+        .sheet(isPresented: $showProfileEdit) {
+            ProfileEditView()
+                .interactiveDismissDisabled(true)
+        }
+        .task {
+            do {
+                try await AccountManager.shared.fetchCurrentUser()
+            } catch {
+                print(error)
+            }
+        }
     }
 }
 
