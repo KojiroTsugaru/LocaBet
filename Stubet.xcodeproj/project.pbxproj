@@ -76,6 +76,8 @@
 		31F550C52D0A0DB90038638E /* ProfileEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F550C42D0A0DB00038638E /* ProfileEditViewModel.swift */; };
 		31F550C72D0A0E6A0038638E /* ProfileEditPhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F550C62D0A0E5B0038638E /* ProfileEditPhotoPicker.swift */; };
 		31F550CA2D0A5BCE0038638E /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F550C92D0A5BCE0038638E /* SplashScreenView.swift */; };
+		31F550CE2D0B169D0038638E /* BetHistoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F550CD2D0B169D0038638E /* BetHistoryListView.swift */; };
+		31F550D02D0B19870038638E /* MissionHistoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F550CF2D0B19870038638E /* MissionHistoryListView.swift */; };
 		4C771D8F2C8809D000543A57 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C771D8E2C8809D000543A57 /* LoginView.swift */; };
 		4C771D912C880FB900543A57 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C771D902C880FB900543A57 /* LoginViewModel.swift */; };
 		4CEB9A8B2C8952690061921E /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB9A8A2C8952690061921E /* SignupViewModel.swift */; };
@@ -165,6 +167,8 @@
 		31F550C42D0A0DB00038638E /* ProfileEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewModel.swift; sourceTree = "<group>"; };
 		31F550C62D0A0E5B0038638E /* ProfileEditPhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditPhotoPicker.swift; sourceTree = "<group>"; };
 		31F550C92D0A5BCE0038638E /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		31F550CD2D0B169D0038638E /* BetHistoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetHistoryListView.swift; sourceTree = "<group>"; };
+		31F550CF2D0B19870038638E /* MissionHistoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionHistoryListView.swift; sourceTree = "<group>"; };
 		4C771D8E2C8809D000543A57 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		4C771D902C880FB900543A57 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		4CEB9A8A2C8952690061921E /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
@@ -434,6 +438,8 @@
 				311238992C8AB60C00EC7DBC /* ProfileView.swift */,
 				3146656D2CE50A8D00441AC6 /* ProfileViewModel.swift */,
 				313F8EDC2CEB5CD400CA3F3D /* ProfileViewHeader.swift */,
+				31F550CD2D0B169D0038638E /* BetHistoryListView.swift */,
+				31F550CF2D0B19870038638E /* MissionHistoryListView.swift */,
 				31F550C82D0A0EB40038638E /* ProfileEdit */,
 				313F8EDE2CEB651500CA3F3D /* SearchUserView.swift */,
 				313F8ED82CEA8F7800CA3F3D /* ProfileTabView.swift */,
@@ -646,6 +652,7 @@
 				3146656C2CE4F39D00441AC6 /* MainTabView.swift in Sources */,
 				317581142C89642E00DD5B13 /* MissionDetailsView.swift in Sources */,
 				317580FA2C87014400DD5B13 /* HomeViewModel.swift in Sources */,
+				31F550CE2D0B169D0038638E /* BetHistoryListView.swift in Sources */,
 				311A57622C86D94D0040AA9A /* Stubet.xcdatamodeld in Sources */,
 				3112389E2C8AB6A700EC7DBC /* FriendRequest.swift in Sources */,
 				31F550C52D0A0DB90038638E /* ProfileEditViewModel.swift in Sources */,
@@ -673,6 +680,7 @@
 				311626DC2CDE5C3100E1D4E0 /* NewBetData.swift in Sources */,
 				314665662CDF98EE00441AC6 /* MissionClearModalView.swift in Sources */,
 				3146656E2CE50A8D00441AC6 /* ProfileViewModel.swift in Sources */,
+				31F550D02D0B19870038638E /* MissionHistoryListView.swift in Sources */,
 				311A57562C86D94A0040AA9A /* StubetApp.swift in Sources */,
 				313F8ECE2CE8FAD000CA3F3D /* FriendManager.swift in Sources */,
 				316FD2252D036691007B993E /* MissionDetailsViewModel.swift in Sources */,

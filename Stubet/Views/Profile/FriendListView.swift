@@ -17,26 +17,47 @@ struct FriendListView: View {
                 ProgressView("ロード中...")
                     .padding()
             } else {
-                if !friendManager.incomingRequests.isEmpty {
-                    // Friend Requests Section
-                    VStack {
-                        Text("フレンド申請が届いています").font(.headline)
-                        List(friendManager.incomingRequests) { request in
-                            FriendRequestCell(request: request)
-                        }.scrollDisabled(true)
+                List {
+                    if !friendManager.incomingRequests.isEmpty {
+                        Section("フレンド申請が届いています") {
+                            ForEach(friendManager.incomingRequests) { request in
+                                FriendRequestCell(request: request)
+                            }
+                        }
+                    }
+                    if !friendManager.friends.isEmpty {
+                        Section("フレンド") {
+                            ForEach(friendManager.friends) { friend in
+                                FriendCell(friend: friend)
+                            }
+                        }
+                    } else {
+                        Section("フレンドがいません") {
+                            
+                        }
                     }
                 }
-
-                // Friends Section
-                if !friendManager.friends.isEmpty {
-                    List(friendManager.friends) { friend in
-                        FriendCell(friend: friend)
-                    }
-                } else {
-                    Text("フレンドがいません")
-                        .foregroundColor(.gray)
-                        .padding()
-                }
+                
+//                if !friendManager.incomingRequests.isEmpty {
+//                    // Friend Requests Section
+//                    VStack {
+//                        Text("フレンド申請が届いています").font(.headline)
+//                        List(friendManager.incomingRequests) { request in
+//                            FriendRequestCell(request: request)
+//                        }.scrollDisabled(true)
+//                    }
+//                }
+//
+//                // Friends Section
+//                if !friendManager.friends.isEmpty {
+//                    List(friendManager.friends) { friend in
+//                        FriendCell(friend: friend)
+//                    }
+//                } else {
+//                    Text("フレンドがいません")
+//                        .foregroundColor(.gray)
+//                        .padding()
+//                }
             }
         }
         .navigationTitle("フレンド")

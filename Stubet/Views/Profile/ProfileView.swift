@@ -22,24 +22,24 @@ struct ProfileView: View {
         VStack() {
             ProfileViewHeader()
             HStack {
-                Text("履歴")
+                Text("過去のベット/ミッション")
                     .padding(.horizontal)
                     .bold()
                 Spacer()
             }
             
-//            ProfileTabView(selectedTab: $selectedTab)
-//                .frame(height: 25)
-//                .padding()
-//            
-//            // Content depending on the selected tab
-//            ScrollView {
-//                if selectedTab == .mission {
-//                    MissionListView()
-//                } else {
-//                    BetListView()
-//                }
-//            }
+            ProfileTabView(selectedTab: $selectedTab)
+                .frame(height: 25)
+                .padding()
+            
+            // Content depending on the selected tab
+            ScrollView {
+                if selectedTab == .mission {
+                    MissionHistoryListView()
+                } else {
+                    BetHistoryListView()
+                }
+            }
 
             Spacer()
         }
