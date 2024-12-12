@@ -14,7 +14,7 @@ struct ProfileViewHeader: View {
     
     @State private var showProfileEdit = false
     
-    var body: some View {
+    var body: some View { 
         ZStack {
             // Top curved background
             CurvedBackground()
@@ -48,41 +48,40 @@ struct ProfileViewHeader: View {
                             Text("プロフィールを編集")
                         }
                     } label: {
-                        AsyncImage(
-                            url: URL(
-                                string: accountManager.currentUser?.iconUrl ?? ""
-                            )
-                        ) { phase in
-                            if let image = phase.image {
-                                image
-                                    .resizable()
-                                    .scaledToFill()
-                            } else if phase.error != nil {
-                                // Fallback to placeholder in case of an error
-                                Image(
-                                    systemName: "person.crop.circle.fill.badge.xmark"
-                                )
+                        if let image = AccountManager.shared.currentUser?.iconImage {
+                            Image(uiImage: image)
                                 .resizable()
-                                .scaledToFit()
-                                .foregroundColor(Color.orange)
-                            } else {
-                                // Placeholder while loading
-                                Image(systemName: "person.crop.circle.fill")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .foregroundColor(.orange)
-                            }
+                                .scaledToFill()
+                                .frame(width: 80, height: 80)
+                                .background(
+                                    Circle().fill(Color.white)
+                                ) // White outline
+                                .clipShape(Circle()) // Clip to circle
+                                .overlay(
+                                    Circle()
+                                        .stroke(
+                                            Color.white,
+                                            lineWidth: 4
+                                        ) // White border
+                                )
+                        } else {
+                            // Placeholder or fallback
+                            Image(systemName: "person.crop.circle.fill")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 80, height: 80)
+                                .background(
+                                    Circle().fill(Color.white)
+                                ) // White outline
+                                .clipShape(Circle()) // Clip to circle
+                                .overlay(
+                                    Circle()
+                                        .stroke(
+                                            Color.white,
+                                            lineWidth: 4
+                                        ) // White border
+                                )
                         }
-                        .frame(width: 80, height: 80)
-                        .background(Circle().fill(Color.white)) // White outline
-                        .clipShape(Circle()) // Clip to circle
-                        .overlay(
-                            Circle()
-                                .stroke(
-                                    Color.white,
-                                    lineWidth: 4
-                                ) // White border
-                        )
                     }
                     
                     // User Info

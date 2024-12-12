@@ -15,7 +15,7 @@ struct ProfileEditPhotoPicker: View {
     
     var body: some View {
         VStack {
-            if let image = viewModel.iconImage {
+            if let image = AccountManager.shared.currentUser?.iconImage {
                 Image(uiImage: image)
                     .resizable()
                     .scaledToFill()

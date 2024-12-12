@@ -9,18 +9,23 @@ import SwiftUI
 
 struct RootView: View {
     @StateObject private var accountManager = AccountManager.shared
+    @State private var isAuthenticating = true
 
     var body: some View {
         Group {
-            if accountManager.currentUser != nil {
-                MainTabView() // Show MainTabView if the user is logged in
+            if isAuthenticating {
+                SplashScreenView()
             } else {
-                LoginView() // Show SignInView if the user is not logged in
+                if accountManager.currentUser != nil {
+                    MainTabView() // Show MainTabView if the user is logged in
+                } else {
+                    LoginView() // Show SignInView if the user is not logged in
+                }
             }
         }
-        .onAppear {
-            accountManager.setUp() // Ensure the listener is set up when the app starts
-        }
+        .onChange(of: accountManager.currentUser, { _, _ in
+            isAuthenticating = false // Update the authentication state once the process is complete
+        })
     }
 }
 

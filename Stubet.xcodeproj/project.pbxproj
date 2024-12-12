@@ -75,6 +75,7 @@
 		31F550C32D0A0A400038638E /* ProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F550C22D0A0A400038638E /* ProfileEditView.swift */; };
 		31F550C52D0A0DB90038638E /* ProfileEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F550C42D0A0DB00038638E /* ProfileEditViewModel.swift */; };
 		31F550C72D0A0E6A0038638E /* ProfileEditPhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F550C62D0A0E5B0038638E /* ProfileEditPhotoPicker.swift */; };
+		31F550CA2D0A5BCE0038638E /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F550C92D0A5BCE0038638E /* SplashScreenView.swift */; };
 		4C771D8F2C8809D000543A57 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C771D8E2C8809D000543A57 /* LoginView.swift */; };
 		4C771D912C880FB900543A57 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C771D902C880FB900543A57 /* LoginViewModel.swift */; };
 		4CEB9A8B2C8952690061921E /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB9A8A2C8952690061921E /* SignupViewModel.swift */; };
@@ -163,6 +164,7 @@
 		31F550C22D0A0A400038638E /* ProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditView.swift; sourceTree = "<group>"; };
 		31F550C42D0A0DB00038638E /* ProfileEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewModel.swift; sourceTree = "<group>"; };
 		31F550C62D0A0E5B0038638E /* ProfileEditPhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditPhotoPicker.swift; sourceTree = "<group>"; };
+		31F550C92D0A5BCE0038638E /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		4C771D8E2C8809D000543A57 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		4C771D902C880FB900543A57 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		4CEB9A8A2C8952690061921E /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 			children = (
 				314665692CE4F33B00441AC6 /* RootView.swift */,
 				311A57552C86D94A0040AA9A /* StubetApp.swift */,
+				31F550C92D0A5BCE0038638E /* SplashScreenView.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -676,6 +679,7 @@
 				311626D82CDE506100E1D4E0 /* BetManager.swift in Sources */,
 				314665682CE0E99100441AC6 /* AccountManager.swift in Sources */,
 				311626D92CDE506100E1D4E0 /* Mission.swift in Sources */,
+				31F550CA2D0A5BCE0038638E /* SplashScreenView.swift in Sources */,
 				311626DA2CDE506100E1D4E0 /* Bet.swift in Sources */,
 				313F8EE12CEB676F00CA3F3D /* FriendListView.swift in Sources */,
 			);
