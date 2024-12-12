@@ -18,12 +18,18 @@ class BetManager: NSObject, ObservableObject {
     @Published var allMissions: [Mission] = []
     @Published var allBets: [Bet] = []
     
+    // Missions
     @Published var newMissions: [Mission] = []
     @Published var ongoingMissions: [Mission] = []
+    @Published var clearedMissions: [Mission] = []
+    @Published var failedMissions: [Mission] = []
     
+    // Bets
     @Published var rewardPendingBets: [Bet] = []
     @Published var ongoingBets: [Bet] = []
     @Published var invitePendingBets: [Bet] = []
+    @Published var clearedBets: [Bet] = []
+    @Published var failedBets: [Bet] = []
     
     // Track already fetched document IDs to avoid refetching
     private var fetchedBetIDs: Set<String> = []
@@ -65,6 +71,10 @@ class BetManager: NSObject, ObservableObject {
                         self.ongoingMissions.append(mission)
                     case .invitePending:
                         self.newMissions.append(mission)
+                    case .rewardReceived:
+                        self.clearedMissions.append(mission)
+                    case .failed:
+                        self.failedMissions.append(mission)
                     default:
                         break
                     }
@@ -79,6 +89,10 @@ class BetManager: NSObject, ObservableObject {
                         self.rewardPendingBets.append(bet)
                     case .invitePending:
                         self.invitePendingBets.append(bet)
+                    case .rewardReceived:
+                        self.clearedBets.append(bet)
+                    case .failed:
+                        self.failedBets.append(bet)
                     default:
                         break
                     }
@@ -151,6 +165,19 @@ class BetManager: NSObject, ObservableObject {
         }
     }
     
+    
+    func getBetHistory() -> [Bet] {
+        let combinedArray = self.failedBets + self.clearedBets
+        let sortedArray = combinedArray.sorted { $0.updatedAt.dateValue() > $1.updatedAt.dateValue() }
+        return sortedArray
+    }
+    
+    func getMissionHistory() -> [Mission] {
+        let combinedArray = self.failedMissions + self.clearedMissions
+        let sortedArray = combinedArray.sorted { $0.updatedAt.dateValue() > $1.updatedAt.dateValue() }
+        return sortedArray
+    }
+            
     // empty all bets and missions on logout
     func emptyAllData() {
         allMissions = []

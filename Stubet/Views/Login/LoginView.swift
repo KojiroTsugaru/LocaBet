@@ -39,13 +39,6 @@ struct LoginView: View {
 
             Spacer()
 
-            // エラーメッセージ表示（viewModelから取得）
-            if viewModel.showError {
-                Text("Incorrect username or password")
-                    .foregroundColor(.red)
-                    .padding(.bottom)
-            }
-
             // ユーザー名入力フィールド
             TextField("ユーザー名", text: $viewModel.userName)
                 .padding()

@@ -154,6 +154,7 @@ class AccountManager: NSObject, ObservableObject {
     }
 
     // convert Firestore data to User struct
+    @MainActor
     public func fetchCurrentUser() async throws {
         // Ensure that we have a current user
         guard let id = Auth.auth().currentUser?.uid else {
@@ -178,9 +179,8 @@ class AccountManager: NSObject, ObservableObject {
             }
             
             // Update currentUser on the main thread
-            DispatchQueue.main.async {
-                self.currentUser = User(id: id, data: data)
-            }
+            self.currentUser = await User(id: id, data: data)
+
             
         } catch {
             print("Error fetching user data: \(error.localizedDescription)")
@@ -203,7 +203,7 @@ class AccountManager: NSObject, ObservableObject {
                 return nil
             }
             
-            return User(id: id, data: data)
+            return await User(id: id, data: data)
             
         } catch {
             print("Error fetching user data: \(error.localizedDescription)")
