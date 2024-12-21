@@ -41,7 +41,7 @@ struct FriendCell: View {
                         .background(Color.red)
                         .cornerRadius(12)
                 }
-        }
+        }.padding(.horizontal)
         .alert("フレンドを解除しますか？", isPresented: $showUnfollowAlert) {
             Button("削除する", role: .destructive) {
                 // Action to delete bet

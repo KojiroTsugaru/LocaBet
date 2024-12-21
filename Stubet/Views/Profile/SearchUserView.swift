@@ -16,7 +16,10 @@ struct SearchUserView: View {
     @State private var isLoading: Bool = false
     @State private var showError: Bool = false
     @State private var errorMessage: String = ""
+    @State private var isRequestSent: Bool = false
 
+    @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
         VStack {
             ZStack {
@@ -47,13 +50,15 @@ struct SearchUserView: View {
                     HStack {
                         FriendListCell(user: user)
                         Spacer()
-                        if !isAlreadyFriend(userId: user.id) {
+                        
+                        if !isAlreadyFriend(userId: user.id) && !friendManager.isAlreadySentRequest(to: user.id) {
                             Button(action: {
                                 Task {
                                     do {
                                         try await friendManager
                                             .sendFriendRequest(to: user.id)
                                         print("sent friend request to \(user.id)")
+                                        isRequestSent = true
                                     } catch {
                                         showErrorMessage(error.localizedDescription)
                                     }
@@ -66,6 +71,13 @@ struct SearchUserView: View {
                                     .background(Color.orange)
                                     .cornerRadius(12)
                             }
+                        } else if !isAlreadyFriend(userId: user.id) {
+                            Text("フレンド申請済み")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                                .padding(8)
+                                .background(Color.blue)
+                                .cornerRadius(12)
                         } else {
                             Text("フレンド")
                                 .font(.headline)
@@ -87,6 +99,12 @@ struct SearchUserView: View {
             Alert(
                 title: Text("エラー"),
                 message: Text(errorMessage),
+                dismissButton: .default(Text("OK"))
+            )
+        }
+        .alert(isPresented: $isRequestSent) {
+            Alert(
+                title: Text("フレンドリクエストを送りました！"),
                 dismissButton: .default(Text("OK"))
             )
         }

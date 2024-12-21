@@ -17,9 +17,9 @@ struct MissionHistoryListView: View {
                     MissionListCell(mission: mission)
                 }
             } else {
-                Text("過去のミッションがありません")
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .offset(y: 250)
+                LazyVStack(alignment: .center) {
+                    Text("過去のミッションが見つかりません")
+                }
             }
         }
         .padding(.bottom, 100)

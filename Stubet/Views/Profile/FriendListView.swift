@@ -17,47 +17,62 @@ struct FriendListView: View {
                 ProgressView("ロード中...")
                     .padding()
             } else {
-                List {
-                    if !friendManager.incomingRequests.isEmpty {
-                        Section("フレンド申請が届いています") {
-                            ForEach(friendManager.incomingRequests) { request in
-                                FriendRequestCell(request: request)
+                ScrollView {
+                    VStack {
+                        if !friendManager.incomingRequests.isEmpty {
+                            // Friend Requests Section
+                            VStack(alignment: .leading) {
+                                Text("フレンド申請が届いています")
+                                    .font(.subheadline)
+                                    .bold()
+                                    .padding(.horizontal)
+                                ForEach(friendManager.incomingRequests) { request in
+                                    FriendRequestCell(request: request)
+                                    Divider()
+                                        .padding(.horizontal)
+
+                                }
                             }
                         }
-                    }
-                    if !friendManager.friends.isEmpty {
-                        Section("フレンド") {
-                            ForEach(friendManager.friends) { friend in
-                                FriendCell(friend: friend)
+                        
+                        // Friends Section
+                        if !friendManager.friends.isEmpty {
+                            VStack(alignment: .leading) {
+                                Text("フレンド")
+                                    .font(.subheadline)
+                                    .bold()
+                                    .padding(.horizontal)
+                                ForEach(friendManager.friends) { friend in
+                                    FriendCell(friend: friend)
+                                    Divider()
+                                        .padding(.horizontal)
+                                }
                             }
-                        }
-                    } else {
-                        Section("フレンドがいません") {
-                            
+                        } else {
+                            VStack(alignment: .center) {
+                                Text("フレンドがいません")
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                                    .padding()
+                            }
                         }
                     }
                 }
                 
-//                if !friendManager.incomingRequests.isEmpty {
-//                    // Friend Requests Section
-//                    VStack {
-//                        Text("フレンド申請が届いています").font(.headline)
-//                        List(friendManager.incomingRequests) { request in
+//                List {
+//                    Section(header: Text("フレンド申請が届いています")) {
+//                        ForEach(friendManager.incomingRequests) { request in
 //                            FriendRequestCell(request: request)
-//                        }.scrollDisabled(true)
+//                        }
 //                    }
-//                }
 //
-//                // Friends Section
-//                if !friendManager.friends.isEmpty {
-//                    List(friendManager.friends) { friend in
-//                        FriendCell(friend: friend)
+//                    Section(header: Text("フレンド")) {
+//                        ForEach(friendManager.friends) { friend in
+//                            FriendCell(friend: friend)
+//                        }
 //                    }
-//                } else {
-//                    Text("フレンドがいません")
-//                        .foregroundColor(.gray)
-//                        .padding()
 //                }
+//                .listStyle(.insetGrouped) // Adjust the list style as needed
             }
         }
         .navigationTitle("フレンド")
