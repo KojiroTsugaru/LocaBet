@@ -45,7 +45,7 @@ struct CreateBetView: View {
                         HStack {
                             DatePicker(
                                 "",
-                                selection: $newBetData.date,
+                                selection: $newBetData.deadline,
                                 displayedComponents: .date
                             )
                             .labelsHidden()
@@ -61,7 +61,7 @@ struct CreateBetView: View {
                         HStack {
                             DatePicker(
                                 "",
-                                selection: $newBetData.time,
+                                selection: $newBetData.deadline,
                                 displayedComponents: .hourAndMinute
                             )
                             .labelsHidden()

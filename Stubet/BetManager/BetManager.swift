@@ -123,8 +123,8 @@ class BetManager: NSObject, ObservableObject {
             "title": newBetData.title,
             "description": newBetData.description,
             "deadline": Timestamp(
-                date: newBetData.date
-            ), // Use the date as the deadline
+                date: newBetData.deadline
+            ),
             "createdAt": Timestamp(date: Date()), // The creation date is now
             "updatedAt": Timestamp(
                 date: Date()

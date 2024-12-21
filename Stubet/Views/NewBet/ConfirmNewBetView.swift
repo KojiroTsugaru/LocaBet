@@ -83,8 +83,7 @@ fileprivate let dummyNewBetData = NewBetData(
     selectedFriend: dummyFriend,
     title: "5K Run Bet",
     description: "Let's see who can finish a 5K run faster!",
-    date: Calendar.current.date(byAdding: .day, value: 10, to: Date()) ?? Date(), // 10 days from now
-    time: Calendar.current.date(bySettingHour: 8, minute: 30, second: 0, of: Date()) ?? Date(), // 8:30 AM
+    deadline: Calendar.current.date(byAdding: .day, value: 10, to: Date()) ?? Date(), // 10 days from now
     locationName: "Greenwood Park",
     selectedCoordinates: CLLocationCoordinate2D(latitude: 34.052235, longitude: -118.243683) // Los Angeles
 )

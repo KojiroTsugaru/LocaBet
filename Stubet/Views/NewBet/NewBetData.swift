@@ -12,8 +12,7 @@ class NewBetData: ObservableObject {
     @Published var selectedFriend: Friend?
     @Published var title: String = ""
     @Published var description: String = ""
-    @Published var date: Date = Date()
-    @Published var time: Date = Date()
+    @Published var deadline: Date = Date()
     @Published var locationName: String = ""
     @Published var selectedCoordinates: CLLocationCoordinate2D
     
@@ -26,12 +25,11 @@ class NewBetData: ObservableObject {
             "addedAt": Date(), // 現在の日時
             "iconUrl": "https://example.com/user_icon/johndoe.png"
         ]
-    ), title: String, description: String, date: Date = Date(), time: Date = Date(), locationName: String, selectedCoordinates: CLLocationCoordinate2D = CLLocationCoordinate2D()) {
+    ), title: String, description: String, deadline: Date = Date(), locationName: String, selectedCoordinates: CLLocationCoordinate2D = CLLocationCoordinate2D()) {
         self.selectedFriend = selectedFriend
         self.title = title
         self.description = description
-        self.date = date
-        self.time = time
+        self.deadline = deadline
         self.locationName = locationName
         self.selectedCoordinates = selectedCoordinates
     }
@@ -39,15 +37,13 @@ class NewBetData: ObservableObject {
     init(
         title: String,
         description: String,
-        date: Date = Date(),
-        time: Date = Date(),
+        deadline: Date = Date(),
         locationName: String,
         selectedCoordinates: CLLocationCoordinate2D = CLLocationCoordinate2D()
     ) {
         self.title = title
         self.description = description
-        self.date = date
-        self.time = time
+        self.deadline = deadline
         self.locationName = locationName
         self.selectedCoordinates = selectedCoordinates
     }

@@ -30,7 +30,7 @@ struct TimeLocationConfirmPanel: View {
                     .foregroundColor(.orange)
                     .font(.system(size: 20))
                 Spacer()
-                Text(formattedDate(date: newBetData.date, time: newBetData.time))
+                Text(formattedDate(date: newBetData.deadline))
                     .font(.system(size: 16, weight: .semibold))
                     .padding(.leading)
                 Spacer()
@@ -102,18 +102,15 @@ struct TimeLocationConfirmPanel: View {
     }
 }
 
-fileprivate func formattedDate(date: Date, time: Date) -> String {
+fileprivate func formattedDate(date: Date) -> String {
     let dateFormatter = DateFormatter()
     
     // Set the date format
-    dateFormatter.dateFormat = "MM/dd/yyyy"
+    dateFormatter.dateFormat = "MM/dd/yyyy h:mm a"
     let dateString = dateFormatter.string(from: date)
     
-    // Set the time format
-    dateFormatter.dateFormat = "h:mm a"
-    let timeString = dateFormatter.string(from: time)
     
-    return "\(dateString) - \(timeString)"
+    return dateFormatter.string(from: date)
 }
 
 struct TimeLocationDetailsView_Previews: PreviewProvider {
