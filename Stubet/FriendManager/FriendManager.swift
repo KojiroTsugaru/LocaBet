@@ -15,6 +15,7 @@ class FriendManager: ObservableObject {
     private let currentUserId = Auth.auth().currentUser?.uid
     
     @Published var incomingRequests: [FriendRequest] = []
+    @Published var sentRequestIds: [String] = []
     @Published var friends: [Friend] = []
     
     // MARK: - Friend Management
@@ -111,6 +112,7 @@ class FriendManager: ObservableObject {
     // MARK: - Friend Requests
 
     // Send a friend request
+    @MainActor
     func sendFriendRequest(to userId: String) async throws {
         guard let currentUserId = currentUserId else {
             throw NSError(domain: "AuthError", code: 401, userInfo: [NSLocalizedDescriptionKey: "User not authenticated."])
@@ -125,7 +127,7 @@ class FriendManager: ObservableObject {
         // Prepare friend request data
         let requestData: [String: Any] = [
             "senderId": currentUserId,
-            "senderName": currentUserData["userName"] ?? "",
+            "senderUserName": currentUserData["userName"] ?? "",
             "senderDisplayName": currentUserData["displayName"] ?? "",
             "senderIconUrl": currentUserData["iconUrl"] ?? "",
             "status": "pending",
@@ -134,6 +136,7 @@ class FriendManager: ObservableObject {
 
         // Add the request to the target user's friendRequests subcollection
         try await db.collection("users").document(userId).collection("friendRequests").addDocument(data: requestData)
+        self.sentRequestIds.append(userId)
     }
 
     // Accept a friend request
@@ -188,6 +191,10 @@ class FriendManager: ObservableObject {
         }
     }
     
+    func isAlreadySentRequest(to userId: String) -> Bool {
+        return self.sentRequestIds.contains(userId)
+    }
+    
     // remove accepted & rejected friend request from incomingRequest
     @MainActor
     private func removeFriendRequest() {
@@ -201,6 +208,7 @@ class FriendManager: ObservableObject {
     // call this function on sign out
     func emptyAllData() {
         self.incomingRequests = []
+        self.sentRequestIds = []
         self.friends = []
     }
 }

@@ -11,7 +11,7 @@ import FirebaseFirestore
 struct FriendRequest: Identifiable {
     let id: String
     let senderId: String
-    let senderName: String
+    let senderUserName: String
     let senderDisplayName: String
     let senderIconUrl: String
     let status: String
@@ -20,7 +20,7 @@ struct FriendRequest: Identifiable {
     init(id: String, data: [String: Any]) {
         self.id = id
         self.senderId = data["senderId"] as? String ?? ""
-        self.senderName = data["senderName"] as? String ?? ""
+        self.senderUserName = data["senderUserName"] as? String ?? ""
         self.senderDisplayName = data["senderDisplayName"] as? String ?? ""
         self.senderIconUrl = data["senderIconUrl"] as? String ?? ""
         self.status = data["status"] as? String ?? "pending"

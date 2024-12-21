@@ -19,37 +19,41 @@ struct FriendRequestCell: View {
             VStack(alignment: .leading) {
                 Text(request.senderDisplayName)
                     .font(.headline)
-                Text("@\(request.senderId)")
+                Text("@\(request.senderUserName)")
                     .font(.subheadline)
                     .foregroundColor(.gray)
             }
             Spacer()
-            Button(
-                action: {
-                    Task {
-                        await accceptRequest()
+            VStack {
+                Button(
+                    action: {
+                        Task {
+                            await accceptRequest()
+                        }
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Text("承諾する")
+                            .foregroundColor(.white)
+                            .padding(8)
+                            .background(Color.orange)
+                            .cornerRadius(12)
                     }
-                    presentationMode.wrappedValue.dismiss()
-                }) {
-                    Text("承諾する")
-                        .foregroundColor(.white)
-                        .padding(8)
-                        .background(Color.orange)
-                        .cornerRadius(12)
-                }
-            Button(
-                action: {
-                    Task {
-                        await rejectRequest()
+            }
+            VStack {
+                Button(
+                    action: {
+                        Task {
+                            await rejectRequest()
+                        }
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Text("拒否する")
+                            .foregroundColor(.white)
+                            .padding(8)
+                            .background(Color.red)
+                            .cornerRadius(12)
                     }
-                    presentationMode.wrappedValue.dismiss()
-                }) {
-                    Text("拒否する")
-                        .foregroundColor(.white)
-                        .padding(8)
-                        .background(Color.red)
-                        .cornerRadius(12)
-                }
+            }
         }.padding(.horizontal)
     }
     
