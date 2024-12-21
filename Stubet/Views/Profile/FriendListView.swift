@@ -17,46 +17,62 @@ struct FriendListView: View {
                 ProgressView("ロード中...")
                     .padding()
             } else {
-//                VStack {
-//                    if !friendManager.incomingRequests.isEmpty {
-//                        // Friend Requests Section
-//                        VStack(alignment: .leading) {
-//                            Text("フレンド申請が届いています").font(.caption)
-//                            List(friendManager.incomingRequests) { request in
-//                                FriendRequestCell(request: request)
-//                            }
-//                        }
-//                    }
-//                    
-//                    // Friends Section
-//                    if !friendManager.friends.isEmpty {
-//                        List(friendManager.friends) { friend in
-//                            FriendCell(friend: friend)
-//                        }
-//                    } else {
-//                        VStack(alignment: .leading) {
-//                            Text("フレンドがいません")
-//                                .font(.caption)
-//                                .foregroundColor(.gray)
-//                                .padding()
-//                        }
-//                    }
-//                }
-                
-                List {
-                    Section(header: Text("フレンド申請が届いています")) {
-                        ForEach(friendManager.incomingRequests) { request in
-                            FriendRequestCell(request: request)
-                        }
-                    }
+                ScrollView {
+                    VStack {
+                        if !friendManager.incomingRequests.isEmpty {
+                            // Friend Requests Section
+                            VStack(alignment: .leading) {
+                                Text("フレンド申請が届いています")
+                                    .font(.subheadline)
+                                    .bold()
+                                    .padding(.horizontal)
+                                ForEach(friendManager.incomingRequests) { request in
+                                    FriendRequestCell(request: request)
+                                    Divider()
+                                        .padding(.horizontal)
 
-                    Section(header: Text("フレンド")) {
-                        ForEach(friendManager.friends) { friend in
-                            FriendCell(friend: friend)
+                                }
+                            }
+                        }
+                        
+                        // Friends Section
+                        if !friendManager.friends.isEmpty {
+                            VStack(alignment: .leading) {
+                                Text("フレンド")
+                                    .font(.subheadline)
+                                    .bold()
+                                    .padding(.horizontal)
+                                ForEach(friendManager.friends) { friend in
+                                    FriendCell(friend: friend)
+                                    Divider()
+                                        .padding(.horizontal)
+                                }
+                            }
+                        } else {
+                            VStack(alignment: .center) {
+                                Text("フレンドがいません")
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                                    .padding()
+                            }
                         }
                     }
                 }
-                .listStyle(.insetGrouped) // Adjust the list style as needed
+                
+//                List {
+//                    Section(header: Text("フレンド申請が届いています")) {
+//                        ForEach(friendManager.incomingRequests) { request in
+//                            FriendRequestCell(request: request)
+//                        }
+//                    }
+//
+//                    Section(header: Text("フレンド")) {
+//                        ForEach(friendManager.friends) { friend in
+//                            FriendCell(friend: friend)
+//                        }
+//                    }
+//                }
+//                .listStyle(.insetGrouped) // Adjust the list style as needed
             }
         }
         .navigationTitle("フレンド")

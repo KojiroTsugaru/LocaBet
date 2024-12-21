@@ -17,9 +17,9 @@ struct BetHistoryListView: View {
                     BetListCell(bet: bet)
                 }
             } else {
-                Text("過去のベットがありません")
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .offset(y: 250)
+                LazyVStack(alignment: .center) {
+                    Text("過去のベットが見つかりません")
+                }
             }
         }
         .padding(.bottom, 100)

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import FirebaseFirestore
+@preconcurrency import FirebaseFirestore
 import FirebaseAuth
 
 class FriendManager: ObservableObject {
@@ -198,11 +198,10 @@ class FriendManager: ObservableObject {
     // remove accepted & rejected friend request from incomingRequest
     @MainActor
     private func removeFriendRequest() {
-        DispatchQueue.main.async {
-            self.incomingRequests.removeAll { request in
-                request.status == "accepted" || request.status == "rejected"
-            }
+        self.incomingRequests.removeAll { request in
+            request.status == "accepted" || request.status == "rejected"
         }
+        print("friend request remove suceeded.")
     }
     
     // call this function on sign out
