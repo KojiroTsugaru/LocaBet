@@ -12,7 +12,6 @@ import FirebaseFirestore
 class BetManager: NSObject, ObservableObject {
     // create singleton obj
     static let shared = BetManager()
-    
     private let db = Firestore.firestore()
     
     @Published var allMissions: [Mission] = []
@@ -70,6 +69,7 @@ class BetManager: NSObject, ObservableObject {
                     case .ongoing:
                         self.ongoingMissions.append(mission)
                     case .invitePending:
+                        if await isRequestExpired(betItem: mission) {break}  // check if invite is expired or not
                         self.newMissions.append(mission)
                     case .rewardReceived:
                         self.clearedMissions.append(mission)
@@ -88,6 +88,7 @@ class BetManager: NSObject, ObservableObject {
                     case .rewardPending:
                         self.rewardPendingBets.append(bet)
                     case .invitePending:
+                        if await isRequestExpired(betItem: bet) {break}  // check if invite is expired or not
                         self.invitePendingBets.append(bet)
                     case .rewardReceived:
                         self.clearedBets.append(bet)
@@ -146,6 +147,28 @@ class BetManager: NSObject, ObservableObject {
     }
     
     // update bet's status
+    func updateBetStatus(betItem: any BetItem, newStatus: Status, refreshAfter: Bool = true) async {
+        // Assume you have a reference to the Firestore database
+        let db = Firestore.firestore()
+        
+        // Update the status in Firestore
+        do {
+            try await db.collection("bets").document(betItem.id).updateData([
+                "status": newStatus.rawValue,
+                "updatedAt": Timestamp(date: Date())
+            ])
+            
+            // re-fetch all bet data
+            if refreshAfter {
+                emptyAllData()
+                await fetchData()
+            }
+        } catch {
+            print("error updating bet status:", error)
+        }
+    }
+    
+    // update bet's status
     func updateBetStatus(betItem: any BetItem, newStatus: Status) async {
         // Assume you have a reference to the Firestore database
         let db = Firestore.firestore()
@@ -165,7 +188,6 @@ class BetManager: NSObject, ObservableObject {
         }
     }
     
-    
     func getBetHistory() -> [Bet] {
         let combinedArray = self.failedBets + self.clearedBets
         let sortedArray = combinedArray.sorted { $0.updatedAt.dateValue() > $1.updatedAt.dateValue() }
@@ -176,6 +198,14 @@ class BetManager: NSObject, ObservableObject {
         let combinedArray = self.failedMissions + self.clearedMissions
         let sortedArray = combinedArray.sorted { $0.updatedAt.dateValue() > $1.updatedAt.dateValue() }
         return sortedArray
+    }
+    
+    private func isRequestExpired(betItem: any BetItem) async -> Bool {
+        if betItem.deadline.dateValue() < Date() {
+            await updateBetStatus(betItem: betItem, newStatus: .inviteExpired, refreshAfter: false)
+            return true
+        }
+        return false
     }
             
     // empty all bets and missions on logout
