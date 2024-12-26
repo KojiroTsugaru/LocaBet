@@ -22,34 +22,39 @@ struct ProfileView: View {
         VStack(spacing: 0) {
             ZStack {
                 Color.orange
-            }.ignoresSafeArea(.all)
-                .frame(height: 60)
-                .zIndex(1)
+            }
+            .ignoresSafeArea(.all)
+            .frame(height: 60)
+            .zIndex(1)
+            
             ScrollView {
-                ProfileViewHeader()
-                
-                HStack {
-                    Text("過去のベット/ミッション")
-                        .padding(.horizontal)
-                        .bold()
-                    Spacer()
-                }
-                
-                ProfileTabView(selectedTab: $selectedTab)
-                    .frame(height: 25)
-                    .padding()
-                
-                // Content depending on the selected tab
-                if selectedTab == .mission {
-                    MissionHistoryListView()
-                } else {
-                    BetHistoryListView()
-                }
-                Spacer()
-            }.zIndex(0)
+                VStack(spacing: 0) {
+                    ProfileViewHeader()
+                    
+                        HStack {
+                            Text("過去のベット/ミッション")
+                                .padding(.horizontal)
+                                .bold()
+                            Spacer()
+                        }
+                        
+                        ProfileTabView(selectedTab: $selectedTab)
+                            .frame(height: 25)
+                            .padding()
+                        
+                        // Content depending on the selected tab
+                        if selectedTab == .mission {
+                            MissionHistoryListView()
+                        } else {
+                            BetHistoryListView()
+                        }
+                }.background(Color(UIColor.systemGroupedBackground))
+            }
+            .background(.orange)
+            .zIndex(0)
         }
-        .edgesIgnoringSafeArea(.all)
         .background(Color(UIColor.systemGroupedBackground))
+        .edgesIgnoringSafeArea(.all)
         .navigationBarTitleDisplayMode(.inline) // No visible title
         .task {
             do {

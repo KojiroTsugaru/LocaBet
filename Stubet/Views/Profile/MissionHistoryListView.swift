@@ -19,6 +19,7 @@ struct MissionHistoryListView: View {
             } else {
                 LazyVStack(alignment: .center) {
                     Text("過去のミッションが見つかりません")
+                        .frame(height: 350, alignment: .top)
                 }
             }
         }
