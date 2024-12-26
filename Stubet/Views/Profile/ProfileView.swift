@@ -34,10 +34,11 @@ struct ProfileView: View {
                         HStack {
                             Text("過去のベット/ミッション")
                                 .padding(.horizontal)
+                                .padding(.vertical, 2)
                                 .bold()
                             Spacer()
                         }
-                        
+                                 
                         ProfileTabView(selectedTab: $selectedTab)
                             .frame(height: 25)
                             .padding()
