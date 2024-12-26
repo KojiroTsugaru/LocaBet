@@ -46,6 +46,7 @@ struct CreateBetView: View {
                             DatePicker(
                                 "",
                                 selection: $newBetData.deadline,
+                                in: Date()...,
                                 displayedComponents: .date
                             )
                             .labelsHidden()
