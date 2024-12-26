@@ -18,7 +18,8 @@ class AccountManager: NSObject, ObservableObject {
     // ローカルの現在のユーザーを保持するためのPublishedプロパティ
     @Published var currentUser: User?
     @Published var handle: AuthStateDidChangeListenerHandle?
-
+    @Published var isAuthenticating = true
+    
     private override init() {
         super.init()
         self.setUp()
@@ -30,10 +31,11 @@ class AccountManager: NSObject, ObservableObject {
             .auth()
             .addStateDidChangeListener({ [weak self] auth, user in
                 if let self = self {
-                    Task {
-                        try await self.fetchCurrentUser()
-                    }
                     DispatchQueue.main.async {
+                        Task {
+                            self.currentUser = try await self.fetchCurrentUser()
+                            self.isAuthenticating = false
+                        }
                         if user != nil {
                             print("User is logged in")
                         } else {
@@ -57,14 +59,20 @@ class AccountManager: NSObject, ObservableObject {
     func uploadIconImage(iconImage: UIImage?) async throws -> URL {
         guard let image = iconImage,
               let imageData = image.jpegData(compressionQuality: 0.8) else {
-            throw NSError(domain: "ImageError", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid image."])
+            throw NSError(
+                domain: "ImageError",
+                code: -1,
+                userInfo: [NSLocalizedDescriptionKey: "Invalid image."]
+            )
         }
 
         let imageName = UUID().uuidString
-        let storageRef = storage.reference().child("profileImages/\(imageName).jpg")
+        let storageRef = storage.reference().child(
+            "profileImages/\(imageName).jpg"
+        )
 
         // Upload the image
-        let metadata = try await storageRef.putDataAsync(imageData)
+        let _ = try await storageRef.putDataAsync(imageData)
 
         // Retrieve the download URL
         let downloadURL = try await storageRef.downloadURL()
@@ -104,6 +112,7 @@ class AccountManager: NSObject, ObservableObject {
     }
     
     // MARK: - Sign-In Method
+    @MainActor
     func signIn(userName: String, password: String) async throws {
         let email = "\(userName)@stubetapp.com" // Construct a placeholder email using username
         
@@ -114,8 +123,8 @@ class AccountManager: NSObject, ObservableObject {
                 password: password
             )
             
-            Task.init {
-                try await fetchCurrentUser() // Update the currentUser on successful sign-in
+            Task {
+                self.currentUser = try await fetchCurrentUser() // Update the currentUser on successful sign-in
             }
             
         } catch let error as NSError {
@@ -154,17 +163,13 @@ class AccountManager: NSObject, ObservableObject {
     }
 
     // convert Firestore data to User struct
-    @MainActor
-    public func fetchCurrentUser() async throws {
+    public func fetchCurrentUser() async throws -> User? {
+        
         // Ensure that we have a current user
         guard let id = Auth.auth().currentUser?.uid else {
-            throw NSError(
-                domain: "UserError",
-                code: 1,
-                userInfo: [NSLocalizedDescriptionKey: "No authenticated user found."]
-            )
+            return nil
         }
-
+        
         // Reference to the Firestore document
         let documentRef = Firestore.firestore().collection("users").document(id)
         
@@ -174,13 +179,12 @@ class AccountManager: NSObject, ObservableObject {
             
             // Check if the document exists and contains data
             guard let data = documentSnapshot.data() else {
-                print("User document does not exist or has no data")
-                return
+                print("In fetchCurrentUser(): User document does not exist or has no data")
+                return nil
             }
             
-            // Update currentUser on the main thread
-            self.currentUser = await User(id: id, data: data)
-
+            async let currentUser = await User(id: id, data: data)
+            return await currentUser
             
         } catch {
             print("Error fetching user data: \(error.localizedDescription)")
@@ -199,7 +203,7 @@ class AccountManager: NSObject, ObservableObject {
             
             // Check if the document exists and contains data
             guard let data = documentSnapshot.data() else {
-                print("User document does not exist or has no data")
+                print("In fetchUser(id: String): User document does not exist or has no data")
                 return nil
             }
             
@@ -211,7 +215,11 @@ class AccountManager: NSObject, ObservableObject {
         }
     }
     
-    func updateCurrentUser(newUserName: String, newDisplayName: String, newIconUrl: String) {
+    func updateCurrentUser(
+        newUserName: String,
+        newDisplayName: String,
+        newIconUrl: String
+    ) {
         
         guard let currentUser = self.currentUser else {
             print("Error: User ID is missing.")
@@ -227,13 +235,16 @@ class AccountManager: NSObject, ObservableObject {
             "updatedAt": Timestamp(date: Date()),
         ]
         
-        db.collection("users").document(currentUser.id).updateData(userData) { error in
-            if let error = error {
-                print("Error updating user: \(error.localizedDescription)")
-            } else {
-                print("User updated successfully.")
+        db
+            .collection("users")
+            .document(currentUser.id)
+            .updateData(userData) { error in
+                if let error = error {
+                    print("Error updating user: \(error.localizedDescription)")
+                } else {
+                    print("User updated successfully.")
+                }
             }
-        }
     }
     
     // Custom error types for sign-in error handling
