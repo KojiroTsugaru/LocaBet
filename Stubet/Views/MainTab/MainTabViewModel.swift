@@ -40,7 +40,7 @@ class MainTabViewModel: ObservableObject {
                         latitude: location.latitude,
                         longitude: location.longitude
                     ),
-                    identifier: location.name
+                    identifier: "#\(mission.id)-\(location.name)"
                 )
         }
     }

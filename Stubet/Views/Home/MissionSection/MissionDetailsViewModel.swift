@@ -40,7 +40,7 @@ class MissionDetailsViewModel: ObservableObject {
                     latitude: mission.location.latitude,
                     longitude: mission.location.longitude
                 ),
-                identifier: mission.location.name
+                identifier: "#\(mission.id)-\(mission.location.name)"
             )
         // ステータスを変更
         await BetManager.shared
