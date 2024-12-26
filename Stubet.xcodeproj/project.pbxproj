@@ -69,6 +69,7 @@
 		317581202C89768A00DD5B13 /* FirebaseAppDistribution-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 3175811F2C89768A00DD5B13 /* FirebaseAppDistribution-Beta */; };
 		31B8ED972C89BEC9004474B6 /* SetLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B8ED962C89BEC9004474B6 /* SetLocationView.swift */; };
 		31B8ED992C89BF8C004474B6 /* MapSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B8ED982C89BF8C004474B6 /* MapSearchBar.swift */; };
+		31D4B0142D1D7BD1006BDBD5 /* ScrollviewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4B0132D1D7BD1006BDBD5 /* ScrollviewTest.swift */; };
 		31F550BC2D05FCCB0038638E /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 31F550BB2D05FCCB0038638E /* FirebaseStorage */; };
 		31F550BF2D0600190038638E /* FirebaseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F550BE2D0600190038638E /* FirebaseStorage.swift */; };
 		31F550C12D0602FB0038638E /* IconPhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F550C02D0602FB0038638E /* IconPhotoPickerView.swift */; };
@@ -161,6 +162,7 @@
 		317581252C89A57100DD5B13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31B8ED962C89BEC9004474B6 /* SetLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLocationView.swift; sourceTree = "<group>"; };
 		31B8ED982C89BF8C004474B6 /* MapSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchBar.swift; sourceTree = "<group>"; };
+		31D4B0132D1D7BD1006BDBD5 /* ScrollviewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollviewTest.swift; sourceTree = "<group>"; };
 		31F550BE2D0600190038638E /* FirebaseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorage.swift; sourceTree = "<group>"; };
 		31F550C02D0602FB0038638E /* IconPhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPhotoPickerView.swift; sourceTree = "<group>"; };
 		31F550C22D0A0A400038638E /* ProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditView.swift; sourceTree = "<group>"; };
@@ -440,6 +442,7 @@
 				313F8EDC2CEB5CD400CA3F3D /* ProfileViewHeader.swift */,
 				31F550CD2D0B169D0038638E /* BetHistoryListView.swift */,
 				31F550CF2D0B19870038638E /* MissionHistoryListView.swift */,
+				31D4B0132D1D7BD1006BDBD5 /* ScrollviewTest.swift */,
 				31F550C82D0A0EB40038638E /* ProfileEdit */,
 				313F8EDE2CEB651500CA3F3D /* SearchUserView.swift */,
 				313F8ED82CEA8F7800CA3F3D /* ProfileTabView.swift */,
@@ -639,6 +642,7 @@
 				3146656A2CE4F33B00441AC6 /* RootView.swift in Sources */,
 				311238982C8AB0A300EC7DBC /* TimeLocationConfirmPanel.swift in Sources */,
 				316FD25B2D03870F007B993E /* BetDetailsViewModel.swift in Sources */,
+				31D4B0142D1D7BD1006BDBD5 /* ScrollviewTest.swift in Sources */,
 				314665642CDF8AC300441AC6 /* LocationManager.swift in Sources */,
 				311238922C89D75600EC7DBC /* ConfirmNewBetView.swift in Sources */,
 				313F8EDD2CEB5CD400CA3F3D /* ProfileViewHeader.swift in Sources */,

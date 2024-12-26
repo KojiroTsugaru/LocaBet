@@ -19,9 +19,6 @@ struct ProfileViewHeader: View {
             // Top curved background
             CurvedBackground()
                 .fill(Color.orange)
-                .frame(height: 200)
-                .ignoresSafeArea(.all)
-            Spacer()
             
             VStack {
                 // Icons on top-right
@@ -73,6 +70,7 @@ struct ProfileViewHeader: View {
                                 .background(
                                     Circle().fill(Color.white)
                                 ) // White outline
+                                .foregroundColor(.gray)
                                 .clipShape(Circle()) // Clip to circle
                                 .overlay(
                                     Circle()
@@ -199,10 +197,10 @@ struct CurvedBackground: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
         path.move(to: CGPoint(x: 0, y: 0))
-        path.addLine(to: CGPoint(x: 0, y: rect.height * 0.7))
+        path.addLine(to: CGPoint(x: 0, y: rect.height * 0.4))
         path.addQuadCurve(
-            to: CGPoint(x: rect.width, y: rect.height * 0.7),
-            control: CGPoint(x: rect.width / 2, y: rect.height * 1.1)
+            to: CGPoint(x: rect.width, y: rect.height * 0.4),
+            control: CGPoint(x: rect.width / 2, y: rect.height * 0.8)
         )
         path.addLine(to: CGPoint(x: rect.width, y: 0))
         path.closeSubpath()

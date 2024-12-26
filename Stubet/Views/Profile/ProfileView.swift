@@ -19,31 +19,36 @@ struct ProfileView: View {
     }
     
     var body: some View {
-        VStack() {
-            ProfileViewHeader()
-            HStack {
-                Text("過去のベット/ミッション")
-                    .padding(.horizontal)
-                    .bold()
-                Spacer()
-            }
-            
-            ProfileTabView(selectedTab: $selectedTab)
-                .frame(height: 25)
-                .padding()
-            
-            // Content depending on the selected tab
+        VStack(spacing: 0) {
+            ZStack {
+                Color.orange
+            }.ignoresSafeArea(.all)
+                .frame(height: 60)
+                .zIndex(1)
             ScrollView {
+                ProfileViewHeader()
+                
+                HStack {
+                    Text("過去のベット/ミッション")
+                        .padding(.horizontal)
+                        .bold()
+                    Spacer()
+                }
+                
+                ProfileTabView(selectedTab: $selectedTab)
+                    .frame(height: 25)
+                    .padding()
+                
+                // Content depending on the selected tab
                 if selectedTab == .mission {
                     MissionHistoryListView()
                 } else {
                     BetHistoryListView()
                 }
-            }
-
-            Spacer()
+                Spacer()
+            }.zIndex(0)
         }
-        .edgesIgnoringSafeArea(.bottom)
+        .edgesIgnoringSafeArea(.all)
         .background(Color(UIColor.systemGroupedBackground))
         .navigationBarTitleDisplayMode(.inline) // No visible title
         .task {
@@ -56,7 +61,6 @@ struct ProfileView: View {
             }
         }
     }
-            
 }
 
 
