@@ -19,32 +19,42 @@ struct ProfileView: View {
     }
     
     var body: some View {
-        VStack() {
-            ProfileViewHeader()
-            HStack {
-                Text("過去のベット/ミッション")
-                    .padding(.horizontal)
-                    .bold()
-                Spacer()
+        VStack(spacing: 0) {
+            ZStack {
+                Color.orange
             }
+            .ignoresSafeArea(.all)
+            .frame(height: 60)
+            .zIndex(1)
             
-            ProfileTabView(selectedTab: $selectedTab)
-                .frame(height: 25)
-                .padding()
-            
-            // Content depending on the selected tab
             ScrollView {
-                if selectedTab == .mission {
-                    MissionHistoryListView()
-                } else {
-                    BetHistoryListView()
-                }
+                VStack(spacing: 0) {
+                    ProfileViewHeader()
+                    
+                        HStack {
+                            Text("過去のベット/ミッション")
+                                .padding(.horizontal)
+                                .bold()
+                            Spacer()
+                        }
+                        
+                        ProfileTabView(selectedTab: $selectedTab)
+                            .frame(height: 25)
+                            .padding()
+                        
+                        // Content depending on the selected tab
+                        if selectedTab == .mission {
+                            MissionHistoryListView()
+                        } else {
+                            BetHistoryListView()
+                        }
+                }.background(Color(UIColor.systemGroupedBackground))
             }
-
-            Spacer()
+            .background(.orange)
+            .zIndex(0)
         }
-        .edgesIgnoringSafeArea(.bottom)
         .background(Color(UIColor.systemGroupedBackground))
+        .edgesIgnoringSafeArea(.all)
         .navigationBarTitleDisplayMode(.inline) // No visible title
         .task {
             do {
@@ -56,7 +66,6 @@ struct ProfileView: View {
             }
         }
     }
-            
 }
 
 

@@ -19,6 +19,7 @@ struct BetHistoryListView: View {
             } else {
                 LazyVStack(alignment: .center) {
                     Text("過去のベットが見つかりません")
+                        .frame(height: 350, alignment: .top)
                 }
             }
         }
