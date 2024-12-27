@@ -43,20 +43,6 @@ struct MainTabView: View {
             .tag(1)
         }
         .accentColor(Color.orange)
-        .onChange(of: locationManager.showModalForRegion, { oldValue, newValue in
-            if newValue != nil {
-                showMissionClearModal = true // Trigger modal display
-            }
-        })
-        .sheet(isPresented: $showMissionClearModal, onDismiss: {
-            // Reset the modal trigger after dismissal
-            locationManager.showModalForRegion = nil
-        }) {
-            // Modal Content
-            if let regionIdentifier = locationManager.showModalForRegion {
-                MissionClearModalView(regionIdentifier: regionIdentifier)
-            }
-        }
     }
 }
 

@@ -1,22 +1,22 @@
 //
-//  MissionClearModalView.swift
+//  BetClearModalView.swift
 //  Stubet
 //
-//  Created by KJ on 11/9/24.
+//  Created by KJ on 12/27/24.
 //
 
 import SwiftUI
 
-struct MissionClearModalView: View {
+struct BetClearModalView: View {
     
     let regionIdentifier: String
     
     var body: some View {
         VStack(spacing: 20) {
-            Text("ミッションをクリアしました🎉")
+            Text("ベットをクリアしました🎉")
                 .font(.title2)
                 .bold()
-            Text("\(regionIdentifier)に時間内に到着")
+            Text("\(regionIdentifier)に時間通りに到着")
                 .bold()
 
             Button("閉じる") {
@@ -28,5 +28,5 @@ struct MissionClearModalView: View {
 }
 
 #Preview {
-    MissionClearModalView(regionIdentifier: "Test Location")
+    BetClearModalView(regionIdentifier: "Test Location")
 }

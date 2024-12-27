@@ -168,23 +168,22 @@ class BetManager: NSObject, ObservableObject {
         }
     }
     
-    // update bet's status
-    func updateBetStatus(betItem: any BetItem, newStatus: Status) async {
-        // Assume you have a reference to the Firestore database
+    // notify status change
+    func notifyStatusUpdateTo(id: String, betId: String, newStatus: Status) async {
+        // Example: Using Firestore to send a notification
         let db = Firestore.firestore()
-        
-        // Update the status in Firestore
+        let notificationData: [String: Any] = [
+            "type": "statusUpdate",
+            "betId": betId,
+            "newStatus": newStatus.rawValue,
+            "timestamp": Timestamp(date: Date())
+        ]
+
         do {
-            try await db.collection("bets").document(betItem.id).updateData([
-                "status": newStatus.rawValue,
-                "updatedAt": Timestamp(date: Date())
-            ])
-            
-            // re-fetch all bet data
-            emptyAllData()
-            await fetchData()
+            try await db.collection("users").document(id).collection("notifications").addDocument(data: notificationData)
+            print("Notification sent to sender #\(id)")
         } catch {
-            print("error updating bet status:", error)
+            print("Error sending notification: \(error)")
         }
     }
     

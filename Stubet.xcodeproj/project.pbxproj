@@ -69,6 +69,9 @@
 		317581202C89768A00DD5B13 /* FirebaseAppDistribution-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 3175811F2C89768A00DD5B13 /* FirebaseAppDistribution-Beta */; };
 		31B8ED972C89BEC9004474B6 /* SetLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B8ED962C89BEC9004474B6 /* SetLocationView.swift */; };
 		31B8ED992C89BF8C004474B6 /* MapSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B8ED982C89BF8C004474B6 /* MapSearchBar.swift */; };
+		31D4B0182D1E61C4006BDBD5 /* MissionFailModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4B0172D1E61C4006BDBD5 /* MissionFailModalView.swift */; };
+		31D4B01B2D1E7BBD006BDBD5 /* BetClearModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4B01A2D1E7BBD006BDBD5 /* BetClearModalView.swift */; };
+		31D4B01D2D1E7E60006BDBD5 /* BetFailModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4B01C2D1E7E57006BDBD5 /* BetFailModalView.swift */; };
 		31F550BC2D05FCCB0038638E /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 31F550BB2D05FCCB0038638E /* FirebaseStorage */; };
 		31F550BF2D0600190038638E /* FirebaseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F550BE2D0600190038638E /* FirebaseStorage.swift */; };
 		31F550C12D0602FB0038638E /* IconPhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F550C02D0602FB0038638E /* IconPhotoPickerView.swift */; };
@@ -161,6 +164,9 @@
 		317581252C89A57100DD5B13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31B8ED962C89BEC9004474B6 /* SetLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLocationView.swift; sourceTree = "<group>"; };
 		31B8ED982C89BF8C004474B6 /* MapSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchBar.swift; sourceTree = "<group>"; };
+		31D4B0172D1E61C4006BDBD5 /* MissionFailModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionFailModalView.swift; sourceTree = "<group>"; };
+		31D4B01A2D1E7BBD006BDBD5 /* BetClearModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetClearModalView.swift; sourceTree = "<group>"; };
+		31D4B01C2D1E7E57006BDBD5 /* BetFailModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetFailModalView.swift; sourceTree = "<group>"; };
 		31F550BE2D0600190038638E /* FirebaseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorage.swift; sourceTree = "<group>"; };
 		31F550C02D0602FB0038638E /* IconPhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPhotoPickerView.swift; sourceTree = "<group>"; };
 		31F550C22D0A0A400038638E /* ProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditView.swift; sourceTree = "<group>"; };
@@ -374,7 +380,7 @@
 			children = (
 				3146656B2CE4F39D00441AC6 /* MainTabView.swift */,
 				316FD2202D034341007B993E /* MainTabViewModel.swift */,
-				314665652CDF98EE00441AC6 /* MissionClearModalView.swift */,
+				31D4B0192D1E7AAF006BDBD5 /* Modals */,
 			);
 			path = MainTab;
 			sourceTree = "<group>";
@@ -466,6 +472,17 @@
 				3175810F2C88195D00DD5B13 /* Location.swift */,
 			);
 			path = LocationManager;
+			sourceTree = "<group>";
+		};
+		31D4B0192D1E7AAF006BDBD5 /* Modals */ = {
+			isa = PBXGroup;
+			children = (
+				314665652CDF98EE00441AC6 /* MissionClearModalView.swift */,
+				31D4B0172D1E61C4006BDBD5 /* MissionFailModalView.swift */,
+				31D4B01A2D1E7BBD006BDBD5 /* BetClearModalView.swift */,
+				31D4B01C2D1E7E57006BDBD5 /* BetFailModalView.swift */,
+			);
+			path = Modals;
 			sourceTree = "<group>";
 		};
 		31F550BD2D05FFFC0038638E /* Service */ = {
@@ -643,6 +660,7 @@
 				311238922C89D75600EC7DBC /* ConfirmNewBetView.swift in Sources */,
 				313F8EDD2CEB5CD400CA3F3D /* ProfileViewHeader.swift in Sources */,
 				3175810A2C880B9300DD5B13 /* CreateBetView.swift in Sources */,
+				31D4B0182D1E61C4006BDBD5 /* MissionFailModalView.swift in Sources */,
 				31F550BF2D0600190038638E /* FirebaseStorage.swift in Sources */,
 				316FD2182D026966007B993E /* TimeLocationDetailsPanel.swift in Sources */,
 				311626E22CDEA46B00E1D4E0 /* LocationService.swift in Sources */,
@@ -656,11 +674,13 @@
 				311A57622C86D94D0040AA9A /* Stubet.xcdatamodeld in Sources */,
 				3112389E2C8AB6A700EC7DBC /* FriendRequest.swift in Sources */,
 				31F550C52D0A0DB90038638E /* ProfileEditViewModel.swift in Sources */,
+				31D4B01D2D1E7E60006BDBD5 /* BetFailModalView.swift in Sources */,
 				313F8EE32CEB769B00CA3F3D /* SearchFriendCell.swift in Sources */,
 				317581162C896A7700DD5B13 /* NewBetViewModel.swift in Sources */,
 				313F8EE62CEB795E00CA3F3D /* SettingView.swift in Sources */,
 				313F8FED2CF6178500CA3F3D /* FriendCell.swift in Sources */,
 				3175810E2C8816C900DD5B13 /* FriendModel.swift in Sources */,
+				31D4B01B2D1E7BBD006BDBD5 /* BetClearModalView.swift in Sources */,
 				31B8ED992C89BF8C004474B6 /* MapSearchBar.swift in Sources */,
 				311A57872C86E6080040AA9A /* HomeView.swift in Sources */,
 				316FD2212D034341007B993E /* MainTabViewModel.swift in Sources */,
@@ -851,7 +871,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Stubet/Preview Content\"";
 				DEVELOPMENT_TEAM = 265P8798N4;
 				ENABLE_PREVIEWS = YES;
@@ -888,7 +908,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Stubet/Preview Content\"";
 				DEVELOPMENT_TEAM = 265P8798N4;
 				ENABLE_PREVIEWS = YES;
