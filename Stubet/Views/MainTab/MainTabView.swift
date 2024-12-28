@@ -13,7 +13,6 @@ struct MainTabView: View {
     @StateObject private var locationManager = LocationManager.shared
     
     @State private var selectedTab = 0 // Set HomeView as the default tab
-    @State private var showMissionClearModal = false
     
     init() {
         // Set tab bar appearance
@@ -41,6 +40,31 @@ struct MainTabView: View {
                 Text("プロフィール")
             }
             .tag(1)
+        }
+        // sheet for bet notifications
+        .sheet(item: $viewModel.currentNotification) { notification in
+            switch notification.type {
+            case .missionClear:
+                MissionClearModalView(missionId: notification.id) {
+                    viewModel.currentNotification = nil // Dismiss modal
+                    viewModel.showNextNotification()
+                }
+            case .missionFail:
+                MissionFailModalView(missionId: notification.id) {
+                    viewModel.currentNotification = nil // Dismiss modal
+                    viewModel.showNextNotification()
+                }
+            case .betClear:
+                BetClearModalView(betId: notification.id) {
+                    viewModel.currentNotification = nil // Dismiss modal
+                    viewModel.showNextNotification()
+                }
+            case .betFail:
+                BetFailModalView(betId: notification.id) {
+                    viewModel.currentNotification = nil // Dismiss modal
+                    viewModel.showNextNotification()
+                }
+            }
         }
         .accentColor(Color.orange)
     }

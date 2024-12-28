@@ -9,24 +9,26 @@ import SwiftUI
 
 struct MissionClearModalView: View {
     
-    let regionIdentifier: String
+    let missionId: String
+    let dismiss: () -> Void
     
     var body: some View {
         VStack(spacing: 20) {
             Text("ミッションをクリアしました🎉")
                 .font(.title2)
                 .bold()
-            Text("\(regionIdentifier)に時間通りに到着")
+            Text("に時間通りに到着")
                 .bold()
 
             Button("閉じる") {
                 // Code to dismiss modal will automatically work with the sheet binding
+                dismiss()
             }
         }
         .padding()
     }
 }
 
-#Preview {
-    MissionClearModalView(regionIdentifier: "Test Location")
-}
+//#Preview {
+//    MissionClearModalView(regionIdentifier: "Test Location")
+//}

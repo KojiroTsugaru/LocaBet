@@ -72,6 +72,8 @@
 		31D4B0182D1E61C4006BDBD5 /* MissionFailModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4B0172D1E61C4006BDBD5 /* MissionFailModalView.swift */; };
 		31D4B01B2D1E7BBD006BDBD5 /* BetClearModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4B01A2D1E7BBD006BDBD5 /* BetClearModalView.swift */; };
 		31D4B01D2D1E7E60006BDBD5 /* BetFailModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4B01C2D1E7E57006BDBD5 /* BetFailModalView.swift */; };
+		31D4B0202D204D0D006BDBD5 /* BetNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4B01F2D204D0D006BDBD5 /* BetNotification.swift */; };
+		31D4B0222D204D42006BDBD5 /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4B0212D204D42006BDBD5 /* NotificationType.swift */; };
 		31F550BC2D05FCCB0038638E /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 31F550BB2D05FCCB0038638E /* FirebaseStorage */; };
 		31F550BF2D0600190038638E /* FirebaseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F550BE2D0600190038638E /* FirebaseStorage.swift */; };
 		31F550C12D0602FB0038638E /* IconPhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F550C02D0602FB0038638E /* IconPhotoPickerView.swift */; };
@@ -167,6 +169,8 @@
 		31D4B0172D1E61C4006BDBD5 /* MissionFailModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionFailModalView.swift; sourceTree = "<group>"; };
 		31D4B01A2D1E7BBD006BDBD5 /* BetClearModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetClearModalView.swift; sourceTree = "<group>"; };
 		31D4B01C2D1E7E57006BDBD5 /* BetFailModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetFailModalView.swift; sourceTree = "<group>"; };
+		31D4B01F2D204D0D006BDBD5 /* BetNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetNotification.swift; sourceTree = "<group>"; };
+		31D4B0212D204D42006BDBD5 /* NotificationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationType.swift; sourceTree = "<group>"; };
 		31F550BE2D0600190038638E /* FirebaseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorage.swift; sourceTree = "<group>"; };
 		31F550C02D0602FB0038638E /* IconPhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPhotoPickerView.swift; sourceTree = "<group>"; };
 		31F550C22D0A0A400038638E /* ProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditView.swift; sourceTree = "<group>"; };
@@ -305,6 +309,7 @@
 		311A57842C86DFF00040AA9A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				31D4B01E2D204CEC006BDBD5 /* BetNotification */,
 				316FD21F2D033F39007B993E /* MainTab */,
 				31BB21482CDBE9FA00260C7D /* Home */,
 				31BB214C2CDBEB1C00260C7D /* Profile */,
@@ -380,7 +385,6 @@
 			children = (
 				3146656B2CE4F39D00441AC6 /* MainTabView.swift */,
 				316FD2202D034341007B993E /* MainTabViewModel.swift */,
-				31D4B0192D1E7AAF006BDBD5 /* Modals */,
 			);
 			path = MainTab;
 			sourceTree = "<group>";
@@ -483,6 +487,16 @@
 				31D4B01C2D1E7E57006BDBD5 /* BetFailModalView.swift */,
 			);
 			path = Modals;
+			sourceTree = "<group>";
+		};
+		31D4B01E2D204CEC006BDBD5 /* BetNotification */ = {
+			isa = PBXGroup;
+			children = (
+				31D4B0192D1E7AAF006BDBD5 /* Modals */,
+				31D4B01F2D204D0D006BDBD5 /* BetNotification.swift */,
+				31D4B0212D204D42006BDBD5 /* NotificationType.swift */,
+			);
+			path = BetNotification;
 			sourceTree = "<group>";
 		};
 		31F550BD2D05FFFC0038638E /* Service */ = {
@@ -691,12 +705,14 @@
 				31F550C12D0602FB0038638E /* IconPhotoPickerView.swift in Sources */,
 				31F550C72D0A0E6A0038638E /* ProfileEditPhotoPicker.swift in Sources */,
 				4C771D8F2C8809D000543A57 /* LoginView.swift in Sources */,
+				31D4B0222D204D42006BDBD5 /* NotificationType.swift in Sources */,
 				313F8ED92CEA8F7800CA3F3D /* ProfileTabView.swift in Sources */,
 				313F8ECA2CE6484700CA3F3D /* BetListView.swift in Sources */,
 				316FD21C2D026BE1007B993E /* BetItem.swift in Sources */,
 				3175810C2C88146500DD5B13 /* User.swift in Sources */,
 				317581102C88195D00DD5B13 /* Location.swift in Sources */,
 				313F8EC82CE6481D00CA3F3D /* MissionListView.swift in Sources */,
+				31D4B0202D204D0D006BDBD5 /* BetNotification.swift in Sources */,
 				311626DC2CDE5C3100E1D4E0 /* NewBetData.swift in Sources */,
 				314665662CDF98EE00441AC6 /* MissionClearModalView.swift in Sources */,
 				3146656E2CE50A8D00441AC6 /* ProfileViewModel.swift in Sources */,

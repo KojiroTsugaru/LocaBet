@@ -25,6 +25,10 @@ class MainTabViewModel: ObservableObject {
     @Published var showBetClearModal = false
     @Published var showBetFailModal = false
     
+    // for notification modal
+    @Published var betNotifications: [BetNotification] = [] // (betId, ModalType)
+    @Published var currentNotification: BetNotification? = nil // Current notification
+    
     init() {
         Task {
             await fetchAllData()
@@ -90,14 +94,19 @@ class MainTabViewModel: ObservableObject {
                         )
                     // notify status update to sender
                     await betManager.notifyStatusUpdateTo(id: mission.senderId, betId: mission.id, newStatus: .rewardPending)
-                    showMissionClearModal = true
+                    
+                    // add it to notification for modal
+                    self.betNotifications.append(BetNotification(id: mission.id, type: .missionClear))
+                    
                 } else {
                     // change bet status to fail
                     await betManager
                         .updateBetStatus(betItem: mission, newStatus: .failed)
                     // notify status update to sender
                     await betManager.notifyStatusUpdateTo(id: mission.senderId, betId: mission.id, newStatus: .failed)
-                    showMissionFailModal = false
+                    
+                    // add it to notification for modal
+                    self.betNotifications.append(BetNotification(id: mission.id, type: .missionFail))
                 }
                 // stop geofencing this mission location
                 locationManager.stopGeofencingRegion(identifier: mission.id)
@@ -130,14 +139,32 @@ class MainTabViewModel: ObservableObject {
                     let data = document.data()
                     if let type = data["type"] as? String,
                        let newStatus = data["newStatus"] as? String,
+                       let betId = data["betId"] as? String,
                        type == "statusUpdate" {
+                        
+                        // bet was failed
                         if newStatus == Status.failed.rawValue {
-                            self.showBetFailModal = true
+                            // add it to notification for modal
+                            betNotifications.append(BetNotification(id: betId, type: .betFail))
+                            break
+                        }
+                        // bet was cleared
+                        else if newStatus == Status.rewardPending.rawValue {
+                            betNotifications.append(BetNotification(id: betId, type: .betClear))
                             break
                         }
                     }
                 }
             }
+    }
+    
+    /// Show the next notification modal
+    func showNextNotification() {
+        if self.currentNotification == nil, !self.betNotifications.isEmpty {
+            self.currentNotification = self.betNotifications.removeFirst() // Show the next notification
+        } else {
+            self.currentNotification = nil // All notifications shown
+        }
     }
     
     

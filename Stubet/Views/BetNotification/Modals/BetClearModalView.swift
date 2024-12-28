@@ -1,5 +1,5 @@
 //
-//  MissionFailModal.swift
+//  BetClearModalView.swift
 //  Stubet
 //
 //  Created by KJ on 12/27/24.
@@ -7,26 +7,28 @@
 
 import SwiftUI
 
-struct MissionFailModalView: View {
+struct BetClearModalView: View {
     
-    let regionIdentifier: String
+    let betId: String
+    let dismiss: () -> Void
     
     var body: some View {
         VStack(spacing: 20) {
-            Text("ミッションに失敗しました")
+            Text("ベットをクリアしました🎉")
                 .font(.title2)
                 .bold()
-            Text("\(regionIdentifier)に到着できませんでした")
+            Text("に時間通りに到着")
                 .bold()
 
             Button("閉じる") {
                 // Code to dismiss modal will automatically work with the sheet binding
+                dismiss()
             }
         }
         .padding()
     }
 }
 
-#Preview {
-    MissionFailModalView(regionIdentifier: "Test Location")
-}
+//#Preview {
+//    BetClearModalView(regionIdentifier: "Test Location")
+//}
