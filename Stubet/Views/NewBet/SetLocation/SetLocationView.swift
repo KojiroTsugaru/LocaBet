@@ -7,7 +7,6 @@ struct SetLocationView: View {
     
     @State private var camera: MapCameraPosition = .automatic
     @State private var markerCoord: CLLocationCoordinate2D?
-    
     @State private var locationName = ""
     
     var body: some View {
@@ -58,6 +57,12 @@ struct SetLocationView: View {
                 newBetData.selectedCoordinates = markerCoord
             }
         }))
+        .onAppear {
+            // initialize camera position
+            if let currentLocation = LocationManager.shared.currentLocation {
+                camera = .camera(MapCamera(centerCoordinate: currentLocation.coordinate, distance: 1000))
+            }
+        }
     }
     
 }
