@@ -2,12 +2,14 @@ import SwiftUI
 import MapKit
 
 struct SetLocationView: View {
+    @Environment(\.presentationMode) var presentationMode
     @ObservedObject var newBetData: NewBetData
     @Binding var showNewBetModal: Bool // Accept showNewBet as a Binding
     
     @State private var camera: MapCameraPosition = .automatic
     @State private var markerCoord: CLLocationCoordinate2D?
     @State private var locationName = ""
+    @State private var isLocationSelected = false
     
     var body: some View {
         
@@ -25,6 +27,7 @@ struct SetLocationView: View {
                     if let coordinate = proxy.convert(position, from: .local) {
                         print(coordinate)
                         markerCoord = coordinate
+                        isLocationSelected = true
                     }
                 }
             }
@@ -44,23 +47,43 @@ struct SetLocationView: View {
             .padding(.vertical, 16)
         }
         .navigationBarTitle("場所を設定", displayMode: .inline)
-        .navigationBarItems(trailing: NavigationLink {
-            ConfirmNewBetView(newBetData: newBetData, showNewBetModal: $showNewBetModal)
-        } label: {
-            Text("次へ")
-                .font(.headline)
-                .foregroundColor(Color.orange)
-        }.simultaneousGesture(TapGesture().onEnded {
-            // Set the value here before navigation
-            newBetData.locationName = locationName
-            if let markerCoord = markerCoord {
-                newBetData.selectedCoordinates = markerCoord
-            }
-        }))
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(
+            leading: Button(action: {
+                presentationMode.wrappedValue.dismiss()
+            }, label: {
+                HStack(spacing: 2) {
+                    Image(systemName: "chevron.left")
+                    Text("戻る")
+                }.foregroundColor(Color.orange)
+            }),
+            trailing: NavigationLink {
+                ConfirmNewBetView(
+                    newBetData: newBetData,
+                    showNewBetModal: $showNewBetModal
+                )
+            } label: {
+                Text("次へ")
+                    .foregroundColor(Color.orange)
+            }.simultaneousGesture(TapGesture().onEnded {
+                // Set the value here before navigation
+                newBetData.locationName = locationName
+                if let markerCoord = markerCoord {
+                    newBetData.selectedCoordinates = markerCoord
+                }
+            })
+            .disabled(!isLocationSelected)
+        )
         .onAppear {
             // initialize camera position
             if let currentLocation = LocationManager.shared.currentLocation {
-                camera = .camera(MapCamera(centerCoordinate: currentLocation.coordinate, distance: 1000))
+                camera = 
+                    .camera(
+                        MapCamera(
+                            centerCoordinate: currentLocation.coordinate,
+                            distance: 1000
+                        )
+                    )
             }
         }
     }

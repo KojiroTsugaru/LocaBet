@@ -26,9 +26,11 @@ struct ConfirmNewBetView: View {
                         .clipShape(Circle())
 
                     VStack(alignment: .leading) {
-                        Text(newBetData.selectedFriend?.displayName ?? "フレンドが選択されていません")
-                            .font(.subheadline)
-                            .fontWeight(.medium)
+                        Text(
+                            newBetData.selectedFriend?.displayName ?? "フレンドが選択されていません"
+                        )
+                        .font(.subheadline)
+                        .fontWeight(.medium)
 
                         Text(newBetData.title)
                             .font(.title2)
@@ -54,18 +56,30 @@ struct ConfirmNewBetView: View {
             }
             .padding()
         }
-        .navigationTitle("ベット確認")
+        .navigationTitle("ベット内容確認")
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarItems(trailing: Button(action: {
-            Task.init {
-                await BetManager.shared.createBet(newBetData: newBetData)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(
+            leading: Button(action: {
+                presentationMode.wrappedValue.dismiss()
+            }, label: {
+                HStack(spacing: 2) {
+                    Image(systemName: "chevron.left")
+                    Text("場所を設定")
+                }.foregroundColor(Color.orange)
+            }),
+            trailing: Button(action: {
+                Task.init {
+                    await BetManager.shared.createBet(newBetData: newBetData)
+                }
+                // Dismiss the current view
+                showNewBetModal = false
+                
+            }) {
+                Text("作成する")
+                    .foregroundColor(Color.orange)
             }
-             // Dismiss the current view
-            showNewBetModal = false
-            
-        }) {
-            Text("作成する")
-        })
+        )
     }
 }
 
@@ -83,11 +97,19 @@ fileprivate let dummyNewBetData = NewBetData(
     selectedFriend: dummyFriend,
     title: "5K Run Bet",
     description: "Let's see who can finish a 5K run faster!",
-    deadline: Calendar.current.date(byAdding: .day, value: 10, to: Date()) ?? Date(), // 10 days from now
+    deadline: Calendar.current
+        .date(byAdding: .day, value: 10, to: Date()) ?? Date(),
+    // 10 days from now
     locationName: "Greenwood Park",
-    selectedCoordinates: CLLocationCoordinate2D(latitude: 34.052235, longitude: -118.243683) // Los Angeles
+    selectedCoordinates: CLLocationCoordinate2D(
+        latitude: 34.052235,
+        longitude: -118.243683
+    ) // Los Angeles
 )
 
 #Preview {
-    ConfirmNewBetView(newBetData: dummyNewBetData, showNewBetModal: Binding.constant(true))
+    ConfirmNewBetView(
+        newBetData: dummyNewBetData,
+        showNewBetModal: Binding.constant(true)
+    )
 }

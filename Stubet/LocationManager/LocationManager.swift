@@ -34,7 +34,9 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
             locationManager.requestWhenInUseAuthorization()
 
         case .restricted, .denied:
-            print("Location access is restricted or denied. Update your settings.")
+            print(
+                "Location access is restricted or denied. Update your settings."
+            )
 
         case .authorizedWhenInUse, .authorizedAlways:
             print("Authorization granted. Starting location updates.")

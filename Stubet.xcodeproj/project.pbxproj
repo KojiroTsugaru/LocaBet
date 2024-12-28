@@ -416,8 +416,8 @@
 				317581092C880B9300DD5B13 /* CreateBetView.swift */,
 				311626E32CDEA47700E1D4E0 /* SetLocation */,
 				311238912C89D75600EC7DBC /* ConfirmNewBetView.swift */,
-				317581152C896A7700DD5B13 /* NewBetViewModel.swift */,
 				311238972C8AB0A300EC7DBC /* TimeLocationConfirmPanel.swift */,
+				317581152C896A7700DD5B13 /* NewBetViewModel.swift */,
 				311626DB2CDE5C3100E1D4E0 /* NewBetData.swift */,
 			);
 			path = NewBet;
