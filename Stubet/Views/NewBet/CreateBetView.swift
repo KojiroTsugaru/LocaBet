@@ -91,7 +91,7 @@ struct CreateBetView: View {
                 leading: Button(action: {
                     presentationMode.wrappedValue.dismiss()
                 }, label: {
-                    Text("戻る")
+                    Text("閉じる")
                         .foregroundColor(Color.orange)
                 }),
                 trailing: NavigationLink {

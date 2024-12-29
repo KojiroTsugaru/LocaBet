@@ -18,6 +18,7 @@ protocol BetItem: Identifiable {
     var status: Status { get set }
     var formattedDeadline: String { get }
     var deadlineTimeRemaining: String { get }
+    var isDeadlinePassed: Bool { get }
 }
 
 extension BetItem {
@@ -62,5 +63,9 @@ extension BetItem {
         } else {
             return "\(minutes) minute\(minutes > 1 ? "s" : "") left"
         }
+    }
+    
+    var isDeadlinePassed: Bool  {
+        return deadline.dateValue() < Date()
     }
 }

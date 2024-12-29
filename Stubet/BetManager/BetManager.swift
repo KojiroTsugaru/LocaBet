@@ -146,10 +146,39 @@ class BetManager: NSObject, ObservableObject {
         }
     }
     
+    // fetch bet by id
+    func fetchBetBy(id: String) async -> (any BetItem)? {
+        
+        guard let currentUserId = AccountManager.shared.getCurrentUserId() else {
+            return nil
+        }
+        
+        do {
+            
+            // get this bet by id
+            let document = try await db.collection("bets").document(id).getDocument()
+            
+            if let data = document.data() {
+                let bet = Bet(id: id, data: data)
+                
+                // check this betItem is bet or missio
+                if currentUserId == bet.senderId {
+                    return bet
+                } else {
+                    let mission = Mission(from: bet)
+                    return mission
+                }
+            } else {
+                return nil
+            }
+        } catch {
+            print("Error fetching bet: \(error)")
+            return nil
+        }
+    }
+    
     // update bet's status
     func updateBetStatus(betItem: any BetItem, newStatus: Status, refreshAfter: Bool = true) async {
-        // Assume you have a reference to the Firestore database
-        let db = Firestore.firestore()
         
         // Update the status in Firestore
         do {
@@ -168,23 +197,21 @@ class BetManager: NSObject, ObservableObject {
         }
     }
     
-    // update bet's status
-    func updateBetStatus(betItem: any BetItem, newStatus: Status) async {
-        // Assume you have a reference to the Firestore database
-        let db = Firestore.firestore()
-        
-        // Update the status in Firestore
+    // notify status change
+    func notifyStatusUpdateTo(id: String, betId: String, newStatus: Status) async {
+        // Example: Using Firestore to send a notification
+        let notificationData: [String: Any] = [
+            "type": "statusUpdate",
+            "betId": betId,
+            "newStatus": newStatus.rawValue,
+            "timestamp": Timestamp(date: Date())
+        ]
+
         do {
-            try await db.collection("bets").document(betItem.id).updateData([
-                "status": newStatus.rawValue,
-                "updatedAt": Timestamp(date: Date())
-            ])
-            
-            // re-fetch all bet data
-            emptyAllData()
-            await fetchData()
+            try await db.collection("users").document(id).collection("notifications").addDocument(data: notificationData)
+            print("Notification sent to sender #\(id)")
         } catch {
-            print("error updating bet status:", error)
+            print("Error sending notification: \(error)")
         }
     }
     

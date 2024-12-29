@@ -16,7 +16,6 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
     private var locationManager: CLLocationManager
     @Published var currentLocation: CLLocation?
     @Published var insideRegions: Set<String> = [] // Set of region identifiers that the user is currently inside
-    @Published var showModalForRegion: String? = nil // Identifier of the region to show a modal for
     
     override private init() {
         self.locationManager = CLLocationManager()
@@ -35,7 +34,9 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
             locationManager.requestWhenInUseAuthorization()
 
         case .restricted, .denied:
-            print("Location access is restricted or denied. Update your settings.")
+            print(
+                "Location access is restricted or denied. Update your settings."
+            )
 
         case .authorizedWhenInUse, .authorizedAlways:
             print("Authorization granted. Starting location updates.")
@@ -135,9 +136,6 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
         if let circularRegion = region as? CLCircularRegion {
             insideRegions.insert(circularRegion.identifier)
             print("Entered geofence region: \(circularRegion.identifier)")
-            
-            // Show modal for this region
-            showModalForRegion = circularRegion.identifier
             
             // Stop monitoring this region after entering it
             locationManager.stopMonitoring(for: circularRegion)

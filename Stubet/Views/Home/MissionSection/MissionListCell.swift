@@ -29,12 +29,18 @@ struct MissionListCell: View {
                     Text(mission.title)
                         .font(.headline)
                         .fontWeight(.bold)
-                        .foregroundColor(isPendingStatus ? Color.white : Color.primary)
+                        .foregroundColor(
+                            isPendingStatus ? Color.white : Color.primary
+                        )
                     
                     // Time Remaining
                     Text(mission.deadlineTimeRemaining)
                         .font(.subheadline)
-                        .foregroundColor(isPendingStatus ? Color.white : Color.secondary)
+                        .foregroundColor(
+                            mission.isDeadlinePassed ? Color.red : (
+                                isPendingStatus ? Color.white : Color.secondary
+                            )
+                        )
                     
                     // Location and Distance
                     HStack(spacing: 4) {
@@ -44,7 +50,9 @@ struct MissionListCell: View {
                         Spacer()
                         
                         // Profile Image of sender
-                        AsyncImage(url: URL(string: sender?.iconUrl ?? "")) { image in
+                        AsyncImage(
+                            url: URL(string: sender?.iconUrl ?? "")
+                        ) { image in
                             image
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
@@ -55,39 +63,67 @@ struct MissionListCell: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: 30, height: 30)
-                                .foregroundColor(isPendingStatus ? Color.white : Color.secondary)
+                                .foregroundColor(
+                                    isPendingStatus ? Color.white : Color.secondary
+                                )
                                 .clipShape(Circle())
                         }
                     }
                     .font(.caption)
-                    .foregroundColor(isPendingStatus ? Color.white : Color.secondary)
+                    .foregroundColor(
+                        isPendingStatus ? Color.white : Color.secondary
+                    )
                 }
             }
             .padding()
-            .background(isPendingStatus ?
-                        AnyView(LinearGradient(
-                            stops: [
-                                .init(color: Color(red: 1.00, green: 0.75, blue: 0.29), location: 0.00),
-                                .init(color: Color(red: 1.00, green: 0.62, blue: 0.29), location: 1.00),
-                            ],
-                            startPoint: UnitPoint(x: 1, y: 0),
-                            endPoint: UnitPoint(x: 0, y: 1)
-                        ))
-                        : AnyView(Color(UIColor.systemBackground)))
+            .background(
+                isPendingStatus ?
+                AnyView(
+                    LinearGradient(
+                        stops: [
+                            .init(
+                                color: Color(
+                                    red: 1.00,
+                                    green: 0.75,
+                                    blue: 0.29
+                                ),
+                                location: 0.00
+                            ),
+                            .init(
+                                color: Color(
+                                    red: 1.00,
+                                    green: 0.62,
+                                    blue: 0.29
+                                ),
+                                location: 1.00
+                            ),
+                        ],
+                        startPoint: UnitPoint(x: 1, y: 0),
+                        endPoint: UnitPoint(x: 0, y: 1)
+                    )
+                )
+                : AnyView(Color(UIColor.systemBackground))
+            )
             .cornerRadius(10)
             .shadow(radius: 2)
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
-                    .stroke(isPendingStatus ? Color.orange.opacity(0) : Color.gray.opacity(0.2), lineWidth: 1)
+                    .stroke(
+                        isPendingStatus ? Color.orange
+                            .opacity(0) : Color.gray
+                            .opacity(0.2),
+                        lineWidth: 1
+                    )
             )
             .task {
                 do {
-                    sender = try await accountManager.fetchUser(id: mission.senderId)
+                    sender = try await accountManager
+                        .fetchUser(id: mission.senderId)
                     print("fetch sender is called")
                 } catch {
                     print("error fetching sender informatin: \(error)")
                 }
-           }
+            }
         }
         .padding(.horizontal)
     }
