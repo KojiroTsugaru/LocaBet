@@ -34,19 +34,19 @@ class NotificationManager: ObservableObject {
                 guard let documents = snapshot?.documents else { return }
                 for document in documents {
                     let data = document.data()
-                    let docId = document.documentID
                     if let type = data["type"] as? String,
                        let newStatus = data["newStatus"] as? String,
+                       let betId = data["betId"] as? String,
                        type == "statusUpdate" {
                         
                         // bet was failed
                         if newStatus == Status.failed.rawValue {
                             // add it to notification for modal
-                            self.betNotifications.append(BetNotification(id: docId, type: .betFail))
+                            self.betNotifications.append(BetNotification(id: betId, type: .betFail))
                         }
                         // bet was cleared
                         else if newStatus == Status.rewardPending.rawValue {
-                            self.betNotifications.append(BetNotification(id: docId, type: .betClear))
+                            self.betNotifications.append(BetNotification(id: betId, type: .betClear))
                         }
                     }
                 }
@@ -69,8 +69,10 @@ class NotificationManager: ObservableObject {
         ]
 
         do {
-            let customDocId = id + betId
-            try await db.collection("users").document(id).collection("notifications").document(customDocId).setData(notificationData)
+            // create notitfication with betId as unique id
+            try await db.collection("users").document(id).collection("notifications").document(betId).setData(notificationData)
+            
+            print("Sent Notificaation with id: \(betId)")
             print("Notification sent to sender: \(id)")
         } catch {
             print("Error sending notification: \(error)")
