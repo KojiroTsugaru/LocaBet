@@ -103,7 +103,11 @@ class BetManager: NSObject, ObservableObject {
             print("Error fetching bets: \(error.localizedDescription)")
         }
     }
-
+    
+    func refreshData() async {
+        self.emptyAllData()
+        await self.fetchData()
+    }
     
     // craete bet
     func createBet(newBetData: NewBetData) async {
@@ -209,7 +213,7 @@ class BetManager: NSObject, ObservableObject {
 
         do {
             try await db.collection("users").document(id).collection("notifications").addDocument(data: notificationData)
-            print("Notification sent to sender #\(id)")
+            print("Notification sent to sender: \(id)")
         } catch {
             print("Error sending notification: \(error)")
         }
@@ -242,10 +246,14 @@ class BetManager: NSObject, ObservableObject {
         
         newMissions = []
         ongoingMissions = []
+        failedMissions = []
+        clearedMissions = []
         
         rewardPendingBets = []
         ongoingBets = []
         invitePendingBets = []
+        failedBets = []
+        clearedMissions = []
         
         fetchedBetIDs = []
         

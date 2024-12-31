@@ -117,9 +117,9 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
     ) {
         guard let location = locations.last else { return }
         currentLocation = location
-        print(
-            "Updated Location: \(location.coordinate.latitude), \(location.coordinate.longitude)"
-        )
+//        print(
+//            "Updated Location: \(location.coordinate.latitude), \(location.coordinate.longitude)"
+//        )
     }
     
     func locationManager(

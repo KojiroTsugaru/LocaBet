@@ -75,6 +75,8 @@ struct BetDetailsView: View {
                                     return "許可待ち"
                                 case .rewardPending:
                                     return "報酬待ち"
+                                case .failed:
+                                    return "失敗"
                                 default:
                                     return ""
                                 }

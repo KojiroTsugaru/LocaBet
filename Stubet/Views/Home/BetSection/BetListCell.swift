@@ -122,7 +122,6 @@ struct BetListCell: View {
                 do {
                     receiver = try await accountManager
                         .fetchUser(id: bet.receiverId)
-                    //                    print("fetch sender is called")
                 } catch {
                     print("error fetching sender informatin: \(error)")
                 }

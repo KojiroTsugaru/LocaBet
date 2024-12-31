@@ -34,7 +34,7 @@ struct HomeView: View {
                     BetListView()
                 }
             }.refreshable {
-                await betManager.fetchData()
+                await betManager.refreshData()
             }
         }
         .background(Color(UIColor.systemGroupedBackground))

@@ -86,6 +86,9 @@ class MainTabViewModel: ObservableObject {
             // check if deadline was passed or not
             if mission.deadline.dateValue() < Date() {
                 if locationManager.insideRegions.contains(mission.id) {
+                    
+                    print("a mission cleared! title: \(mission.title)")
+                    
                     // change bet status to cleared
                     await betManager
                         .updateBetStatus(
@@ -99,6 +102,7 @@ class MainTabViewModel: ObservableObject {
                     self.betNotifications.append(BetNotification(id: mission.id, type: .missionClear))
                     
                 } else {
+                    print("a mission failed! title: \(mission.title)")
                     // change bet status to fail
                     await betManager
                         .updateBetStatus(betItem: mission, newStatus: .failed)

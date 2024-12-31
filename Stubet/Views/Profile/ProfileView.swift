@@ -53,6 +53,11 @@ struct ProfileView: View {
             }
             .background(.orange)
             .zIndex(0)
+            .refreshable {
+                Task {
+                    await BetManager.shared.refreshData()
+                }
+            }
         }
         .background(Color(UIColor.systemGroupedBackground))
         .edgesIgnoringSafeArea(.all)
