@@ -34,13 +34,13 @@ struct MissionListCell: View {
                         )
                     
                     // Time Remaining
-                    Text(mission.deadlineTimeRemaining)
-                        .font(.subheadline)
-                        .foregroundColor(
-                            mission.isDeadlinePassed ? Color.red : (
-                                isPendingStatus ? Color.white : Color.secondary
-                            )
-                        )
+                    Text(
+                        mission.isDeadlinePassed ? mission.formattedDeadline : mission.deadlineTimeRemaining
+                    )
+                    .font(.subheadline)
+                    .foregroundColor(
+                        isPendingStatus ? Color.white : Color.secondary
+                    )
                     
                     // Location and Distance
                     HStack(spacing: 4) {

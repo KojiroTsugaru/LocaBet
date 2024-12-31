@@ -13,11 +13,23 @@ struct MissionHistoryListView: View {
     var body: some View {
         LazyVStack(alignment: .leading, spacing: 20) {
             if betManager.getMissionHistory().count > 0 {
+                
+                // mission history list
                 ForEach(betManager.getMissionHistory()) { mission in
                     MissionListCell(mission: mission)
                 }
+                
+                // filling up the white space
+                if betManager.getMissionHistory().count == 1 {
+                    Spacer()
+                        .frame(height: 200)
+                }
+                else if betManager.getMissionHistory().count == 2 {
+                    Spacer()
+                        .frame(height: 100)
+                }
             } else {
-                LazyVStack(alignment: .center) {
+                VStack(alignment: .center) {
                     Text("過去のミッションが見つかりません")
                         .frame(height: 350, alignment: .top)
                 }
