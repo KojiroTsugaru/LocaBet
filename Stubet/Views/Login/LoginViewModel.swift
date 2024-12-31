@@ -16,5 +16,21 @@ class LoginViewModel: ObservableObject {
     @Published var password = ""
     @Published var showError = false
     @Published var userData: [String: Any]? = nil
+    @Published var errorMessage: String?
+    @Published var isLoading = false
     
+    
+    func signIn() async {
+        do {
+            isLoading = true
+            try await AccountManager.shared
+                .signIn(
+                    userName: userName,
+                    password: password
+                )
+            isLoading = false
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
 }

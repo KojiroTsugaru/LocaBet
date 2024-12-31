@@ -21,6 +21,7 @@ class FriendManager: ObservableObject {
     // MARK: - Friend Management
     
     // Fetch the list of friends
+    @MainActor
     func fetchFriends() async throws {
         guard let currentUserId = currentUserId else {
             throw NSError(domain: "AuthError", code: 401, userInfo: [NSLocalizedDescriptionKey: "User not authenticated."])
@@ -32,11 +33,9 @@ class FriendManager: ObservableObject {
             // Fetch the documents asynchronously
             let snapshot = try await friendsRef.getDocuments()
             
-            DispatchQueue.main.async {
-                // Map the documents to Friend objects
-                self.friends = snapshot.documents.compactMap { doc in
-                    Friend(id: doc.documentID, data: doc.data())
-                }
+            // Map the documents to Friend objects
+            self.friends = snapshot.documents.compactMap { doc in
+                Friend(id: doc.documentID, data: doc.data())
             }
         } catch {
             // Handle any errors that occur during the fetch
@@ -177,6 +176,7 @@ class FriendManager: ObservableObject {
     }
 
     // Fetch all incoming friend requests
+    @MainActor
     func fetchFriendRequests() async throws {
         guard let currentUserId = currentUserId else {
             throw NSError(domain: "AuthError", code: 401, userInfo: [NSLocalizedDescriptionKey: "User not authenticated."])
@@ -184,10 +184,8 @@ class FriendManager: ObservableObject {
 
         let requestsSnapshot = try await db.collection("users").document(currentUserId).collection("friendRequests").whereField("status", isEqualTo: "pending").getDocuments()
         
-        DispatchQueue.main.async {
-            self.incomingRequests = requestsSnapshot.documents.compactMap { doc in
-                FriendRequest(id: doc.documentID, data: doc.data())
-            }
+        self.incomingRequests = requestsSnapshot.documents.compactMap { doc in
+            FriendRequest(id: doc.documentID, data: doc.data())
         }
     }
     

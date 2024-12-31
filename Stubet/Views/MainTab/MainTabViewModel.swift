@@ -16,6 +16,7 @@ class MainTabViewModel: ObservableObject {
     @ObservedObject private var betManager = BetManager.shared
     @ObservedObject private var accountManager = AccountManager.shared
     @ObservedObject private var locationManager = LocationManager.shared
+    @ObservedObject private var notificationManager = NotificationManager.shared
     
     private var timer: AnyCancellable?
     private var notificationListener: ListenerRegistration?
@@ -24,10 +25,6 @@ class MainTabViewModel: ObservableObject {
     @Published var showMissionFailModal = false
     @Published var showBetClearModal = false
     @Published var showBetFailModal = false
-    
-    // for notification modal
-    @Published var betNotifications: [BetNotification] = [] // (betId, ModalType)
-    @Published var currentNotification: BetNotification? = nil // Current notification
     
     init() {
         Task {
@@ -96,10 +93,10 @@ class MainTabViewModel: ObservableObject {
                             newStatus: .rewardPending
                         )
                     // notify status update to sender
-                    await betManager.notifyStatusUpdateTo(id: mission.senderId, betId: mission.id, newStatus: .rewardPending)
+                    await notificationManager.notifyStatusUpdateFor(id: mission.senderId, betId: mission.id, newStatus: .rewardPending)
                     
                     // add it to notification for modal
-                    self.betNotifications.append(BetNotification(id: mission.id, type: .missionClear))
+                    NotificationManager.shared.betNotifications.append(BetNotification(id: mission.id, type: .missionClear))
                     
                 } else {
                     print("a mission failed! title: \(mission.title)")
@@ -107,70 +104,31 @@ class MainTabViewModel: ObservableObject {
                     await betManager
                         .updateBetStatus(betItem: mission, newStatus: .failed)
                     // notify status update to sender
-                    await betManager.notifyStatusUpdateTo(id: mission.senderId, betId: mission.id, newStatus: .failed)
-                    
+                    await notificationManager.notifyStatusUpdateFor(id: mission.senderId, betId: mission.id, newStatus: .failed)
                     // add it to notification for modal
-                    self.betNotifications.append(BetNotification(id: mission.id, type: .missionFail))
+                    NotificationManager.shared.betNotifications.append(BetNotification(id: mission.id, type: .missionFail))
                 }
                 // stop geofencing this mission location
                 locationManager.stopGeofencingRegion(identifier: mission.id)
-                await betManager.fetchData()
+                await betManager.refreshData()
             }
         }
     }
     
+    // listen for bet notifications
     func startListeningForNotifications() {
-        let db = Firestore.firestore()
         
         guard let currenUserId = accountManager.getCurrentUserId() else {
             return
         }
         
-        notificationListener = db
-            .collection("users")
-            .document(currenUserId)
-            .collection("notifications")
-            .order(by: "timestamp", descending: true)
-            .addSnapshotListener { [weak self] snapshot, error in
-                guard let self = self else { return }
-                if let error = error {
-                    print("Error fetching notifications: \(error)")
-                    return
-                }
-
-                guard let documents = snapshot?.documents else { return }
-                for document in documents {
-                    let data = document.data()
-                    if let type = data["type"] as? String,
-                       let newStatus = data["newStatus"] as? String,
-                       let betId = data["betId"] as? String,
-                       type == "statusUpdate" {
-                        
-                        // bet was failed
-                        if newStatus == Status.failed.rawValue {
-                            // add it to notification for modal
-                            betNotifications.append(BetNotification(id: betId, type: .betFail))
-                            break
-                        }
-                        // bet was cleared
-                        else if newStatus == Status.rewardPending.rawValue {
-                            betNotifications.append(BetNotification(id: betId, type: .betClear))
-                            break
-                        }
-                    }
-                }
-            }
+        NotificationManager.shared.startListeningForNotifications(for: currenUserId)
     }
     
-    /// Show the next notification modal
-    func showNextNotification() {
-        if self.currentNotification == nil, !self.betNotifications.isEmpty {
-            self.currentNotification = self.betNotifications.removeFirst() // Show the next notification
-        } else {
-            self.currentNotification = nil // All notifications shown
-        }
+    // onDismiss action for bet notification modals
+    func dismissNotification(_ notification: BetNotification) {
+        NotificationManager.shared.deleteNotification(notification: notification)
     }
-    
     
     deinit {
         timer?.cancel()

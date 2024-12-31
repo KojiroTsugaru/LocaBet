@@ -13,3 +13,6 @@ enum NotificationType {
     case betClear
     case betFail
 }
+
+
+extension NotificationType: Equatable {}

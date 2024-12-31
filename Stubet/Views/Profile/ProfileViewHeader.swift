@@ -182,13 +182,6 @@ struct ProfileViewHeader: View {
             ProfileEditView()
                 .interactiveDismissDisabled(true)
         }
-        .task {
-            do {
-                try await AccountManager.shared.fetchCurrentUser()
-            } catch {
-                print(error)
-            }
-        }
     }
 }
 

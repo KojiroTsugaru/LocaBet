@@ -11,7 +11,9 @@ struct MainTabView: View {
     
     @StateObject private var viewModel = MainTabViewModel()
     @StateObject private var locationManager = LocationManager.shared
+    @StateObject private var notificationManager = NotificationManager.shared
     
+    @State private var showingNotification: BetNotification?
     @State private var selectedTab = 0 // Set HomeView as the default tab
     
     init() {
@@ -40,31 +42,33 @@ struct MainTabView: View {
                 Text("プロフィール")
             }
             .tag(1)
-        }
-        // sheet for bet notifications
-        .sheet(item: $viewModel.currentNotification) { notification in
-            switch notification.type {
-            case .missionClear:
-                MissionClearModalView(missionId: notification.id) {
-                    viewModel.currentNotification = nil // Dismiss modal
-                    viewModel.showNextNotification()
-                }
-            case .missionFail:
-                MissionFailModalView(missionId: notification.id) {
-                    viewModel.currentNotification = nil // Dismiss modal
-                    viewModel.showNextNotification()
-                }
-            case .betClear:
-                BetClearModalView(betId: notification.id) {
-                    viewModel.currentNotification = nil // Dismiss modal
-                    viewModel.showNextNotification()
-                }
-            case .betFail:
-                BetFailModalView(betId: notification.id) {
-                    viewModel.currentNotification = nil // Dismiss modal
-                    viewModel.showNextNotification()
+            .onChange(of: notificationManager.betNotifications) { newNotifications in
+                if let firstNotification = newNotifications.first {
+                    showingNotification = firstNotification
                 }
             }
+            // sheet for bet notifications
+            .sheet(item: $showingNotification) { notification in
+                switch notification.type {
+                case .missionClear:
+                    MissionClearModalView(missionId: notification.id) {
+                        viewModel.dismissNotification(notification)
+                    }
+                case .missionFail:
+                    MissionFailModalView(missionId: notification.id) {
+                        viewModel.dismissNotification(notification)
+                    }
+                case .betClear:
+                    BetClearModalView(betId: notification.id) {
+                        viewModel.dismissNotification(notification)
+                    }
+                case .betFail:
+                    BetFailModalView(betId: notification.id) {
+                        viewModel.dismissNotification(notification)
+                    }
+                }
+            }
+            .interactiveDismissDisabled(true)
         }
         .accentColor(Color.orange)
     }

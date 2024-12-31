@@ -43,6 +43,7 @@ struct SettingView: View {
         do {
             BetManager.shared.emptyAllData()
             FriendManager.shared.emptyAllData()
+            NotificationManager.shared.stopListening()
             try await accountManager.signOut()
         } catch {
             print(error)

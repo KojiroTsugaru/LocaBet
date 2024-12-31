@@ -109,8 +109,7 @@ fileprivate func formattedDate(date: Date) -> String {
     dateFormatter.dateFormat = "MM/dd/yyyy h:mm a"
     let dateString = dateFormatter.string(from: date)
     
-    
-    return dateFormatter.string(from: date)
+    return dateString
 }
 
 struct TimeLocationDetailsView_Previews: PreviewProvider {

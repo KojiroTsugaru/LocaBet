@@ -6,7 +6,6 @@ import FirebaseAuth
 struct LoginView: View {
     @ObservedObject var viewModel: LoginViewModel
     @State private var showSignupView = false // サインアップ画面表示フラグ
-    @State private var errorMessage: String?
     
     init(){
         self.viewModel = LoginViewModel()
@@ -16,7 +15,14 @@ struct LoginView: View {
         if showSignupView {
             SignupView(showSignupView: $showSignupView)
         } else {
-            loginContent
+            ZStack {
+                loginContent
+                
+                // Show loading overlay
+                if viewModel.isLoading {
+                    loadingOverlay
+                }
+            }
         }
     }
 
@@ -31,9 +37,6 @@ struct LoginView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 210, height: 210)
-                Text("StuBet")
-                    .font(.title)
-                    .bold()
             }
             .padding()
 
@@ -62,25 +65,21 @@ struct LoginView: View {
                 .padding(.horizontal)
 
             // ログインボタン
-            
             Button {
-                Task.init {
-                    do {
-                        try await AccountManager.shared
-                            .signIn(
-                                userName: viewModel.userName,
-                                password: viewModel.password
-                            )
-                    } catch {
-                        errorMessage = error.localizedDescription
-                    }
+                Task {
+                    await viewModel.signIn()
                 }
             } label: {
                 Text("ログイン")
+                    .foregroundColor(.white)
+                    .bold()
+                    .padding()
+                    .background(.orange)
+                    .cornerRadius(12)
             }
             .padding()
 
-            if let errorMessage = errorMessage {
+            if let errorMessage = viewModel.errorMessage {
                 Text("エラー: \(errorMessage)")
                     .foregroundColor(.red)
                     .padding()
@@ -98,5 +97,18 @@ struct LoginView: View {
             Spacer()
         }
         .padding()
+    }
+    
+    private var loadingOverlay: some View {
+        Color.black.opacity(0.5)
+            .edgesIgnoringSafeArea(.all)
+            .overlay(
+                VStack(spacing: 20) {
+                    ProgressView("ログイン中...")
+                        .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                        .foregroundColor(.white)
+                        .font(.headline)
+                }
+            )
     }
 }

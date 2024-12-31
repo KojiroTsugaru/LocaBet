@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BetNotification: Identifiable {
+struct BetNotification: Identifiable, Equatable {
     let id: String // Use betId as the unique identifier
     let type: NotificationType
     

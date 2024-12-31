@@ -145,13 +145,11 @@ class AccountManager: NSObject, ObservableObject {
     }
     
     // MARK: - Sign-Out Method
+    @MainActor
     func signOut() async throws {
         do {
             try Auth.auth().signOut()
-            DispatchQueue.main.async {
-                self.currentUser = nil // Clear the current user on sign-out
-            }
-            
+            self.currentUser = nil // Clear the current user on sign-out
         } catch {
             throw SignInError.signOutFailed
         }
@@ -190,6 +188,10 @@ class AccountManager: NSObject, ObservableObject {
             print("Error fetching user data: \(error.localizedDescription)")
             throw error
         }
+    }
+    
+    public func setCurrentUser() async throws {
+        self.currentUser = try await fetchCurrentUser()
     }
     
     // fetch user by user id

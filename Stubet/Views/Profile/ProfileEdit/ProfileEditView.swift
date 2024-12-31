@@ -77,7 +77,7 @@ struct ProfileEditView: View {
                     Task {
                         await viewModel.checkUsernameAvailability()
                         try await viewModel.updateUser() // 変更をfireStoreに反映する
-                        try await AccountManager.shared.fetchCurrentUser()
+                        try await AccountManager.shared.setCurrentUser()
                         dismiss()
                     }
                 }) {
