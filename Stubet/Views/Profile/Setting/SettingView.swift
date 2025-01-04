@@ -8,46 +8,83 @@
 import SwiftUI
 
 struct SettingView: View {
-    
-    @StateObject private var accountManager = AccountManager.shared
     @State private var showLogoutAlert = false
+    @State private var showDeleteAlert = false
+    @State private var showFinalDeleteAlert = false
+    
+    @ObservedObject private var viewModel = SettingViewModel()
     
     var body: some View {
-        VStack {
-            Button {
-                showLogoutAlert = true
-            } label: {
-                Text("サインアウト")
-                    .foregroundColor(.red)
-                    .padding(8)
-                    .background(.gray.opacity(0.2))
-                    .cornerRadius(8)
+        ZStack {
+            VStack {
+                Button {
+                    showLogoutAlert = true
+                } label: {
+                    Text("サインアウト")
+                        .foregroundColor(.red)
+                        .padding(8)
+                        .background(.gray.opacity(0.2))
+                        .cornerRadius(8)
+                }
+                .padding(.vertical)
+                
+                Button {
+                    showDeleteAlert = true
+                } label: {
+                    Text("アカウント削除")
+                        .foregroundColor(.red)
+                        .padding(8)
+                        .background(.gray.opacity(0.2))
+                        .cornerRadius(8)
+                }
+                .padding(.vertical)
+                Spacer()
             }
-            .padding(.top)
-            Spacer()
+            
+            if viewModel.isDeletingAccount {
+                Color.black.opacity(0.5)
+                    .edgesIgnoringSafeArea(.all)
+                    .overlay(
+                        VStack(spacing: 20) {
+                            ProgressView("アカウント削除中...")
+                                .progressViewStyle(
+                                    CircularProgressViewStyle(tint: .white)
+                                )
+                                .foregroundColor(.white)
+                                .font(.headline)
+                        }
+                    )
+            }
         }
         .alert("サインアウト", isPresented: $showLogoutAlert, actions: {
-                Button("キャンセル", role: .cancel) { }
-                Button("サインアウト", role: .destructive) {
-                    Task {
-                        try await signout()
-                    }
+            Button("キャンセル", role: .cancel) { }
+            Button("サインアウト", role: .destructive) {
+                Task {
+                    try await viewModel.signout()
                 }
-            }, message: {
-                Text("本当にサインアウトしますか？")
-            })
+            }
+        }, message: {
+            Text("本当にサインアウトしますか？")
+        })
+        .alert("アカウントを削除", isPresented: $showDeleteAlert, actions: {
+            Button("キャンセル", role: .cancel) { }
+            Button("削除する", role: .destructive) {
+                showFinalDeleteAlert = true
+            }
+        }, message: {
+            Text("アカウントを削除すると元に戻せません。本当に削除しますか？")
+        })
+        .alert("最終確認", isPresented: $showFinalDeleteAlert, actions: {
+            Button("キャンセル", role: .cancel) { }
+            Button("完全に削除する", role: .destructive) {
+                Task {
+                    try await viewModel.deleteAccount()
+                }
+            }
+        }, message: {
+            Text("本当にアカウントを完全に削除しますか？")
+        })
         .navigationTitle("設定")
-    }
-    
-    private func signout() async throws {
-        do {
-            BetManager.shared.emptyAllData()
-            FriendManager.shared.emptyAllData()
-            NotificationManager.shared.stopListening()
-            try await accountManager.signOut()
-        } catch {
-            print(error)
-        }
     }
 }
 

@@ -155,6 +155,23 @@ class AccountManager: NSObject, ObservableObject {
         }
     }
     
+    // MARK: - Delete-Account Method
+    func deleteAccount() async throws {
+        guard let user = Auth.auth().currentUser else {
+            throw NSError(domain: "AuthError", code: -1, userInfo: [NSLocalizedDescriptionKey: "User not logged in"])
+        }
+        
+        try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
+            user.delete { error in
+                if let error = error {
+                    continuation.resume(throwing: error)
+                } else {
+                    continuation.resume()
+                }
+            }
+        }
+    }
+    
     // userIDの取得
     public func getCurrentUserId() -> String? {
         return currentUser?.id
