@@ -33,7 +33,7 @@ class ModalViewModel: ObservableObject {
                     print("error: fetching modal data", error)
                 }
                 
-                // action if Mission type
+            // action if Mission type
             } else if let mission = betItem as? Mission {
                 do {
                     self.opponent = try await AccountManager.shared
@@ -43,6 +43,8 @@ class ModalViewModel: ObservableObject {
                 }
                 
             }
+        } else {
+            print("error: fetching betItem")
         }
     }
     

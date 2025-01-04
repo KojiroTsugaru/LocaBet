@@ -12,7 +12,6 @@ struct MissionFailModalView: View {
     @Environment(\.dismiss) var dismissModal
     
     @ObservedObject var viewModel: ModalViewModel
-    @State private var mission: Mission?
     @State private var missionSender: User?
     let missionId: String
     let dismiss: () -> Void
@@ -29,8 +28,8 @@ struct MissionFailModalView: View {
                 .font(.title2)
                 .bold()
             Text("ベットされた相手: \(viewModel.opponent?.displayName ?? "")")
-            Text("目的地: \(mission?.location.name ?? "")")
-            Text("ベット内容:\n\(mission?.description ?? "")")
+            Text("目的地: \(viewModel.betItem?.location.name ?? "")")
+            Text("ベット内容:\n\(viewModel.betItem?.description ?? "")")
             
 
             Button {
@@ -48,7 +47,9 @@ struct MissionFailModalView: View {
         .padding()
         .task {
             await viewModel.fetchData()
+            print("fetched data for bet ID: \(missionId)")
         }
+        .interactiveDismissDisabled()
     }
 }
 

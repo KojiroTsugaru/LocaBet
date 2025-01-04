@@ -51,24 +51,23 @@ struct MainTabView: View {
             .sheet(item: $showingNotification) { notification in
                 switch notification.type {
                 case .missionClear:
-                    MissionClearModalView(missionId: notification.id) {
+                    MissionClearModalView(missionId: notification.betId) {
                         viewModel.dismissNotification(notification)
                     }
                 case .missionFail:
-                    MissionFailModalView(missionId: notification.id) {
+                    MissionFailModalView(missionId: notification.betId) {
                         viewModel.dismissNotification(notification)
                     }
                 case .betClear:
-                    BetClearModalView(betId: notification.id) {
+                    BetClearModalView(betId: notification.betId) {
                         viewModel.dismissNotification(notification)
                     }
                 case .betFail:
-                    BetFailModalView(betId: notification.id) {
+                    BetFailModalView(betId: notification.betId) {
                         viewModel.dismissNotification(notification)
                     }
                 }
             }
-            .interactiveDismissDisabled(true)
         }
         .accentColor(Color.orange)
     }

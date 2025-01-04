@@ -34,19 +34,18 @@ class NotificationManager: ObservableObject {
                 guard let documents = snapshot?.documents else { return }
                 for document in documents {
                     let data = document.data()
+                    let id = document.documentID
                     if let type = data["type"] as? String,
-                       let newStatus = data["newStatus"] as? String,
-                       let betId = data["betId"] as? String,
-                       type == "statusUpdate" {
+                       let betId = data["betId"] as? String {
                         
                         // bet was failed
-                        if newStatus == Status.failed.rawValue {
+                        if type == NotificationType.missionFail.rawValue {
                             // add it to notification for modal
-                            self.betNotifications.append(BetNotification(id: betId, type: .betFail))
+                            self.betNotifications.append(BetNotification(id: id, betId: betId, type: .betFail))
                         }
                         // bet was cleared
-                        else if newStatus == Status.rewardPending.rawValue {
-                            self.betNotifications.append(BetNotification(id: betId, type: .betClear))
+                        else if type == NotificationType.missionClear.rawValue {
+                            self.betNotifications.append(BetNotification(id: id, betId: betId, type: .betClear))
                         }
                     }
                 }
@@ -59,27 +58,31 @@ class NotificationManager: ObservableObject {
     }
     
     // notify status change
-    func notifyStatusUpdateFor(id: String, betId: String, newStatus: Status) async {
+    @MainActor
+    func notifyStatusUpdateFor(id: String, betId: String, notificationType: NotificationType) async {
         // Example: Using Firestore to send a notification
         let notificationData: [String: Any] = [
-            "type": "statusUpdate",
+            "type": notificationType.rawValue,
             "betId": betId,
-            "newStatus": newStatus.rawValue,
             "timestamp": Timestamp(date: Date())
         ]
 
         do {
-            // create notitfication with betId as unique id
-            try await db.collection("users").document(id).collection("notifications").document(betId).setData(notificationData)
+            let notificationId = UUID().uuidString
+            // create notitfication with unique UUID
+            try await db.collection("users").document(id).collection("notifications").document(notificationId).setData(notificationData)
             
-            print("Sent Notificaation with id: \(betId)")
+            // add a notification to myself
+            self.betNotifications.append(BetNotification(id: notificationId, betId: betId, type: notificationType))
+            
+            print("Sent Notification with automatically generated ID")
             print("Notification sent to sender: \(id)")
         } catch {
             print("Error sending notification: \(error)")
         }
     }
     
-    func deleteNotification(notification: BetNotification){
+    func deleteNotification(notification: BetNotification) {
         guard let currentUserId = AccountManager.shared.getCurrentUserId() else {
             return
         }

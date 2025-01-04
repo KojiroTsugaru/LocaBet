@@ -29,8 +29,8 @@ struct MissionClearModalView: View {
                 .font(.title2)
                 .bold()
             Text("ベットされた相手: \(viewModel.opponent?.displayName ?? "")")
-            Text("目的地: \(mission?.location.name ?? "")")
-            Text("ベット内容:\n\(mission?.description ?? "")")
+            Text("目的地: \(viewModel.betItem?.location.name ?? "")")
+            Text("ベット内容:\n\(viewModel.betItem?.description ?? "")")
             
 
             Button {
@@ -49,6 +49,7 @@ struct MissionClearModalView: View {
         .task {
             await viewModel.fetchData()
         }
+        .interactiveDismissDisabled()
     }
 }
 

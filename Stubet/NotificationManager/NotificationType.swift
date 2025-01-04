@@ -7,12 +7,9 @@
 
 import Foundation
 
-enum NotificationType {
-    case missionClear
-    case missionFail
-    case betClear
-    case betFail
+enum NotificationType: String, Equatable {
+    case missionClear = "Mission Clear"
+    case missionFail = "Mission Fail"
+    case betClear = "Bet Clear"
+    case betFail = "Bet Fail"
 }
-
-
-extension NotificationType: Equatable {}

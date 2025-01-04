@@ -93,20 +93,24 @@ class MainTabViewModel: ObservableObject {
                             newStatus: .rewardPending
                         )
                     // notify status update to sender
-                    await notificationManager.notifyStatusUpdateFor(id: mission.senderId, betId: mission.id, newStatus: .rewardPending)
-                    
-                    // add it to notification for modal
-                    NotificationManager.shared.betNotifications.append(BetNotification(id: mission.id, type: .missionClear))
-                    
+                    await notificationManager
+                        .notifyStatusUpdateFor(
+                            id: mission.senderId,
+                            betId: mission.id,
+                            notificationType: .missionClear
+                        )
                 } else {
                     print("a mission failed! title: \(mission.title)")
                     // change bet status to fail
                     await betManager
                         .updateBetStatus(betItem: mission, newStatus: .failed)
                     // notify status update to sender
-                    await notificationManager.notifyStatusUpdateFor(id: mission.senderId, betId: mission.id, newStatus: .failed)
-                    // add it to notification for modal
-                    NotificationManager.shared.betNotifications.append(BetNotification(id: mission.id, type: .missionFail))
+                    await notificationManager
+                        .notifyStatusUpdateFor(
+                            id: mission.senderId,
+                            betId: mission.id,
+                            notificationType: .missionFail
+                        )
                 }
                 // stop geofencing this mission location
                 locationManager.stopGeofencingRegion(identifier: mission.id)
@@ -122,12 +126,14 @@ class MainTabViewModel: ObservableObject {
             return
         }
         
-        NotificationManager.shared.startListeningForNotifications(for: currenUserId)
+        NotificationManager.shared
+            .startListeningForNotifications(for: currenUserId)
     }
     
     // onDismiss action for bet notification modals
     func dismissNotification(_ notification: BetNotification) {
-        NotificationManager.shared.deleteNotification(notification: notification)
+        NotificationManager.shared
+            .deleteNotification(notification: notification)
     }
     
     deinit {

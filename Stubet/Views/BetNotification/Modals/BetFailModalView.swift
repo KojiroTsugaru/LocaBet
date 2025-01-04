@@ -30,8 +30,8 @@ struct BetFailModalView: View {
                 .bold()
             
             Text("ベットした相手: \(viewModel.opponent?.displayName ?? "")")
-            Text("目的地: \(bet?.location.name ?? "")")
-            Text("ベット内容:\n\(bet?.description ?? "")")
+            Text("目的地: \(viewModel.betItem?.location.name ?? "")")
+            Text("ベット内容:\n\(viewModel.betItem?.description ?? "")")
             
             Button {
                 dismiss()
@@ -49,6 +49,7 @@ struct BetFailModalView: View {
         .task {
             await viewModel.fetchData()
         }
+        .interactiveDismissDisabled()
     }
 }
 

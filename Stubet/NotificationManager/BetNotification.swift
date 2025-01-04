@@ -8,11 +8,13 @@
 import Foundation
 
 struct BetNotification: Identifiable, Equatable {
-    let id: String // Use betId as the unique identifier
+    let id: String
+    let betId: String
     let type: NotificationType
     
-    init(id: String, type: NotificationType) {
+    init(id: String, betId: String, type: NotificationType) {
         self.id = id
+        self.betId = betId
         self.type = type
     }
 }
