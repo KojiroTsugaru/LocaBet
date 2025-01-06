@@ -19,10 +19,10 @@
 		311A57562C86D94A0040AA9A /* StubetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311A57552C86D94A0040AA9A /* StubetApp.swift */; };
 		311A575A2C86D94D0040AA9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 311A57592C86D94D0040AA9A /* Assets.xcassets */; };
 		311A575D2C86D94D0040AA9A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 311A575C2C86D94D0040AA9A /* Preview Assets.xcassets */; };
-		311A57622C86D94D0040AA9A /* Stubet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 311A57602C86D94D0040AA9A /* Stubet.xcdatamodeld */; };
-		311A576C2C86D94D0040AA9A /* StubetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311A576B2C86D94D0040AA9A /* StubetTests.swift */; };
-		311A57762C86D94D0040AA9A /* StubetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311A57752C86D94D0040AA9A /* StubetUITests.swift */; };
-		311A57782C86D94D0040AA9A /* StubetUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311A57772C86D94D0040AA9A /* StubetUITestsLaunchTests.swift */; };
+		311A57622C86D94D0040AA9A /* LocaBet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 311A57602C86D94D0040AA9A /* LocaBet.xcdatamodeld */; };
+		311A576C2C86D94D0040AA9A /* LocaBetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311A576B2C86D94D0040AA9A /* LocaBetTests.swift */; };
+		311A57762C86D94D0040AA9A /* LocaBetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311A57752C86D94D0040AA9A /* LocaBetUITests.swift */; };
+		311A57782C86D94D0040AA9A /* LocaBetUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311A57772C86D94D0040AA9A /* LocaBetUITestsLaunchTests.swift */; };
 		311A57872C86E6080040AA9A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311A57862C86E6080040AA9A /* HomeView.swift */; };
 		313F8EC82CE6481D00CA3F3D /* MissionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313F8EC72CE6481D00CA3F3D /* MissionListView.swift */; };
 		313F8ECA2CE6484700CA3F3D /* BetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313F8EC92CE6484700CA3F3D /* BetListView.swift */; };
@@ -119,16 +119,16 @@
 		311626D62CDE506100E1D4E0 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
 		311626DB2CDE5C3100E1D4E0 /* NewBetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBetData.swift; sourceTree = "<group>"; };
 		311626E12CDEA46B00E1D4E0 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
-		311A57522C86D94A0040AA9A /* Stubet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stubet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		311A57522C86D94A0040AA9A /* LocaBet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocaBet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		311A57552C86D94A0040AA9A /* StubetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubetApp.swift; sourceTree = "<group>"; };
 		311A57592C86D94D0040AA9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		311A575C2C86D94D0040AA9A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		311A57612C86D94D0040AA9A /* Stubet.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Stubet.xcdatamodel; sourceTree = "<group>"; };
-		311A57672C86D94D0040AA9A /* StubetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StubetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		311A576B2C86D94D0040AA9A /* StubetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubetTests.swift; sourceTree = "<group>"; };
-		311A57712C86D94D0040AA9A /* StubetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StubetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		311A57752C86D94D0040AA9A /* StubetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubetUITests.swift; sourceTree = "<group>"; };
-		311A57772C86D94D0040AA9A /* StubetUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubetUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		311A57612C86D94D0040AA9A /* LocaBet.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocaBet.xcdatamodel; sourceTree = "<group>"; };
+		311A57672C86D94D0040AA9A /* LocaBetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocaBetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		311A576B2C86D94D0040AA9A /* LocaBetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaBetTests.swift; sourceTree = "<group>"; };
+		311A57712C86D94D0040AA9A /* LocaBetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocaBetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		311A57752C86D94D0040AA9A /* LocaBetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaBetUITests.swift; sourceTree = "<group>"; };
+		311A57772C86D94D0040AA9A /* LocaBetUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaBetUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		311A57862C86E6080040AA9A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		313F8EC72CE6481D00CA3F3D /* MissionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionListView.swift; sourceTree = "<group>"; };
 		313F8EC92CE6484700CA3F3D /* BetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetListView.swift; sourceTree = "<group>"; };
@@ -250,9 +250,9 @@
 		311A57492C86D94A0040AA9A = {
 			isa = PBXGroup;
 			children = (
-				311A57542C86D94A0040AA9A /* Stubet */,
-				311A576A2C86D94D0040AA9A /* StubetTests */,
-				311A57742C86D94D0040AA9A /* StubetUITests */,
+				311A57542C86D94A0040AA9A /* LocaBet */,
+				311A576A2C86D94D0040AA9A /* LocaBetTests */,
+				311A57742C86D94D0040AA9A /* LocaBetUITests */,
 				316FD25C2D039C6A007B993E /* Frameworks */,
 				311A57532C86D94A0040AA9A /* Products */,
 			);
@@ -261,14 +261,14 @@
 		311A57532C86D94A0040AA9A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				311A57522C86D94A0040AA9A /* Stubet.app */,
-				311A57672C86D94D0040AA9A /* StubetTests.xctest */,
-				311A57712C86D94D0040AA9A /* StubetUITests.xctest */,
+				311A57522C86D94A0040AA9A /* LocaBet.app */,
+				311A57672C86D94D0040AA9A /* LocaBetTests.xctest */,
+				311A57712C86D94D0040AA9A /* LocaBetUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		311A57542C86D94A0040AA9A /* Stubet */ = {
+		311A57542C86D94A0040AA9A /* LocaBet */ = {
 			isa = PBXGroup;
 			children = (
 				311A57842C86DFF00040AA9A /* Views */,
@@ -280,12 +280,12 @@
 				31F550BD2D05FFFC0038638E /* Service */,
 				316FD21D2D033E13007B993E /* App */,
 				311A57592C86D94D0040AA9A /* Assets.xcassets */,
-				311A57602C86D94D0040AA9A /* Stubet.xcdatamodeld */,
+				311A57602C86D94D0040AA9A /* LocaBet.xcdatamodeld */,
 				317581252C89A57100DD5B13 /* Info.plist */,
 				317581002C87313900DD5B13 /* GoogleService-Info.plist */,
 				311A575B2C86D94D0040AA9A /* Preview Content */,
 			);
-			path = Stubet;
+			path = LocaBet;
 			sourceTree = "<group>";
 		};
 		311A575B2C86D94D0040AA9A /* Preview Content */ = {
@@ -296,21 +296,21 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		311A576A2C86D94D0040AA9A /* StubetTests */ = {
+		311A576A2C86D94D0040AA9A /* LocaBetTests */ = {
 			isa = PBXGroup;
 			children = (
-				311A576B2C86D94D0040AA9A /* StubetTests.swift */,
+				311A576B2C86D94D0040AA9A /* LocaBetTests.swift */,
 			);
-			path = StubetTests;
+			path = LocaBetTests;
 			sourceTree = "<group>";
 		};
-		311A57742C86D94D0040AA9A /* StubetUITests */ = {
+		311A57742C86D94D0040AA9A /* LocaBetUITests */ = {
 			isa = PBXGroup;
 			children = (
-				311A57752C86D94D0040AA9A /* StubetUITests.swift */,
-				311A57772C86D94D0040AA9A /* StubetUITestsLaunchTests.swift */,
+				311A57752C86D94D0040AA9A /* LocaBetUITests.swift */,
+				311A57772C86D94D0040AA9A /* LocaBetUITestsLaunchTests.swift */,
 			);
-			path = StubetUITests;
+			path = LocaBetUITests;
 			sourceTree = "<group>";
 		};
 		311A57842C86DFF00040AA9A /* Views */ = {
@@ -537,9 +537,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		311A57512C86D94A0040AA9A /* Stubet */ = {
+		311A57512C86D94A0040AA9A /* LocaBet */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 311A577B2C86D94D0040AA9A /* Build configuration list for PBXNativeTarget "Stubet" */;
+			buildConfigurationList = 311A577B2C86D94D0040AA9A /* Build configuration list for PBXNativeTarget "LocaBet" */;
 			buildPhases = (
 				311A574E2C86D94A0040AA9A /* Sources */,
 				311A574F2C86D94A0040AA9A /* Frameworks */,
@@ -549,7 +549,7 @@
 			);
 			dependencies = (
 			);
-			name = Stubet;
+			name = LocaBet;
 			packageProductDependencies = (
 				317581032C8737DA00DD5B13 /* FirebaseAnalytics */,
 				317581052C8739A700DD5B13 /* FirebaseAuth */,
@@ -561,12 +561,12 @@
 				31F550BB2D05FCCB0038638E /* FirebaseStorage */,
 			);
 			productName = Stubet;
-			productReference = 311A57522C86D94A0040AA9A /* Stubet.app */;
+			productReference = 311A57522C86D94A0040AA9A /* LocaBet.app */;
 			productType = "com.apple.product-type.application";
 		};
-		311A57662C86D94D0040AA9A /* StubetTests */ = {
+		311A57662C86D94D0040AA9A /* LocaBetTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 311A577E2C86D94D0040AA9A /* Build configuration list for PBXNativeTarget "StubetTests" */;
+			buildConfigurationList = 311A577E2C86D94D0040AA9A /* Build configuration list for PBXNativeTarget "LocaBetTests" */;
 			buildPhases = (
 				311A57632C86D94D0040AA9A /* Sources */,
 				311A57642C86D94D0040AA9A /* Frameworks */,
@@ -577,14 +577,14 @@
 			dependencies = (
 				311A57692C86D94D0040AA9A /* PBXTargetDependency */,
 			);
-			name = StubetTests;
+			name = LocaBetTests;
 			productName = StubetTests;
-			productReference = 311A57672C86D94D0040AA9A /* StubetTests.xctest */;
+			productReference = 311A57672C86D94D0040AA9A /* LocaBetTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		311A57702C86D94D0040AA9A /* StubetUITests */ = {
+		311A57702C86D94D0040AA9A /* LocaBetUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 311A57812C86D94D0040AA9A /* Build configuration list for PBXNativeTarget "StubetUITests" */;
+			buildConfigurationList = 311A57812C86D94D0040AA9A /* Build configuration list for PBXNativeTarget "LocaBetUITests" */;
 			buildPhases = (
 				311A576D2C86D94D0040AA9A /* Sources */,
 				311A576E2C86D94D0040AA9A /* Frameworks */,
@@ -595,9 +595,9 @@
 			dependencies = (
 				311A57732C86D94D0040AA9A /* PBXTargetDependency */,
 			);
-			name = StubetUITests;
+			name = LocaBetUITests;
 			productName = StubetUITests;
-			productReference = 311A57712C86D94D0040AA9A /* StubetUITests.xctest */;
+			productReference = 311A57712C86D94D0040AA9A /* LocaBetUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -623,7 +623,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 311A574D2C86D94A0040AA9A /* Build configuration list for PBXProject "Stubet" */;
+			buildConfigurationList = 311A574D2C86D94A0040AA9A /* Build configuration list for PBXProject "LocaBet" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -639,9 +639,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				311A57512C86D94A0040AA9A /* Stubet */,
-				311A57662C86D94D0040AA9A /* StubetTests */,
-				311A57702C86D94D0040AA9A /* StubetUITests */,
+				311A57512C86D94A0040AA9A /* LocaBet */,
+				311A57662C86D94D0040AA9A /* LocaBetTests */,
+				311A57702C86D94D0040AA9A /* LocaBetUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -703,7 +703,7 @@
 				317580FA2C87014400DD5B13 /* HomeViewModel.swift in Sources */,
 				318CC4B92D294E6500CCC5FD /* SettingViewModel.swift in Sources */,
 				31F550CE2D0B169D0038638E /* BetHistoryListView.swift in Sources */,
-				311A57622C86D94D0040AA9A /* Stubet.xcdatamodeld in Sources */,
+				311A57622C86D94D0040AA9A /* LocaBet.xcdatamodeld in Sources */,
 				3112389E2C8AB6A700EC7DBC /* FriendRequest.swift in Sources */,
 				31F550C52D0A0DB90038638E /* ProfileEditViewModel.swift in Sources */,
 				31D4B01D2D1E7E60006BDBD5 /* BetFailModalView.swift in Sources */,
@@ -753,7 +753,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				311A576C2C86D94D0040AA9A /* StubetTests.swift in Sources */,
+				311A576C2C86D94D0040AA9A /* LocaBetTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -761,8 +761,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				311A57762C86D94D0040AA9A /* StubetUITests.swift in Sources */,
-				311A57782C86D94D0040AA9A /* StubetUITestsLaunchTests.swift in Sources */,
+				311A57762C86D94D0040AA9A /* LocaBetUITests.swift in Sources */,
+				311A57782C86D94D0040AA9A /* LocaBetUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -771,12 +771,12 @@
 /* Begin PBXTargetDependency section */
 		311A57692C86D94D0040AA9A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 311A57512C86D94A0040AA9A /* Stubet */;
+			target = 311A57512C86D94A0040AA9A /* LocaBet */;
 			targetProxy = 311A57682C86D94D0040AA9A /* PBXContainerItemProxy */;
 		};
 		311A57732C86D94D0040AA9A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 311A57512C86D94A0040AA9A /* Stubet */;
+			target = 311A57512C86D94A0040AA9A /* LocaBet */;
 			targetProxy = 311A57722C86D94D0040AA9A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -909,11 +909,11 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_ASSET_PATHS = "\"Stubet/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"LocaBet/Preview Content\"";
 				DEVELOPMENT_TEAM = 265P8798N4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Stubet/Info.plist;
+				INFOPLIST_FILE = LocaBet/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show relevant content based on your position.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -946,11 +946,11 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_ASSET_PATHS = "\"Stubet/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"LocaBet/Preview Content\"";
 				DEVELOPMENT_TEAM = 265P8798N4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Stubet/Info.plist;
+				INFOPLIST_FILE = LocaBet/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show relevant content based on your position.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -990,7 +990,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Stubet.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Stubet";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LocaBet.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LocaBet";
 			};
 			name = Debug;
 		};
@@ -1009,7 +1009,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Stubet.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Stubet";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LocaBet.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LocaBet";
 			};
 			name = Release;
 		};
@@ -1050,7 +1050,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		311A574D2C86D94A0040AA9A /* Build configuration list for PBXProject "Stubet" */ = {
+		311A574D2C86D94A0040AA9A /* Build configuration list for PBXProject "LocaBet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				311A57792C86D94D0040AA9A /* Debug */,
@@ -1059,7 +1059,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		311A577B2C86D94D0040AA9A /* Build configuration list for PBXNativeTarget "Stubet" */ = {
+		311A577B2C86D94D0040AA9A /* Build configuration list for PBXNativeTarget "LocaBet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				311A577C2C86D94D0040AA9A /* Debug */,
@@ -1068,7 +1068,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		311A577E2C86D94D0040AA9A /* Build configuration list for PBXNativeTarget "StubetTests" */ = {
+		311A577E2C86D94D0040AA9A /* Build configuration list for PBXNativeTarget "LocaBetTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				311A577F2C86D94D0040AA9A /* Debug */,
@@ -1077,7 +1077,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		311A57812C86D94D0040AA9A /* Build configuration list for PBXNativeTarget "StubetUITests" */ = {
+		311A57812C86D94D0040AA9A /* Build configuration list for PBXNativeTarget "LocaBetUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				311A57822C86D94D0040AA9A /* Debug */,
@@ -1143,13 +1143,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		311A57602C86D94D0040AA9A /* Stubet.xcdatamodeld */ = {
+		311A57602C86D94D0040AA9A /* LocaBet.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				311A57612C86D94D0040AA9A /* Stubet.xcdatamodel */,
+				311A57612C86D94D0040AA9A /* LocaBet.xcdatamodel */,
 			);
-			currentVersion = 311A57612C86D94D0040AA9A /* Stubet.xcdatamodel */;
-			path = Stubet.xcdatamodeld;
+			currentVersion = 311A57612C86D94D0040AA9A /* LocaBet.xcdatamodel */;
+			path = LocaBet.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
