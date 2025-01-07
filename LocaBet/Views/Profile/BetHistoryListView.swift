@@ -33,6 +33,7 @@ struct BetHistoryListView: View {
                 VStack(alignment: .center) {
                     Text("過去のベットが見つかりません")
                         .frame(height: 350, alignment: .top)
+                        .padding()
                 }
             }
         }

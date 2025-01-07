@@ -64,6 +64,7 @@ class SignupViewModel: ObservableObject {
         } else {
             showError = true
             errorMessage = "Please fix the errors above."
+            isLoading = false
         }
     }
     

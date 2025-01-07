@@ -32,6 +32,7 @@ struct MissionHistoryListView: View {
                 VStack(alignment: .center) {
                     Text("過去のミッションが見つかりません")
                         .frame(height: 350, alignment: .top)
+                        .padding()
                 }
             }
         }

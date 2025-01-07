@@ -19,7 +19,7 @@ class LoginViewModel: ObservableObject {
     @Published var errorMessage: String?
     @Published var isLoading = false
     
-    
+    @MainActor
     func signIn() async {
         do {
             isLoading = true
@@ -31,6 +31,7 @@ class LoginViewModel: ObservableObject {
             isLoading = false
         } catch {
             errorMessage = error.localizedDescription
+            isLoading = false
         }
     }
 }

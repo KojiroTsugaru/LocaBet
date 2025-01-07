@@ -207,6 +207,7 @@ class AccountManager: NSObject, ObservableObject {
         }
     }
     
+    @MainActor
     public func setCurrentUser() async throws {
         self.currentUser = try await fetchCurrentUser()
     }

@@ -11,10 +11,11 @@ class SettingViewModel: ObservableObject {
     
     @Published var isDeletingAccount = false
     
+    @MainActor
     public func deleteAccount() async throws {
         do {
             isDeletingAccount = true
-            await BetManager.shared.emptyAllData()
+            BetManager.shared.emptyAllData()
             FriendManager.shared.emptyAllData()
             NotificationManager.shared.stopListening()
             try await AccountManager.shared.deleteAccount()
@@ -28,7 +29,7 @@ class SettingViewModel: ObservableObject {
     public func signout() async throws {
         do {
             await BetManager.shared.emptyAllData()
-            FriendManager.shared.emptyAllData()
+            await FriendManager.shared.emptyAllData()
             NotificationManager.shared.stopListening()
             try await AccountManager.shared.signOut()
         } catch {

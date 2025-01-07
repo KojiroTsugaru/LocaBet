@@ -203,6 +203,7 @@ class FriendManager: ObservableObject {
     }
     
     // call this function on sign out
+    @MainActor
     func emptyAllData() {
         self.incomingRequests = []
         self.sentRequestIds = []
