@@ -1,3 +1,3 @@
-# stubet
-Stubet個人開発用リポジトリ
+# LocaBet
+LocaBet個人開発用リポジトリ
 
